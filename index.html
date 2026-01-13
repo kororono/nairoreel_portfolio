@@ -85,6 +85,9 @@
         }
     </style>
     
+    <!-- Preload critical preloader background -->
+    <link rel="preload" as="image" href="assets/preloader/preloader-art.png">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/homepage-featured.css">
     <link rel="stylesheet" href="css/preloader.css">
@@ -96,26 +99,37 @@
          PRELOADER OVERLAY (Shows once per session)
          ======================================== -->
     <div class="preloader-overlay" id="preloader-overlay">
-        
+
         <!-- Header: Logo + Brand -->
         <div class="preloader-header">
          <img src="assets/footer/sf-logo-w.webp" alt="Nairoreel Productions Logo" class="preloader-logo-img">
         </div>
-        
-        <!-- Power Switch -->
-        <label class="preloader-switch">
-            <input class="preloader-switch__input" type="checkbox" role="switch" id="preloader-switch">
-            <span class="preloader-switch__lever-shadow"></span>
-            <span class="preloader-switch__lever">
-                <span class="preloader-switch__lever-sides"></span>
-                <span class="preloader-switch__lever-half-top"></span>
-                <span class="preloader-switch__lever-half-bottom"></span>
-            </span>
-            <span class="preloader-switch__label">Power</span>
-        </label>
-        
-        <!-- Creative Text -->
-        <div class="preloader-power-text">Illuminate our world</div>
+
+        <!-- Content Container -->
+        <div class="preloader-content">
+            <!-- Click to Activate Text -->
+            <div class="preloader-click-text">CLICK TO ACTIVATE</div>
+
+            <!-- Arrow Indicator -->
+            <svg class="preloader-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            <!-- Power Switch -->
+            <label class="preloader-switch">
+                <input class="preloader-switch__input" type="checkbox" role="switch" id="preloader-switch">
+                <span class="preloader-switch__lever-shadow"></span>
+                <span class="preloader-switch__lever">
+                    <span class="preloader-switch__lever-sides"></span>
+                    <span class="preloader-switch__lever-half-top"></span>
+                    <span class="preloader-switch__lever-half-bottom"></span>
+                </span>
+                <span class="preloader-switch__label">Power</span>
+            </label>
+        </div>
+
+        <!-- Slogan Text -->
+        <div class="preloader-power-text">DEFYING YOUR IMAGINATION</div>
     </div>
     <!-- ======================================== -->
     

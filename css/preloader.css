@@ -12,11 +12,28 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background: #0a0a0a;
     z-index: 9999;
     transition: opacity 1s ease-out, transform 1s ease-out;
     padding: 2rem;
+}
+
+/* Background artwork layer */
+.preloader-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/preloader/preloader-art.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    opacity: 0;
+    animation: preloaderFadeIn 1.5s ease-out 0.3s forwards;
 }
 
 .preloader-overlay.preloader-hidden {
@@ -28,38 +45,85 @@
 /* Preloader Header (Logo Only) */
 .preloader-header {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    z-index: 2;
     opacity: 0;
     animation: preloaderFadeIn 2s ease-out 0.5s forwards;
 }
 
 .preloader-logo-img {
-    width: 14rem; /* Adjust size as needed */
+    width: 8rem;
     height: auto;
     object-fit: contain;
 }
 
-/* Power Text */
-.preloader-power-text {
-    font-size: .9rem;
-    letter-spacing: 0.2em;
-    color: #666;
+/* Content Container (center area) */
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Click to Activate Text */
+.preloader-click-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
     text-transform: uppercase;
     opacity: 0;
-    animation: preloaderFadeInPulse 2s ease-out 1s forwards;
-    margin-top: 3rem;
+    animation: preloaderFadeIn 2s ease-out 0.8s forwards;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Arrow Animation */
+.preloader-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #ff6b6b;
+    opacity: 0;
+    animation:
+        preloaderFadeIn 2s ease-out 1s forwards,
+        arrowBounce 1.5s ease-in-out 2s infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
+    will-change: transform;
+}
+
+/* Power Text (Bottom Slogan) */
+.preloader-power-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: preloaderFadeIn 2s ease-out 1.2s forwards;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes preloaderFadeIn {
     to { opacity: 1; }
 }
 
-@keyframes preloaderFadeInPulse {
-    0% { opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { opacity: 0.3; }
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .preloader-arrow {
+        animation: preloaderFadeIn 2s ease-out 1s forwards;
+    }
 }
 
 /* ==========================================
@@ -73,19 +137,20 @@
 
 .preloader-switch {
     --hue: 223;
-    --hue2: 345;
-    --switch-bg: hsl(var(--hue), 5%, 15%);
-    --switch-bg-light: hsl(var(--hue), 5%, 25%);
-    --switch-bg-dark: hsl(var(--hue), 5%, 10%);
+    --hue2: 355;
+    --switch-bg: hsl(var(--hue), 8%, 18%);
+    --switch-bg-light: hsl(var(--hue), 8%, 28%);
+    --switch-bg-dark: hsl(var(--hue), 8%, 12%);
     --trans-dur: 0.3s;
     --trans-timing: cubic-bezier(0.83,0,0.17,1);
-    
+
     background-color: var(--switch-bg);
     border-radius: 0.375em;
     box-shadow:
         0 4.375em 2em var(--switch-bg-dark) inset,
         0 0.125em 0 var(--switch-bg-light) inset,
-        0 0 0.375em hsla(var(--hue),10%,5%,0.5);
+        0 0 0.375em hsla(var(--hue),10%,5%,0.5),
+        0 0 0 1px hsla(var(--hue), 50%, 60%, 0.15);
     margin: 0;
     position: relative;
     transition:
@@ -93,6 +158,8 @@
         box-shadow var(--trans-dur) var(--trans-timing);
     width: 3.75em;
     height: 8.75em;
+    opacity: 0;
+    animation: preloaderFadeIn 2s ease-out 0.6s forwards;
 }
 
 .preloader-switch__input,
@@ -290,16 +357,32 @@ body.preloader-active {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .preloader-header {
-        margin-bottom: orem;
+    .preloader-overlay {
+        padding: 1.5rem;
     }
-    
+
     .preloader-logo-img {
-        width: 10rem; /* Smaller on mobile */
+        width: 6rem;
     }
-    
+
+    .preloader-content {
+        gap: 1rem;
+    }
+
+    .preloader-click-text {
+        font-size: 0.9rem;
+    }
+
+    .preloader-arrow {
+        width: 2rem;
+        height: 2rem;
+    }
+
     .preloader-power-text {
-        font-size: 0.85rem;
-        margin-top: 2.5rem;
+        font-size: 0.95rem;
+    }
+
+    .preloader-switch {
+        transform: scale(0.85);
     }
 }
