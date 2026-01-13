@@ -27,7 +27,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../assets/preloader/preloader-art.png');
+    background-image:
+        image-set(
+            url('../assets/preloader/preloader-art.webp') type('image/webp'),
+            url('../assets/preloader/preloader-art.jpg') type('image/jpeg')
+        );
+    background-image:
+        -webkit-image-set(
+            url('../assets/preloader/preloader-art.webp') 1x,
+            url('../assets/preloader/preloader-art.jpg') 1x
+        );
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
