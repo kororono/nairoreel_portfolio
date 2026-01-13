@@ -1,0 +1,534 @@
+/* ==========================================
+   OUR WORK PAGE STYLES
+   
+   SECTIONS:
+   1. Fixed Video Background - Stays in place while content scrolls
+   2. Hero Section - Title and description
+   3. Filter Buttons - All (small) + category buttons (large)
+   4. Project Cards - Film & 3D project cards
+   5. Photography Section - Featured + Gallery
+   6. Generate Photography Gallery
+   7. Gallery Modal - Lightbox with metadata
+   8. Responsive - Mobile adjustments
+   ========================================== */
+
+/* ========================================
+   1. FIXED VIDEO BACKGROUND
+   Video stays fixed, content scrolls over it
+   ======================================== */
+.video-background-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;                                /* Behind all content */
+    overflow: hidden;
+}
+
+.video-background-fixed video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay for better text readability */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);             /* Adjust darkness here */
+   backdrop-filter: blur(10px);          /* <-- This creates the blur */
+  -webkit-backdrop-filter: blur(10px);  /* For Safari support */
+  pointer-events: none;                 /* So it doesn’t block clicks */
+}
+
+/* Main content container - scrolls over video */
+.work-main {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+/* ========================================
+   2. HERO SECTION
+   Title and description with spacing from nav
+   ======================================== */
+.work-hero {
+    padding: 140px 20px 60px;                   /* Extra top padding for nav clearance */
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.work-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+}
+
+.work-hero p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* ========================================
+   3. FILTER BUTTONS
+   All (small) + Film/3D/Photography (large)
+   ======================================== */
+.work-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px 60px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);      /* Subtle transparent background */
+    backdrop-filter: blur(10px);                /* Glass effect */
+    color: var(--foreground);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Small button for "All" */
+.filter-small {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+}
+
+/* Large buttons for categories */
+.filter-large {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--foreground);
+}
+
+/* ========================================
+   4. PROJECT CARDS (Film & 3D)
+   Standard work cards with hover effects
+   ======================================== */
+.projects-section {
+    padding: 0 20px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: none;                              /* Hidden by default, shown by filter */
+}
+
+.projects-section.active {
+    display: block;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* Work card styling - reuse home page card style */
+.work-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    aspect-ratio: 16 / 10;
+    background-color: rgba(28, 28, 28, 0.6);    /* Semi-transparent */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    display: block;
+    text-decoration: none;
+}
+
+.work-card:hover {
+    transform: translateY(-5px);
+}
+
+.work-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.work-card:hover img {
+    transform: scale(1.05);
+}
+
+.work-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.work-card:hover .work-card-overlay {
+    opacity: 1;
+}
+
+.work-card-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: var(--foreground);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.work-card:hover .work-card-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work-card-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+    color: var(--foreground);
+}
+
+.work-card-info p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Placeholder for empty sections */
+.project-card-placeholder {
+    padding: 60px 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.project-card-placeholder p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* ========================================
+   5. PHOTOGRAPHY SECTION
+   Featured projects + Gallery with metadata
+   ======================================== */
+.photo-featured {
+    margin-bottom: 80px;
+}
+
+.section-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Photography Gallery Grid */
+.photo-gallery {
+    margin-top: 60px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(28, 28, 28, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Metadata overlay - shows on hover */
+.gallery-metadata {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-metadata {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin: 0 0 5px 0;
+}
+
+.gallery-date {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* ========================================
+   6. GALLERY MODAL (Lightbox)
+   Fullscreen image viewer with metadata
+   ======================================== */
+.gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;                              /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal.active {
+    display: flex;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.modal-image-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 80vh;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s ease;
+}
+
+.gallery-modal.active .modal-image {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Image metadata in modal */
+.modal-info {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin: 0 0 5px 0;
+}
+
+.modal-date {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Modal close button */
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: #ffffff;
+    color: var(--accent);
+    transform: rotate(90deg);
+}
+
+/* Modal navigation arrows */
+.modal-nav {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-nav:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.1);
+}
+
+.modal-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Image counter */
+.modal-counter {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    color: var(--foreground);
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   7. RESPONSIVE
+   Mobile and tablet adjustments
+   ======================================== */
+@media (max-width: 768px) {
+    .work-hero {
+        padding: 120px 20px 40px;
+    }
+    
+    .work-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .work-hero p {
+        font-size: 1rem;
+    }
+    
+    .work-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-btn,
+    .filter-small,
+    .filter-large {
+        width: 100%;
+        max-width: 300px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .projects-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        flex-direction: column;
+    }
+    
+    .modal-nav {
+        position: absolute;
+        bottom: 20px;
+    }
+    
+    .modal-prev {
+        left: 20px;
+    }
+    
+    .modal-next {
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-label {
+        font-size: 0.85rem;
+    }
+}

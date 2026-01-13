@@ -1,0 +1,305 @@
+/* ==========================================
+   PRELOADER STYLES - ISOLATED
+   ========================================== */
+
+/* Preloader Overlay - Full Screen */
+.preloader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    z-index: 9999;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    padding: 2rem;
+}
+
+.preloader-overlay.preloader-hidden {
+    opacity: 0;
+    transform: scale(1.1);
+    pointer-events: none;
+}
+
+/* Preloader Header (Logo Only) */
+.preloader-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0rem;
+    opacity: 0;
+    animation: preloaderFadeIn 2s ease-out 0.5s forwards;
+}
+
+.preloader-logo-img {
+    width: 14rem; /* Adjust size as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+/* Power Text */
+.preloader-power-text {
+    font-size: .9rem;
+    letter-spacing: 0.2em;
+    color: #666;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: preloaderFadeInPulse 2s ease-out 1s forwards;
+    margin-top: 3rem;
+}
+
+@keyframes preloaderFadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes preloaderFadeInPulse {
+    0% { opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.3; }
+}
+
+/* ==========================================
+   SWITCH STYLES - EXACT COPY
+   ========================================== */
+
+.preloader-switch,
+.preloader-switch__input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.preloader-switch {
+    --hue: 223;
+    --hue2: 345;
+    --switch-bg: hsl(var(--hue), 5%, 15%);
+    --switch-bg-light: hsl(var(--hue), 5%, 25%);
+    --switch-bg-dark: hsl(var(--hue), 5%, 10%);
+    --trans-dur: 0.3s;
+    --trans-timing: cubic-bezier(0.83,0,0.17,1);
+    
+    background-color: var(--switch-bg);
+    border-radius: 0.375em;
+    box-shadow:
+        0 4.375em 2em var(--switch-bg-dark) inset,
+        0 0.125em 0 var(--switch-bg-light) inset,
+        0 0 0.375em hsla(var(--hue),10%,5%,0.5);
+    margin: 0;
+    position: relative;
+    transition:
+        background-color var(--trans-dur) var(--trans-timing),
+        box-shadow var(--trans-dur) var(--trans-timing);
+    width: 3.75em;
+    height: 8.75em;
+}
+
+.preloader-switch__input,
+.preloader-switch__lever,
+.preloader-switch__lever-half-top,
+.preloader-switch__lever-half-bottom,
+.preloader-switch__lever-shadow,
+.preloader-switch__lever-shadow:before,
+.preloader-switch__lever-shadow:after {
+    display: block;
+}
+
+.preloader-switch__input,
+.preloader-switch__label,
+.preloader-switch__lever-half-top,
+.preloader-switch__lever-half-bottom,
+.preloader-switch__lever-shadow,
+.preloader-switch__lever-shadow:before,
+.preloader-switch__lever-shadow:after {
+    position: absolute;
+}
+
+.preloader-switch__input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.preloader-switch__label {
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+}
+
+.preloader-switch__lever,
+.preloader-switch__lever-shadow {
+    pointer-events: none;
+}
+
+.preloader-switch__lever {
+    background-color: var(--switch-bg);
+    border-radius: 0.25em;
+    box-shadow:
+        0 0 0.25em var(--switch-bg-dark) inset,
+        0.75em 0 0.5em var(--switch-bg-light) inset;
+    margin: 0.375em;
+    position: relative;
+    transition:
+        background-color var(--trans-dur) var(--trans-timing),
+        box-shadow var(--trans-dur) var(--trans-timing);
+    width: calc(100% - 0.75em);
+    height: calc(100% - 0.75em);
+}
+
+.preloader-switch__lever:before {
+    background-image: linear-gradient(hsla(var(--hue),10%,5%,0),hsla(var(--hue),10%,5%,0.2));
+    border-radius: inherit;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.preloader-switch__lever-half-top,
+.preloader-switch__lever-half-bottom {
+    display: flex;
+    justify-content: center;
+    left: 0.125em;
+    padding: 0.5em;
+    width: calc(100% - 0.25em);
+    height: calc(50% - 0.125em);
+    transition:
+        background-color var(--trans-dur) var(--trans-timing),
+        transform var(--trans-dur) var(--trans-timing);
+}
+
+.preloader-switch__lever-half-top {
+    background-color: var(--switch-bg-light);
+    border-radius: 0.25em 0.25em 0 0;
+    bottom: 50%;
+    transform-origin: 50% 100%;
+}
+
+.preloader-switch__lever-half-top:before,
+.preloader-switch__lever-half-bottom:before {
+    content: "";
+    display: block;
+    transition:
+        background-color var(--trans-dur) var(--trans-timing),
+        box-shadow var(--trans-dur) var(--trans-timing);
+}
+
+.preloader-switch__lever-half-top:before {
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 0.125em var(--switch-bg) inset,
+        0 0.25em 0 var(--switch-bg-light) inset,
+        0 0.125em 0 var(--switch-bg-light);
+    width: 1em;
+    height: 1em;
+}
+
+.preloader-switch__lever-half-bottom {
+    background-color: hsl(var(--hue), 5%, 28%);
+    border-radius: 0 0 0.25em 0.25em;
+    align-items: flex-end;
+    top: 50%;
+    transform: rotateX(-35deg);
+    transform-origin: 50% 0;
+}
+
+.preloader-switch__lever-half-bottom:before {
+    background-color: hsl(var(--hue2),10%,25%);
+    box-shadow:
+        0 0.125em 0 hsl(var(--hue2),10%,20%) inset,
+        0 -0.0625em 0 var(--switch-bg-light) inset,
+        0 0 0.5em hsla(var(--hue2),90%,45%,0);
+    width: 0.25em;
+    height: 1.125em;
+}
+
+.preloader-switch__lever-shadow {
+    border-radius: 0.25em;
+    overflow: hidden;
+    top: 0.5em;
+    right: 0;
+    width: 5em;
+    height: calc(100% - 0.25em);
+}
+
+.preloader-switch__lever-shadow:before,
+.preloader-switch__lever-shadow:after {
+    background-color: hsla(var(--hue),10%,5%,0.25);
+    content: "";
+    left: 1.625em;
+    width: 3em;
+    height: 50%;
+    transition:
+        background-color var(--trans-dur) var(--trans-timing),
+        transform var(--trans-dur) var(--trans-timing);
+}
+
+.preloader-switch__lever-shadow:before {
+    border-radius: 1.5em 0 0 0 / 1em 0 0 0;
+    transform-origin: 0 100%;
+}
+
+.preloader-switch__lever-shadow:after {
+    border-radius: 0.25em;
+    bottom: 0;
+    transform: skewX(-10deg);
+    transform-origin: 0 0;
+}
+
+/* :checked state - LED turns RED */
+.preloader-switch__input:checked ~ .preloader-switch__lever .preloader-switch__lever-half-top {
+    background-color: var(--switch-bg);
+    transform: rotateX(35deg);
+}
+
+.preloader-switch__input:checked ~ .preloader-switch__lever .preloader-switch__lever-half-top:before {
+    box-shadow:
+        0 0 0 0.125em var(--switch-bg-dark) inset,
+        0 0.25em 0 var(--switch-bg) inset,
+        0 0.125em 0 var(--switch-bg);
+}
+
+.preloader-switch__input:checked ~ .preloader-switch__lever .preloader-switch__lever-half-bottom {
+    background-color: var(--switch-bg-light);
+    transform: rotateX(0);
+}
+
+.preloader-switch__input:checked ~ .preloader-switch__lever .preloader-switch__lever-half-bottom:before {
+    background-color: hsl(var(--hue2),90%,45%);
+    box-shadow:
+        0 0.125em 0 hsl(var(--hue2),90%,20%) inset,
+        0 -0.0625em 0 var(--switch-bg-light) inset,
+        0 0 0.5em hsla(var(--hue2),90%,45%,1);
+}
+
+.preloader-switch__input:checked ~ .preloader-switch__lever-shadow:before {
+    transform: rotate(-10deg);
+}
+
+.preloader-switch__input:checked ~ .preloader-switch__lever-shadow:after {
+    transform: skewX(0) scaleY(0.85);
+}
+
+/* Body Lock During Preloader */
+body.preloader-active {
+    overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .preloader-header {
+        margin-bottom: orem;
+    }
+    
+    .preloader-logo-img {
+        width: 10rem; /* Smaller on mobile */
+    }
+    
+    .preloader-power-text {
+        font-size: 0.85rem;
+        margin-top: 2.5rem;
+    }
+}

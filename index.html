@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Nairoreel Productions – Visual Storytelling Studio</title>
+    <meta name="description" content="We are Nairoreel Productions – a creative studio crafting captivating visuals through 3D, cinematography, and motion storytelling.">
+    
+    <!-- CRITICAL: Immediate preloader check and style -->
+    <script>
+        // Immediate check - runs before anything else
+        (function() {
+            if (sessionStorage.getItem('nairoreelPreloaderSeen') !== 'true') {
+                // First visit - immediately hide everything except preloader
+                document.documentElement.style.visibility = 'hidden';
+                document.documentElement.style.background = '#0a0a0a';
+            }
+        })();
+    </script>
+    
+    <!-- CRITICAL: Prevent any flash -->
+    <style>
+        /* Base styles to prevent flash */
+        html {
+            background-color: #0a0a0a;
+            visibility: visible; /* Will be overridden by script if needed */
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            animation: bodyFadeIn 0.3s ease-out 0.1s forwards;
+        }
+        
+        @keyframes bodyFadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Preloader should be visible immediately on first visit */
+        .preloader-overlay {
+            opacity: 1 !important;
+            display: flex !important;
+        }
+        
+        /* Hide main content initially if preloader is active */
+        body.preloader-active > *:not(.preloader-overlay) {
+            opacity: 0;
+        }
+        
+        /* After preloader is done, show content */
+        body:not(.preloader-active) > *:not(.preloader-overlay) {
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        /* Hide preloader immediately if already seen this session */
+        body:not(.preloader-active) .preloader-overlay {
+            display: none !important;
+        }
+        
+        /* Mobile video fix - ensure video container has proper sizing */
+        @media (max-width: 768px) {
+            .hero-video-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('assets/home/home-hero-poster.png');
+                background-size: cover;
+                background-position: center;
+            }
+            
+            .hero-video-bg video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                -webkit-playsinline: true;
+                playsinline: true;
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/homepage-featured.css">
+    <link rel="stylesheet" href="css/preloader.css">
+</head>
+
+<body>
+    
+    <!-- ========================================
+         PRELOADER OVERLAY (Shows once per session)
+         ======================================== -->
+    <div class="preloader-overlay" id="preloader-overlay">
+        
+        <!-- Header: Logo + Brand -->
+        <div class="preloader-header">
+         <img src="assets/footer/sf-logo-w.webp" alt="Nairoreel Productions Logo" class="preloader-logo-img">
+        </div>
+        
+        <!-- Power Switch -->
+        <label class="preloader-switch">
+            <input class="preloader-switch__input" type="checkbox" role="switch" id="preloader-switch">
+            <span class="preloader-switch__lever-shadow"></span>
+            <span class="preloader-switch__lever">
+                <span class="preloader-switch__lever-sides"></span>
+                <span class="preloader-switch__lever-half-top"></span>
+                <span class="preloader-switch__lever-half-bottom"></span>
+            </span>
+            <span class="preloader-switch__label">Power</span>
+        </label>
+        
+        <!-- Creative Text -->
+        <div class="preloader-power-text">Illuminate our world</div>
+    </div>
+    <!-- ======================================== -->
+    
+    
+    <!-- EXISTING HOMEPAGE CONTENT BELOW -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span>Nairoreel Productions</span>
+                    <span>Nairoreel Productions</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="our-work.html" class="nav-highlight"><span>Our Work</span><span>Our Work</span></a>
+                <a href="us.html"><span>Us</span><span>Us</span></a>
+                <a href="process.html"><span>Process</span><span>Process</span></a>
+                <a href="contact.html"><span>Contact</span><span>Contact</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <header class="hero-section">
+        <div class="hero-video-bg">
+            <!-- Added webkit-playsinline for older iOS versions -->
+            <video autoplay loop muted playsinline webkit-playsinline poster="assets/home/home-hero-poster.png">
+                <source src="assets/home/kfc hero.mp4" type="video/mp4">
+                <!-- Fallback message for browsers that don't support video -->
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Visual storytelling for innovative brands</h1>
+            <p>Crafting captivating visuals bringing your ideas to life.</p>
+            <a href="inquiry.html" class="cta-button">Start a Project</a>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- Featured Work Section -->
+    <section id="featured-work">
+        <h2>Featured Work</h2>
+        <div class="featured-grid">
+            <!-- Project 1 -->
+            <a href="projects/nairobi fashion week.html" class="featured-item">
+                <img src="assets/projects/nfw/nfw-thumb.webp" alt="Nairobi Fashion Week">
+                <div class="featured-overlay"></div>
+                <div class="featured-info">
+                    <h3 class="featured-title">Nairobi Fashion Week</h3>
+                    <p class="featured-desc">Fashion Film Production</p>
+                </div>
+            </a>
+            
+            <!-- Project 2 -->
+            <a href="projects/kfc.html" class="featured-item">
+                <img src="assets/projects/kfc/KFC-thumb.webp" alt="KFC">
+                <div class="featured-overlay"></div>
+                <div class="featured-info">
+                    <h3 class="featured-title">KFC</h3>
+                    <p class="featured-desc">3D Animation Campaign</p>
+                </div>
+            </a>
+            
+            <!-- Project 3 -->
+            <a href="projects/raila-tribute.html" class="featured-item">
+                <img src="assets/projects/raila/raila-thumb.webp" alt="Raila Tribute">
+                <div class="featured-overlay"></div>
+                <div class="featured-info">
+                    <h3 class="featured-title">Raila Tribute</h3>
+                    <p class="featured-desc">3D Motion Graphics</p>
+                </div>
+            </a>
+            
+            <!-- Project 4 -->
+            <a href="projects/ekuc.html" class="featured-item">
+                <img src="assets/projects/ekuc/ekuc-thumb.webp" alt="EKUC Camporee Promotion">
+                <div class="featured-overlay"></div>
+                <div class="featured-info">
+                    <h3 class="featured-title">EKUC Camporee 2025</h3>
+                    <p class="featured-desc">Event Promotion</p>
+                </div>
+            </a>
+            
+             <!-- Project 5 -->
+            <a href="projects/reload.html" class="featured-item">
+                <img src="assets/projects/reload/reload-thumb.webp" alt="RELOAD">
+                <div class="featured-overlay"></div>
+                <div class="featured-info">
+                    <h3 class="featured-title">RELOAD</h3>
+                    <p class="featured-desc">Brand Visual Identity</p>
+                </div>
+            </a>
+            
+            <!-- Project 6 -->
+            <a href="projects/car-pp.html" class="featured-item">
+                <img src="assets/projects/car-pp/car-pp-thumb.webp" alt="Car passion project thumbnail">
+                <div class="featured-overlay"></div>
+                <div class="featured-info">
+                    <h3 class="featured-title">Car Short Film</h3>
+                    <p class="featured-desc">Passion Project</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+	
+    <section id="services">
+        <h2>What We Do</h2>
+        <div class="bento-grid">
+            <a href="our-work.html#film" class="bento-item">
+                <h3 class="bento-title">Film Making</h3>
+                <p class="bento-desc">Cinematic storytelling that transforms viewers into customers.</p>
+            </a>
+            <a href="our-work.html#animation" class="bento-item">
+                <h3 class="bento-title">3D Animation</h3>
+                <p class="bento-desc">Dynamic visuals that bring ideas to life.</p>
+            </a>
+            <a href="our-work.html#photography" class="bento-item">
+                <h3 class="bento-title">Photography</h3>
+                <p class="bento-desc">Stunning images that capture your brand essence.</p>
+            </a>
+        </div>
+
+        <div class="divider"></div>
+    
+<div class="pricing-info">
+    <h1><strong>Let's talk pricing:</strong></h1> 
+    <p class="pricing-text">Custom quotes based on project scope – reach out for a tailored proposal at <a href="mailto:nairoreelproductions@gmail.com">nairoreelproductions@gmail.com</a> or you could fill out the inquiry form below.</p>
+    <a href="../inquiry.html" class="cta-button">Inquire</a>
+</div>
+
+    </section>
+
+<div class="divider"></div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="assets/footer/sf-logo-w.webp" alt="Nairoreel Productions Logo" class="footer-logo">
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="our-work.html#film">Film Making</a></li>
+                    <li><a href="our-work.html#3d">3D Animation</a></li>
+                    <li><a href="our-work.html#photography">Photography</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Pages</h3>
+                <ul>
+                    <li><a href="our-work.html">Our Work</a></li>
+                    <li><a href="us.html">Us</a></li>
+                    <li><a href="process.html">Process</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul class="social-icons">
+                    <li><a href="mailto:nairoreelproductions@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></a></li>
+                    <li><a href="https://instagram.com/nairoreel.productions" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a></li>
+                    <li><a href="#" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="20" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></a></li>
+                    <li><a href="#" target="_blank" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Nairoreel Productions. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- NEW: Preloader Script - Runs FIRST, completely isolated -->
+    <script src="js/preloader.js"></script>
+    
+    <!-- Main Scripts - Your existing hamburger menu and other functionality -->
+    <script src="js/main.js"></script>
+    
+    <!-- Restore visibility after everything loads -->
+    <script>
+        // This runs after all scripts load
+        window.addEventListener('load', function() {
+            document.documentElement.style.visibility = 'visible';
+        });
+    </script>
+</body>
+</html>

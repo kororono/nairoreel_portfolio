@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Us — Nairoreel Productions</title>
+    <meta name="description" content="Learn about the founders of Nairoreel Productions">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/our-work.css"> <!-- For gallery styles -->
+    <style>
+        .us-header {
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--card-bg);
+            background-image: url('../assets/about-page/hero/us-hero.webp'); 
+            background-position: center center; 
+            background-size: cover; 
+            background-repeat: no-repeat;
+        }
+
+        .us-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .us-header h1 {
+            margin-bottom: 1rem;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        .us-header p {
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeUp 1s ease-out 0.2s forwards;
+        }
+        /* Team Section - Simplified Cards */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 3rem 0;
+        }
+        
+        .team-card {
+            text-align: center;
+        }
+        
+        .team-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-card p {
+            color: var(--accent);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        /* Story Section */
+        .story-section {
+            margin: 4rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .story-section h2 {
+            margin-bottom: 2rem;
+        }
+        
+        .story-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Gallery Section - Using Our Work styles */
+        .gallery-section {
+            padding: 60px 20px;
+        }
+        
+        .gallery-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .team-card h3 {
+                font-size: 1.6rem;
+            }
+            
+            .story-section {
+                padding: 0 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-card img {
+                max-width: 300px;
+                margin: 0 auto 1rem;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Overlay -->
+    <div class="page-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+        <div class="nav-logo">
+            <a href="index.html">
+                <span>Nairoreel Productions</span>
+                <span>Nairoreel Productions</span>
+            </a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="our-work.html"><span>Our Work</span><span>Our Work</span></a>
+            <a href="us.html"><span>Us</span><span>Us</span></a>
+            <a href="process.html"><span>Process</span><span>Process</span></a>
+            <a href="contact.html"><span>Contact</span><span>Contact</span></a>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="us-header parallax">
+        <div class="us-header-content">
+            <h1>Meet The Team</h1>
+            <p>The creative minds behind Nairoreel Productions</p>
+        </div>
+    </header>
+
+    <!-- Team Section - Simplified Cards -->
+    <section class="team-section">
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="assets/about-page/person/brandon-thumb.webp" alt="Brandon">
+                <h3>Brandon Rono</h3>
+                <p>3D Animation & VFX Director</p>
+            </div>
+            <div class="team-card">
+                <img src="assets/about-page/person/bill-thumb.webp" alt="Bill">
+                <h3>Bill Hwaga</h3>
+                <p>Photography & Videography Director</p>
+            </div>
+            <div class="team-card">
+                <img src="assets/about-page/person/maria-thumb.webp" alt="Maria">
+                <h3>Maria Yusufali</h3>
+                <p>Communications Director</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <h2>Our Story</h2>
+        <p>
+            We are a visual storytelling studio founded in Nairobi, Kenya. Our journey began with a shared passion for creating compelling visual narratives that capture the essence of brands and bring ideas to life.
+        </p>
+        <p>
+            With expertise spanning film production, 3D animation, and photography, we collaborate with innovative brands to craft captivating visuals that resonate with audiences and drive meaningful engagement.
+        </p>
+        <p>
+            Every project we undertake is an opportunity to push creative boundaries and deliver exceptional results. Our commitment to technical excellence and artistic vision ensures that each piece of content we create tells a unique story.
+        </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Gallery Section with Our Work styling -->
+    <section class="gallery-section">
+        <h2>Our Journey</h2>
+        
+        <div class="gallery-grid">
+            <!-- Gallery items will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Gallery Modal - Matching Our Work structure -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="modal-backdrop"></div>
+        <button class="modal-close" id="modalClose">&times;</button>
+        <button class="modal-nav modal-prev" id="modalPrev">‹</button>
+        <button class="modal-nav modal-next" id="modalNext">›</button>
+        <div class="modal-counter" id="modalCounter">1 / 1</div>
+        <div class="modal-content">
+            <div class="modal-image-container">
+                <img class="modal-image" id="modalImage" src="" alt="">
+                <div class="modal-info">
+                    <h3 class="modal-title" id="modalTitle">Image Title</h3>
+                    <p class="modal-date" id="modalDate">Date</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="assets/footer/sf-logo-w.webp" alt="Nairoreel Productions Logo" class="footer-logo">
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="our-work.html#film">Film Making</a></li>
+                    <li><a href="our-work.html#3d">3D Animation</a></li>
+                    <li><a href="our-work.html#photography">Photography</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Pages</h3>
+                <ul>
+                    <li><a href="our-work.html">Our Work</a></li>
+                    <li><a href="us.html">Us</a></li>
+                    <li><a href="process.html">Process</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul class="social-icons">
+                    <li><a href="mailto:nairoreelproductions@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></a></li>
+                    <li><a href="https://instagram.com/nairoreel.productions" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a></li>
+                    <li><a href="#" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="20" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></a></li>
+                    <li><a href="#" target="_blank" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Nairoreel Productions. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Gallery data for Us page
+        const usGallery = [
+            { src: 'assets/images/gallery/image1.jpg', title: 'Behind the Scenes', date: '2024' },
+            { src: 'assets/images/gallery/image2.jpg', title: 'On Set', date: '2024' },
+            { src: 'assets/images/gallery/image3.jpg', title: 'Creative Process', date: '2024' },
+            { src: 'assets/images/gallery/image4.jpg', title: 'Team at Work', date: '2024' },
+            { src: 'assets/images/gallery/image5.jpg', title: 'Production Day', date: '2024' },
+            { src: 'assets/images/gallery/image6.jpg', title: 'Studio Life', date: '2024' }
+        ];
+
+        // Generate gallery
+        const galleryGrid = document.querySelector('.gallery-grid');
+        
+        usGallery.forEach((item, index) => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.dataset.index = index;
+            
+            galleryItem.innerHTML = `
+                <img src="${item.src}" alt="${item.title}">
+                <div class="gallery-overlay">
+                    <h3>${item.title}</h3>
+                    <p>${item.date}</p>
+                </div>
+            `;
+            
+            galleryGrid.appendChild(galleryItem);
+        });
+
+        // Gallery Modal functionality with mobile back button support
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDate = document.getElementById('modalDate');
+        const modalCounter = document.getElementById('modalCounter');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        
+        let currentIndex = 0;
+        let modalOpen = false;
+        
+        // Open modal
+        function openModal(index) {
+            currentIndex = index;
+            updateModal();
+            modal.classList.add('active');
+            modalOpen = true;
+            document.body.style.overflow = 'hidden';
+            
+            // Push state for back button support
+            history.pushState({ modal: true }, '', window.location.href);
+        }
+        
+        // Close modal
+        function closeModal() {
+            modal.classList.remove('active');
+            modalOpen = false;
+            document.body.style.overflow = '';
+            
+            // Handle history
+            if (window.history.state && window.history.state.modal) {
+                history.back();
+            }
+        }
+        
+        // Update modal content
+        function updateModal() {
+            const item = usGallery[currentIndex];
+            modalImage.src = item.src;
+            modalImage.alt = item.title;
+            modalTitle.textContent = item.title;
+            modalDate.textContent = item.date;
+            modalCounter.textContent = `${currentIndex + 1} / ${usGallery.length}`;
+            
+            // Update navigation buttons
+            modalPrev.style.display = currentIndex === 0 ? 'none' : 'flex';
+            modalNext.style.display = currentIndex === usGallery.length - 1 ? 'none' : 'flex';
+        }
+        
+        // Navigate gallery
+        function navigateGallery(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex >= usGallery.length) currentIndex = usGallery.length - 1;
+            updateModal();
+        }
+        
+        // Event listeners
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openModal(index));
+        });
+        
+        modalClose.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', () => navigateGallery(-1));
+        modalNext.addEventListener('click', () => navigateGallery(1));
+        
+        // Close on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
+                closeModal();
+            }
+        });
+        
+        // Handle back button
+        window.addEventListener('popstate', (e) => {
+            if (modalOpen && (!e.state || !e.state.modal)) {
+                modal.classList.remove('active');
+                modalOpen = false;
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modalOpen) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') navigateGallery(-1);
+                if (e.key === 'ArrowRight') navigateGallery(1);
+            }
+        });
+    </script>
+</body>
+</html>

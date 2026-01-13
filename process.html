@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Process — Nairoreel Productions</title>
+    <meta name="description" content="Our systematic approach to visual storytelling - how we create compelling visual narratives for innovative brands.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <style>
+        .project-header {
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .project-header h1 {
+            margin-bottom: 1rem;
+            animation: fadeUp 1s ease-out forwards;
+        }
+        
+        .project-header p {
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeUp 1s ease-out 0.2s forwards;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Fix for video background covering text */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;  /* This ensures it stays behind the content */
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ensure the overlay stays above video but below text */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 0;  /* Above video, below content */
+}
+
+/* Ensure content stays on top */
+.page-header-content {
+    position: relative;
+    z-index: 2;  /* Increased from 1 to 2 for better layering */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;  /* Add some padding for mobile */
+}
+    </style>
+</head>
+
+<body>
+    <!-- Page Overlay for darkening effect -->
+    <div class="page-overlay"></div>
+    
+    <nav>
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="index.html">
+                <span>Nairoreel Productions</span>
+                <span>Nairoreel Productions</span>
+            </a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="our-work.html"><span>Our Work</span><span>Our Work</span></a>
+            <a href="us.html"><span>Us</span><span>Us</span></a>
+            <a href="process.html"><span>Process</span><span>Process</span></a>
+            <a href="contact.html"><span>Contact</span><span>Contact</span></a>
+        </div>
+    </div>
+</nav>
+    <header class="project-header parallax">
+     <div class="video-background">
+      <video autoplay loop muted playsinline>
+      <source src="/assets/process/process-hero.webm" type="video/webm">
+      Your browser does not support the video tag.
+      </video>
+    <div class="video-overlay"></div>
+  </div>
+
+   <div class="page-header-content">
+    <h1>Our Process</h1>
+    <p>How we bring your vision to life through strategic visual storytelling</p>
+     </div>
+   </header>
+
+    <section class="process-section">
+    <div class="process-grid">
+        <div class="process-item">
+            <h3>Discovery</h3>
+            <p class="process-desc">We start by understanding your brand, audience, and objectives to inform our creative direction. This phase includes in-depth research, stakeholder interviews, and competitive analysis to ensure our work addresses your unique challenges and opportunities.</p>
+            <div class="process-number">01</div>
+        </div>
+        <div class="process-item">
+            <h3>Concept</h3>
+            <p class="process-desc">We develop creative concepts that align with your vision and strategic goals. Our collaborative ideation process explores multiple directions before refining the most promising concepts into detailed storyboards and creative briefs.</p>
+            <div class="process-number">02</div>
+        </div>
+        <div class="process-item">
+            <h3>Production</h3>
+            <p class="process-desc">Our expert team executes the approved concept with meticulous attention to detail. Whether it's shooting footage, creating 3D assets, or designing motion graphics, we maintain constant communication throughout to ensure alignment with your expectations.</p>
+            <div class="process-number">03</div>
+        </div>
+        <div class="process-item">
+            <h3>Refinement</h3>
+            <p class="process-desc">We fine-tune every element to perfection, ensuring the final deliverable exceeds expectations. This includes color grading, sound design, and multiple revision rounds until we achieve the perfect balance of aesthetic quality and strategic effectiveness.</p>
+            <div class="process-number">04</div>
+        </div>
+    </div>
+</section>
+
+<section class="approach-section">
+    <div class="process-detail-section">
+        <h2>Our Approach</h2>
+        <div class="detail-grid">
+            <div class="detail-item">
+                <h3>Strategic Foundation</h3>
+                <p>Every visual decision we make is rooted in strategy. We don't just create beautiful visuals — we create visuals that achieve your business objectives and resonate with your target audience.</p>
+            </div>
+            <div class="detail-item">
+                <h3>Collaborative Creation</h3>
+                <p>We believe the best work emerges from collaboration. We maintain transparent communication throughout the process, ensuring your feedback is integrated at every stage.</p>
+            </div>
+            <div class="detail-item">
+                <h3>Technical Excellence</h3>
+                <p>Our team continuously evolves with industry advancements, employing cutting-edge techniques and technologies to push the boundaries of what's possible in visual storytelling.</p>
+            </div>
+            <div class="detail-item">
+                <h3>Measured Results</h3>
+                <p>We define success metrics at the start of each project and measure performance against these benchmarks, ensuring our work delivers tangible value to your brand.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="divider"></div>
+
+    <section id="testimonials">
+        <h2>Client Experiences</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p class="quote">"Nairoreel transformed our product launch with visuals that captured the essence of our brand perfectly. Their process was smooth, collaborative, and the results exceeded our expectations."</p>
+                <div class="attribution">
+                    <p class="client-name">Sarah Johnson</p>
+                    <p class="client-role">Marketing Director, LUMINA</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"The team's attention to detail and strategic approach to our brand film helped us communicate our complex message in a simple, emotionally resonant way."</p>
+                <div class="attribution">
+                    <p class="client-name">Michael Chen</p>
+                    <p class="client-role">CEO, ATLAS Technologies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="cta-section">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Let's discuss how our process can bring your vision to life.</p>
+        <a href="../inquiry.html" class="cta-button">Get in Touch</a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="assets/footer/sf-logo-w.webp" alt="Nairoreel Productions Logo" class="footer-logo">
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="our-work.html#film">Film Making</a></li>
+                    <li><a href="our-work.html#3d">3D Animation</a></li>
+                    <li><a href="our-work.html#photography">Photography</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Pages</h3>
+                <ul>
+                    <li><a href="our-work.html">Our Work</a></li>
+                    <li><a href="us.html">Us</a></li>
+                    <li><a href="process.html">Process</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul class="social-icons">
+                    <li><a href="mailto:nairoreelproductions@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></a></li>
+                    <li><a href="https://instagram.com/nairoreel.productions" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a></li>
+                    <li><a href="#" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="20" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></a></li>
+                    <li><a href="#" target="_blank" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Nairoreel Productions. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth parallax effect for project headers
+        const parallaxHeaders = document.querySelectorAll('.project-header.parallax');
+        let lastScrollY = window.scrollY;
+        
+        function smoothParallax() {
+            const scrollY = window.scrollY;
+            
+            parallaxHeaders.forEach(header => {
+                // Get the top position of the header
+                const headerRect = header.getBoundingClientRect();
+                const headerTop = headerRect.top + scrollY;
+                const headerHeight = headerRect.height;
+                
+                // Check if the header is in the viewport
+                if (scrollY < headerTop + headerHeight) {
+                    // Calculate parallax offset
+                    const offset = (scrollY - lastScrollY) * 0.4;
+                    
+                    // Get current background position
+                    const style = window.getComputedStyle(header);
+                    const bgPos = style.backgroundPosition.split(' ');
+                    const bgX = bgPos[0] || 'center';
+                    let bgY = parseFloat(bgPos[1]) || 0;
+                    
+                    // Update background position
+                    bgY += offset;
+                    header.style.backgroundPosition = `${bgX} ${bgY}px`;
+                }
+            });
+            
+            lastScrollY = scrollY;
+            requestAnimationFrame(smoothParallax);
+        }
+        
+        // Start the animation
+        requestAnimationFrame(smoothParallax);
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+                document.querySelector('.hamburger-icon').classList.toggle('active');
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

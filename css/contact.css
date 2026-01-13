@@ -1,0 +1,146 @@
+/* Contact page specific styles */
+
+/* Apply general font */
+body {
+    font-family: "ArsenicaTrial", serif;
+	}
+
+/* Main container with full viewport height */
+.contact-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 40px 40px; /* Extra padding on top for the nav */
+}
+
+/* Container for the large text links */
+.contact-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70vh; /* Take up most of the viewport height but leave space */
+}
+
+/* Individual contact link styling */
+.contact-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    color: var(--foreground);
+    text-decoration: none;
+    cursor: pointer;
+    height: 20vh; /* Fixed height for each link */
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--accent);
+}
+
+/* The main visible text */
+.link-text {
+    font-size: 8vw; /* Responsive font size based on viewport width */
+    font-weight: 500;
+	  font-family: "Recia", serif;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    position: relative;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Container for the hover text that appears */
+.link-hover-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Make sure it doesn't interfere with the link */
+}
+
+/* The scrolling text inside the hover container */
+.scrolling-text {
+    font-size: 8vw;
+    font-weight: 500;
+	  font-family: "Recia", serif;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--accent);
+    position: relative;
+    animation: scrollText 20s linear infinite;
+}
+
+/* On hover, hide original text and show scrolling text */
+.contact-link:hover .link-text {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.contact-link:hover .link-hover-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation for infinite scrolling text */
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move left by half the content width */
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .link-text, .scrolling-text {
+        font-size: 14vw; /* Larger relative size on smaller screens */
+    }
+    
+    .contact-container {
+        padding: 100px 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .link-text, .scrolling-text {
+        font-size: 16vw;
+    }
+    
+    .contact-links {
+        height: 60vh;
+    }
+}
+
+/* Will add a subtle fade in/out effect at the edges of the text */
+.link-hover-text::before,
+.link-hover-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.link-hover-text::before {
+    left: 0;
+    background: linear-gradient(to right, var(--background), transparent);
+}
+
+.link-hover-text::after {
+    right: 0;
+    background: linear-gradient(to left, var(--background), transparent);
+}

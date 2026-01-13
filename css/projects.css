@@ -1,0 +1,166 @@
+/* Additional CSS for project pages */
+
+/* Project header */
+.project-header {
+    position: relative;
+    height: 80vh; /* Set desired hero height */
+    min-height: 500px; 
+    display: flex;
+    align-items: flex-end; /* Aligns project-info to the bottom */
+    overflow: hidden;
+}
+
+/* This handles the background image */
+.project-header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    will-change: transform; /* <-- THIS IS THE RESTORED LINE FOR PARALLAX */
+}
+
+.project-info {
+    position: relative; 
+    color: #ffffff;
+    z-index: 2; 
+    padding: 3rem; 
+    width: 100%;   
+}
+
+.project-info h1 {
+    font-size: 6rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.project-tagline {
+    font-size: 2.29rem;
+    opacity: 1;
+}
+
+/* Project content */
+.project-content {
+    padding: 0rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Project details */
+.project-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+}
+
+.detail-column h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.project-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-top: .5rem; /* Added space after video */
+}
+
+.project-description p {
+    margin-bottom: 0.5rem;
+}
+
+/* Gallery / Video */
+.gallery-item {
+    margin-bottom: 3rem;
+}
+
+.full-width {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    padding: 0 2rem;
+}
+
+/* Video container for embedded videos */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+/* NEW: Rule for Wistia player */
+.video-container wistia-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Next project section */
+.next-project {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.next-project-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color:#EA1821;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.next-project-link:hover {
+    opacity: 0.7;
+}
+
+.project-name {
+    margin-right: 1rem;
+}
+
+.arrow {
+    font-size: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-info h1 {
+        font-size: 3rem;
+    }
+    
+    .project-tagline {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-info h1 {
+        font-size: 2.5rem;
+    }
+    
+    .project-header {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
+    .next-project-link {
+        font-size: 2.5rem;
+    }
+}
