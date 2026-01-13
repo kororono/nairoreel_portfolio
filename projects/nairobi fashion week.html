@@ -290,17 +290,22 @@
     </main>
 
     <!-- Gallery Modal - Matching our-work structure -->
+    <!-- Gallery Modal -->
     <div class="gallery-modal" id="galleryModal">
         <div class="modal-backdrop"></div>
-        <button class="modal-close" id="modalClose">&times;</button>
-        <button class="modal-nav modal-prev" id="modalPrev">‹</button>
-        <button class="modal-nav modal-next" id="modalNext">›</button>
-        <div class="modal-counter" id="modalCounter">1 / 1</div>
+        <button class="modal-close" id="modalClose">×</button>
         <div class="modal-content">
+            <button class="modal-nav modal-prev" id="modalPrev">‹</button>
             <div class="modal-image-container">
-                <img id="modalImage" src="" alt="">
+                <img class="modal-image" id="modalImage" src="" alt="">
+                <div class="modal-info">
+                    <p class="modal-title" id="modalTitle"></p>
+                    <p class="modal-date" id="modalDate"></p>
+                </div>
             </div>
+            <button class="modal-nav modal-next" id="modalNext">›</button>
         </div>
+        <div class="modal-counter" id="modalCounter"></div>
     </div>
 
     <footer>
@@ -339,144 +344,27 @@
         </div>
     </footer>
 
-    <script src="../js/main.js"></script>
-    <script src="../js/projects.js"></script>
-    <script src="../js/photography-data.js"></script>
-   
-
-    <script>
+    <!-- Scripts -->
+    <script src="../js/main.js" defer></script>
+    <script src="../js/projects.js" defer></script>
+    <script src="../js/photography-data.js" defer></script>
+    <script src="../js/gallery.js" defer></script>
+    <script defer>
         // ==========================================
         // NFW PROJECT GALLERY
-        // Filter NFW images and create modal gallery
-        // Based on our-work.js modal structure
+        // Filter NFW images and initialize gallery
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
-            const galleryGrid = document.getElementById('nfwGallery');
-            const modal = document.getElementById('galleryModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalCounter = document.getElementById('modalCounter');
-            const modalClose = document.getElementById('modalClose');
-            const modalPrev = document.getElementById('modalPrev');
-            const modalNext = document.getElementById('modalNext');
-            
-            let currentGalleryIndex = 0;
-            let galleryData = [];
-            let modalOpen = false;
-
             // Filter images for Nairobi Fashion Week
             const nfwImages = photographyGallery.filter(item => item.title === 'Nairobi Fashion Week');
 
-            // Build gallery data array
-            nfwImages.forEach((photo, index) => {
-                galleryData.push({
-                    src: photo.src,
-                    alt: photo.title,
-                    title: photo.title,
-                    date: photo.date
+            // Initialize gallery with filtered images
+            if (nfwImages.length > 0) {
+                initGallery(nfwImages, {
+                    gridSelector: '#nfwGallery',
+                    pathPrefix: '../'
                 });
-
-                // Create gallery item
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `<img src="../${photo.src}" alt="${photo.title}" loading="lazy">`;
-                
-                // Click handler - open modal
-                galleryItem.addEventListener('click', () => openModal(index));
-                galleryGrid.appendChild(galleryItem);
-            });
-
-            // Open modal function
-            function openModal(index) {
-                currentGalleryIndex = index;
-                updateModalImage();
-                modal.classList.add('active');
-                modalOpen = true;
-                
-                // Push history state for back button
-                history.pushState({ modal: 'open' }, '');
-                
-                // Disable body scroll
-                document.body.style.overflow = 'hidden';
             }
-
-            // Close modal function
-            function closeModal(skipHistory = false) {
-                modal.classList.remove('active');
-                modalOpen = false;
-                
-                // Re-enable body scroll
-                document.body.style.overflow = '';
-                
-                // Handle history
-                if (!skipHistory && window.history.state && window.history.state.modal === 'open') {
-                    window.history.back();
-                }
-            }
-
-            // Update modal image
-            function updateModalImage() {
-                const data = galleryData[currentGalleryIndex];
-                
-                // Fade out
-                modalImage.style.opacity = '0';
-                
-                setTimeout(() => {
-                    // Update content
-                    modalImage.src = `../${data.src}`;
-                    modalImage.alt = data.alt;
-                    
-                    // Update counter
-                    modalCounter.textContent = `${currentGalleryIndex + 1} / ${galleryData.length}`;
-                    
-                    // Update button states
-                    modalPrev.disabled = currentGalleryIndex === 0;
-                    modalNext.disabled = currentGalleryIndex === galleryData.length - 1;
-                    
-                    // Fade in
-                    modalImage.style.opacity = '1';
-                }, 200);
-            }
-
-            // Navigate gallery
-            function navigateGallery(direction) {
-                currentGalleryIndex += direction;
-                
-                // Clamp index
-                if (currentGalleryIndex < 0) currentGalleryIndex = 0;
-                if (currentGalleryIndex >= galleryData.length) {
-                    currentGalleryIndex = galleryData.length - 1;
-                }
-                
-                updateModalImage();
-            }
-
-            // Event listeners
-            modalClose.addEventListener('click', () => closeModal());
-            modalPrev.addEventListener('click', () => navigateGallery(-1));
-            modalNext.addEventListener('click', () => navigateGallery(1));
-
-            // Click backdrop to close
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
-                    closeModal();
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (modal.classList.contains('active')) {
-                    if (e.key === 'Escape') closeModal();
-                    if (e.key === 'ArrowLeft') navigateGallery(-1);
-                    if (e.key === 'ArrowRight') navigateGallery(1);
-                }
-            });
-
-            // Back button handler
-            window.addEventListener('popstate', (e) => {
-                if (modalOpen) {
-                    closeModal(true);
-                }
-            });
         });
     </script>
 </body>

@@ -147,7 +147,7 @@
     <header class="hero-section">
         <div class="hero-video-bg">
             <!-- Added webkit-playsinline for older iOS versions -->
-            <video autoplay loop muted playsinline webkit-playsinline poster="assets/home/home-hero-poster.png">
+            <video id="heroVideo" preload="none" loop muted playsinline webkit-playsinline poster="assets/home/home-hero-poster.png">
                 <source src="assets/home/kfc hero.mp4" type="video/mp4">
                 <!-- Fallback message for browsers that don't support video -->
                 Your browser does not support the video tag.
@@ -169,7 +169,7 @@
         <div class="featured-grid">
             <!-- Project 1 -->
             <a href="projects/nairobi fashion week.html" class="featured-item">
-                <img src="assets/projects/nfw/nfw-thumb.webp" alt="Nairobi Fashion Week">
+                <img loading="lazy" decoding="async" src="assets/projects/nfw/nfw-thumb.webp" alt="Nairobi Fashion Week">
                 <div class="featured-overlay"></div>
                 <div class="featured-info">
                     <h3 class="featured-title">Nairobi Fashion Week</h3>
@@ -179,7 +179,7 @@
             
             <!-- Project 2 -->
             <a href="projects/kfc.html" class="featured-item">
-                <img src="assets/projects/kfc/KFC-thumb.webp" alt="KFC">
+                <img loading="lazy" decoding="async" src="assets/projects/kfc/KFC-thumb.webp" alt="KFC">
                 <div class="featured-overlay"></div>
                 <div class="featured-info">
                     <h3 class="featured-title">KFC</h3>
@@ -189,7 +189,7 @@
             
             <!-- Project 3 -->
             <a href="projects/raila-tribute.html" class="featured-item">
-                <img src="assets/projects/raila/raila-thumb.webp" alt="Raila Tribute">
+                <img loading="lazy" decoding="async" src="assets/projects/raila/raila-thumb.webp" alt="Raila Tribute">
                 <div class="featured-overlay"></div>
                 <div class="featured-info">
                     <h3 class="featured-title">Raila Tribute</h3>
@@ -199,7 +199,7 @@
             
             <!-- Project 4 -->
             <a href="projects/ekuc.html" class="featured-item">
-                <img src="assets/projects/ekuc/ekuc-thumb.webp" alt="EKUC Camporee Promotion">
+                <img loading="lazy" decoding="async" src="assets/projects/ekuc/ekuc-thumb.webp" alt="EKUC Camporee Promotion">
                 <div class="featured-overlay"></div>
                 <div class="featured-info">
                     <h3 class="featured-title">EKUC Camporee 2025</h3>
@@ -209,7 +209,7 @@
             
              <!-- Project 5 -->
             <a href="projects/reload.html" class="featured-item">
-                <img src="assets/projects/reload/reload-thumb.webp" alt="RELOAD">
+                <img loading="lazy" decoding="async" src="assets/projects/reload/reload-thumb.webp" alt="RELOAD">
                 <div class="featured-overlay"></div>
                 <div class="featured-info">
                     <h3 class="featured-title">RELOAD</h3>
@@ -219,7 +219,7 @@
             
             <!-- Project 6 -->
             <a href="projects/car-pp.html" class="featured-item">
-                <img src="assets/projects/car-pp/car-pp-thumb.webp" alt="Car passion project thumbnail">
+                <img loading="lazy" decoding="async" src="assets/projects/car-pp/car-pp-thumb.webp" alt="Car passion project thumbnail">
                 <div class="featured-overlay"></div>
                 <div class="featured-info">
                     <h3 class="featured-title">Car Short Film</h3>

@@ -20,6 +20,17 @@
         document.querySelectorAll('body > *:not(.preloader-overlay)').forEach(el => {
             el.style.opacity = '1';
         });
+
+        // Start hero video on repeat visits (desktop only)
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroVideo = document.querySelector('.hero-video-bg video');
+            if (heroVideo && window.innerWidth >= 1024) {
+                heroVideo.play().catch(() => {
+                    // Ignore autoplay errors
+                });
+            }
+        });
+
         return; // Exit early
     }
     
@@ -47,60 +58,9 @@
         minimumTimeElapsed = true;
     }, 2000);
     
-    // Function to handle video readiness
-    function setupVideoHandling() {
-        const heroVideo = document.querySelector('.hero-video-bg video');
-        
-        if (!heroVideo) {
-            videoReady = true;
-            return;
-        }
-        
-        if (isMobile) {
-            // On mobile, don't wait for video - it might not autoplay
-            // Just ensure poster is loaded and mark as ready
-            const poster = heroVideo.getAttribute('poster');
-            if (poster) {
-                const img = new Image();
-                img.onload = () => { videoReady = true; };
-                img.onerror = () => { videoReady = true; }; // Ready even if poster fails
-                img.src = poster;
-            } else {
-                videoReady = true;
-            }
-            
-            // Also try to play video but don't wait for it
-            heroVideo.play().catch(() => {
-                // Video won't autoplay, that's okay on mobile
-                console.log('Video autoplay blocked on mobile - using poster');
-            });
-            
-        } else {
-            // Desktop - wait for video to be ready
-            const checkVideoReady = () => {
-                if (heroVideo.readyState >= 3) {
-                    videoReady = true;
-                }
-            };
-            
-            heroVideo.addEventListener('canplaythrough', () => {
-                videoReady = true;
-            });
-            
-            heroVideo.addEventListener('loadeddata', checkVideoReady);
-            
-            // Check if already ready
-            checkVideoReady();
-            
-            // Try to load video
-            if (heroVideo.readyState === 0) {
-                heroVideo.load();
-            }
-        }
-    }
-    
-    // Start video setup
-    setupVideoHandling();
+    // Video no longer needs to be ready before preloader exit
+    // It will start playing AFTER preloader exits
+    videoReady = true;
     
     // Handle switch click
     preloaderSwitch.addEventListener('change', function() {
@@ -132,10 +92,10 @@
     function transitionToHomepage() {
         // Mark as seen
         sessionStorage.setItem('nairoreelPreloaderSeen', 'true');
-        
+
         // Start fade out
         preloaderOverlay.classList.add('preloader-hidden');
-        
+
         // Show main content
         setTimeout(() => {
             document.body.classList.remove('preloader-active');
@@ -143,37 +103,25 @@
             document.querySelectorAll('body > *:not(.preloader-overlay)').forEach(el => {
                 el.style.opacity = '1';
             });
+
+            // Start hero video playback after preloader exits
+            const heroVideo = document.querySelector('.hero-video-bg video');
+            if (heroVideo) {
+                const isDesktop = window.innerWidth >= 1024;
+                if (isDesktop) {
+                    // Desktop: play video after preloader exit
+                    heroVideo.play().catch(() => {
+                        // Ignore autoplay errors
+                    });
+                }
+                // Mobile: don't autoplay video
+            }
         }, 500);
-        
+
         // Remove preloader from DOM
         setTimeout(() => {
             preloaderOverlay.style.display = 'none';
         }, 1500);
-    }
-    
-    // Mobile-specific video fix after page loads
-    if (isMobile) {
-        window.addEventListener('load', () => {
-            const heroVideo = document.querySelector('.hero-video-bg video');
-            if (heroVideo) {
-                // Set attributes again to ensure they're applied
-                heroVideo.setAttribute('playsinline', '');
-                heroVideo.setAttribute('webkit-playsinline', '');
-                heroVideo.setAttribute('x5-playsinline', '');
-                heroVideo.setAttribute('x5-video-player-type', 'h5');
-                heroVideo.setAttribute('x5-video-player-fullscreen', 'false');
-                heroVideo.muted = true;
-                heroVideo.defaultMuted = true;
-                heroVideo.autoplay = true;
-                
-                // Try to play again after page fully loads
-                setTimeout(() => {
-                    heroVideo.play().catch(e => {
-                        console.log('Mobile video playback requires user interaction');
-                    });
-                }, 100);
-            }
-        });
     }
     
 })();

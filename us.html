@@ -208,22 +208,22 @@
         </div>
     </section>
 
-    <!-- Gallery Modal - Matching Our Work structure -->
+    <!-- Gallery Modal -->
     <div class="gallery-modal" id="galleryModal">
         <div class="modal-backdrop"></div>
-        <button class="modal-close" id="modalClose">&times;</button>
-        <button class="modal-nav modal-prev" id="modalPrev">‹</button>
-        <button class="modal-nav modal-next" id="modalNext">›</button>
-        <div class="modal-counter" id="modalCounter">1 / 1</div>
+        <button class="modal-close" id="modalClose">×</button>
         <div class="modal-content">
+            <button class="modal-nav modal-prev" id="modalPrev">‹</button>
             <div class="modal-image-container">
                 <img class="modal-image" id="modalImage" src="" alt="">
                 <div class="modal-info">
-                    <h3 class="modal-title" id="modalTitle">Image Title</h3>
-                    <p class="modal-date" id="modalDate">Date</p>
+                    <p class="modal-title" id="modalTitle"></p>
+                    <p class="modal-date" id="modalDate"></p>
                 </div>
             </div>
+            <button class="modal-nav modal-next" id="modalNext">›</button>
         </div>
+        <div class="modal-counter" id="modalCounter"></div>
     </div>
 
     <footer>
@@ -262,128 +262,16 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script>
-        // Gallery data for Us page
-        const usGallery = [
-            { src: 'assets/images/gallery/image1.jpg', title: 'Behind the Scenes', date: '2024' },
-            { src: 'assets/images/gallery/image2.jpg', title: 'On Set', date: '2024' },
-            { src: 'assets/images/gallery/image3.jpg', title: 'Creative Process', date: '2024' },
-            { src: 'assets/images/gallery/image4.jpg', title: 'Team at Work', date: '2024' },
-            { src: 'assets/images/gallery/image5.jpg', title: 'Production Day', date: '2024' },
-            { src: 'assets/images/gallery/image6.jpg', title: 'Studio Life', date: '2024' }
-        ];
-
-        // Generate gallery
-        const galleryGrid = document.querySelector('.gallery-grid');
-        
-        usGallery.forEach((item, index) => {
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            galleryItem.dataset.index = index;
-            
-            galleryItem.innerHTML = `
-                <img src="${item.src}" alt="${item.title}">
-                <div class="gallery-overlay">
-                    <h3>${item.title}</h3>
-                    <p>${item.date}</p>
-                </div>
-            `;
-            
-            galleryGrid.appendChild(galleryItem);
-        });
-
-        // Gallery Modal functionality with mobile back button support
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const modal = document.getElementById('galleryModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDate = document.getElementById('modalDate');
-        const modalCounter = document.getElementById('modalCounter');
-        const modalClose = document.getElementById('modalClose');
-        const modalPrev = document.getElementById('modalPrev');
-        const modalNext = document.getElementById('modalNext');
-        
-        let currentIndex = 0;
-        let modalOpen = false;
-        
-        // Open modal
-        function openModal(index) {
-            currentIndex = index;
-            updateModal();
-            modal.classList.add('active');
-            modalOpen = true;
-            document.body.style.overflow = 'hidden';
-            
-            // Push state for back button support
-            history.pushState({ modal: true }, '', window.location.href);
-        }
-        
-        // Close modal
-        function closeModal() {
-            modal.classList.remove('active');
-            modalOpen = false;
-            document.body.style.overflow = '';
-            
-            // Handle history
-            if (window.history.state && window.history.state.modal) {
-                history.back();
-            }
-        }
-        
-        // Update modal content
-        function updateModal() {
-            const item = usGallery[currentIndex];
-            modalImage.src = item.src;
-            modalImage.alt = item.title;
-            modalTitle.textContent = item.title;
-            modalDate.textContent = item.date;
-            modalCounter.textContent = `${currentIndex + 1} / ${usGallery.length}`;
-            
-            // Update navigation buttons
-            modalPrev.style.display = currentIndex === 0 ? 'none' : 'flex';
-            modalNext.style.display = currentIndex === usGallery.length - 1 ? 'none' : 'flex';
-        }
-        
-        // Navigate gallery
-        function navigateGallery(direction) {
-            currentIndex += direction;
-            if (currentIndex < 0) currentIndex = 0;
-            if (currentIndex >= usGallery.length) currentIndex = usGallery.length - 1;
-            updateModal();
-        }
-        
-        // Event listeners
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => openModal(index));
-        });
-        
-        modalClose.addEventListener('click', closeModal);
-        modalPrev.addEventListener('click', () => navigateGallery(-1));
-        modalNext.addEventListener('click', () => navigateGallery(1));
-        
-        // Close on backdrop click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
-                closeModal();
-            }
-        });
-        
-        // Handle back button
-        window.addEventListener('popstate', (e) => {
-            if (modalOpen && (!e.state || !e.state.modal)) {
-                modal.classList.remove('active');
-                modalOpen = false;
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (modalOpen) {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') navigateGallery(-1);
-                if (e.key === 'ArrowRight') navigateGallery(1);
+    <!-- Scripts -->
+    <script src="js/main.js" defer></script>
+    <script src="js/data/us-gallery.js" defer></script>
+    <script src="js/gallery.js" defer></script>
+    <script defer>
+        // Initialize gallery when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Only initialize if gallery data exists
+            if (typeof usGallery !== 'undefined' && usGallery.length > 0) {
+                initGallery(usGallery);
             }
         });
     </script>
