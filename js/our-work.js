@@ -67,20 +67,28 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryGrid.innerHTML = '';
         
         // Generate gallery items from data
-        photographyGallery.forEach((photo) => {
+        photographyGallery.forEach((photo, index) => {
             const galleryItem = document.createElement('div');
             galleryItem.className = 'gallery-item';
             galleryItem.dataset.title = photo.title;
             galleryItem.dataset.date = photo.date;
-            
-            galleryItem.innerHTML = `
-                <img src="${photo.src}" alt="${photo.title}">
-                <div class="gallery-overlay">
-                    <h3>${photo.title}</h3>
-                    <p>${photo.date}</p>
-                </div>
+            galleryItem.dataset.index = index;
+
+            const img = document.createElement('img');
+            img.src = photo.thumb;
+            img.alt = photo.title;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+
+            const overlay = document.createElement('div');
+            overlay.className = 'gallery-overlay';
+            overlay.innerHTML = `
+                <h3>${photo.title}</h3>
+                <p>${photo.date}</p>
             `;
-            
+
+            galleryItem.appendChild(img);
+            galleryItem.appendChild(overlay);
             galleryGrid.appendChild(galleryItem);
         });
     }
@@ -89,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. GALLERY MODAL (Photography Lightbox)
     // Fullscreen image viewer with prev/next navigation
     // ======================================== 
-    const galleryItems = document.querySelectorAll('.gallery-item');
     const modal = document.getElementById('galleryModal');
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
@@ -98,28 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalClose = document.getElementById('modalClose');
     const modalPrev = document.getElementById('modalPrev');
     const modalNext = document.getElementById('modalNext');
-    
+
     let currentGalleryIndex = 0;
-    let galleryData = [];
     let modalOpen = false;
-    
-    // Build gallery data array from DOM
-    galleryItems.forEach((item, index) => {
-        const img = item.querySelector('img');
-        const title = item.dataset.title;
-        const date = item.dataset.date;
-        
-        galleryData.push({
-            src: img.src,
-            alt: img.alt,
-            title: title,
-            date: date
-        });
-        
-        // Click handler - open modal
-        item.addEventListener('click', () => {
-            openModal(index);
-        });
+
+    // Attach click handlers to gallery items after generation
+    document.addEventListener('click', (e) => {
+        const galleryItem = e.target.closest('.gallery-item');
+        if (galleryItem && galleryItem.dataset.index !== undefined) {
+            openModal(Number(galleryItem.dataset.index));
+        }
     });
     
     // Open modal function
@@ -152,40 +147,46 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update modal image and metadata
     function updateModalImage() {
-        const data = galleryData[currentGalleryIndex];
-        
-        // Fade out
-        modalImage.style.opacity = '0';
-        
-        setTimeout(() => {
-            // Update content
-            modalImage.src = data.src;
-            modalImage.alt = data.alt;
-            modalTitle.textContent = data.title;
-            modalDate.textContent = data.date;
-            
-            // Update counter
-            modalCounter.textContent = `${currentGalleryIndex + 1} / ${galleryData.length}`;
-            
-            // Update button states
-            modalPrev.disabled = currentGalleryIndex === 0;
-            modalNext.disabled = currentGalleryIndex === galleryData.length - 1;
-            
-            // Fade in
-            modalImage.style.opacity = '1';
-        }, 200);
+        const data = photographyGallery[currentGalleryIndex];
+
+        // Update content directly (no fade)
+        modalImage.src = data.full;
+        modalImage.alt = data.title;
+        modalTitle.textContent = data.title;
+        modalDate.textContent = data.date;
+
+        // Update counter
+        modalCounter.textContent = `${currentGalleryIndex + 1} / ${photographyGallery.length}`;
+
+        // Update button states
+        modalPrev.disabled = currentGalleryIndex === 0;
+        modalNext.disabled = currentGalleryIndex === photographyGallery.length - 1;
+
+        // Preload next image
+        const next = photographyGallery[currentGalleryIndex + 1];
+        if (next) {
+            const preloadNext = new Image();
+            preloadNext.src = next.full;
+        }
+
+        // Preload previous image
+        const prev = photographyGallery[currentGalleryIndex - 1];
+        if (prev) {
+            const preloadPrev = new Image();
+            preloadPrev.src = prev.full;
+        }
     }
     
     // Navigate gallery
     function navigateGallery(direction) {
         currentGalleryIndex += direction;
-        
+
         // Clamp index
         if (currentGalleryIndex < 0) currentGalleryIndex = 0;
-        if (currentGalleryIndex >= galleryData.length) {
-            currentGalleryIndex = galleryData.length - 1;
+        if (currentGalleryIndex >= photographyGallery.length) {
+            currentGalleryIndex = photographyGallery.length - 1;
         }
-        
+
         updateModalImage();
     }
     
@@ -233,11 +234,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================
     // 5. BACK BUTTON HANDLER
     // Handle phone/browser back button for modal
-    // ======================================== 
+    // ========================================
     window.addEventListener('popstate', (e) => {
         if (modalOpen) {
             closeModal(true);  // Skip history manipulation
         }
     });
-    
+
+    // ========================================
+    // 6. VIDEO BACKGROUND OPTIMIZATION
+    // Desktop only + delayed playback
+    // ========================================
+    const bgVideo = document.getElementById('bgVideo');
+    if (bgVideo) {
+        const isDesktop = window.innerWidth >= 1024;
+
+        if (!isDesktop) {
+            // Disable video on mobile/tablet
+            bgVideo.pause();
+            bgVideo.removeAttribute('src');
+        } else {
+            // Desktop: delay playback by 5 seconds
+            setTimeout(() => {
+                bgVideo.play().catch(() => {
+                    // Ignore autoplay errors
+                });
+            }, 5000);
+        }
+    }
+
 });

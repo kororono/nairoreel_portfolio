@@ -59,8 +59,8 @@ const photographyGallery = [
     thumb: 'assets/photography/gallery/thumbs/hitpoa_1.webp',
     full: 'assets/photography/gallery/full/hitpoa_1.webp', title: 'Music Shoot', date: 'February 2024'},
     {
-    thumb: 'assets/photography/gallery/thumbs/wadagliz_1.web',
-    full: 'assets/photography/gallery/full/wadagliz_1.web', title: 'Music Shoot', date: 'February 2024'},
+    thumb: 'assets/photography/gallery/thumbs/wadagliz_1.webp',
+    full: 'assets/photography/gallery/full/wadagliz_1.webp', title: 'Music Shoot', date: 'February 2024'},
     {
     thumb: 'assets/photography/gallery/thumbs/parroty_1.webp',
     full: 'assets/photography/gallery/full/parroty_1.webp', title: 'Music Shoot', date: 'February 2024'},
