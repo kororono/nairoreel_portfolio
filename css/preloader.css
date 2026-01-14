@@ -52,33 +52,36 @@
 }
 
 
+/* ========== LOGO SECTION - FINE-TUNE HERE ========== */
 /* Preloader Header (Logo Only) */
 .preloader-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0rem;
+    margin-bottom: -3rem; /* Negative margin reclaims vertical space */
     opacity: 0;
     animation: preloaderFadeIn 2s ease-out 0.5s forwards;
 }
 
 .preloader-logo-img {
-    width: 16rem; /* Adjust size as needed */
+    width: 20rem; /* Logo size - increased from 16rem */
     height: auto;
     object-fit: contain;
 }
 
+/* ========== CONTENT CONTAINER - FINE-TUNE GAP HERE ========== */
 /* Content Container (center area) */
 .preloader-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem; /* Spacing between click text, arrow, and switch - reduced from 1.5rem */
     position: relative;
     z-index: 2;
 }
 
+/* ========== CLICK TEXT - FINE-TUNE HERE ========== */
 /* Click to Activate Text */
 .preloader-click-text {
     font-size: 1.1rem;
@@ -86,6 +89,7 @@
     letter-spacing: 0.15em;
     color: #fff;
     text-transform: uppercase;
+    text-align: center; /* Centers stacked text lines */
     opacity: 0;
     animation: preloaderFadeIn 2s ease-out 0.8s forwards;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
