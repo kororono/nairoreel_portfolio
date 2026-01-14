@@ -12,12 +12,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background: #0a0a0a;
     z-index: 9999;
     transition: opacity 1s ease-out, transform 1s ease-out;
     padding: 2rem;
-    gap: 2rem;
 }
 
 /* Background artwork layer */
@@ -52,19 +51,19 @@
     pointer-events: none;
 }
 
+
 /* Preloader Header (Logo Only) */
 .preloader-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    z-index: 2;
+    margin-bottom: 0rem;
     opacity: 0;
     animation: preloaderFadeIn 2s ease-out 0.5s forwards;
 }
 
 .preloader-logo-img {
-    width: 10rem;
+    width: 16rem; /* Adjust size as needed */
     height: auto;
     object-fit: contain;
 }
@@ -82,16 +81,14 @@
 
 /* Click to Activate Text */
 .preloader-click-text {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     color: #fff;
     text-transform: uppercase;
     opacity: 0;
     animation: preloaderFadeIn 2s ease-out 0.8s forwards;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    text-align: center;
-    line-height: 1.3;
 }
 
 /* Arrow Animation */
@@ -109,9 +106,9 @@
 
 /* Power Text (Bottom Slogan) */
 .preloader-power-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     color: #fff;
     text-transform: uppercase;
     opacity: 0;
@@ -119,8 +116,6 @@
     position: relative;
     z-index: 2;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    text-align: center;
-    margin-top: 1rem;
 }
 
 @keyframes preloaderFadeIn {
@@ -372,11 +367,10 @@ body.preloader-active {
 @media (max-width: 768px) {
     .preloader-overlay {
         padding: 1.5rem;
-        gap: 1.5rem;
     }
 
     .preloader-logo-img {
-        width: 7rem;
+        width: 6rem;
     }
 
     .preloader-content {
@@ -384,7 +378,7 @@ body.preloader-active {
     }
 
     .preloader-click-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .preloader-arrow {
@@ -393,11 +387,10 @@ body.preloader-active {
     }
 
     .preloader-power-text {
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
+        font-size: 0.95rem;
     }
 
     .preloader-switch {
-        transform: scale(0.8);
+        transform: scale(0.85);
     }
 }
