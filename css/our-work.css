@@ -510,8 +510,9 @@
     }
     
     .modal-nav {
-        position: absolute;
+        position: fixed;
         bottom: 20px;
+        z-index: 1001;
     }
     
     .modal-prev {
