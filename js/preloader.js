@@ -21,10 +21,10 @@
             el.style.opacity = '1';
         });
 
-        // Start hero video on repeat visits (desktop only)
+        // Start hero video on repeat visits
         document.addEventListener('DOMContentLoaded', () => {
             const heroVideo = document.querySelector('.hero-video-bg video');
-            if (heroVideo && window.innerWidth >= 1024) {
+            if (heroVideo) {
                 heroVideo.play().catch(() => {
                     // Ignore autoplay errors
                 });
@@ -107,14 +107,9 @@
             // Start hero video playback after preloader exits
             const heroVideo = document.querySelector('.hero-video-bg video');
             if (heroVideo) {
-                const isDesktop = window.innerWidth >= 1024;
-                if (isDesktop) {
-                    // Desktop: play video after preloader exit
-                    heroVideo.play().catch(() => {
-                        // Ignore autoplay errors
-                    });
-                }
-                // Mobile: don't autoplay video
+                heroVideo.play().catch(() => {
+                    // Ignore autoplay errors
+                });
             }
         }, 500);
 

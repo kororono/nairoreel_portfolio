@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const interactiveElements = document.querySelectorAll('.bento-item, .process-item, .contact-link');
     const pageOverlay = document.querySelector('.page-overlay');
     
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            pageOverlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    if (pageOverlay) {
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                pageOverlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            });
+            element.addEventListener('mouseleave', function() {
+                pageOverlay.style.backgroundColor = 'rgba(0,0,0,0)';
+            });
         });
-        element.addEventListener('mouseleave', function() {
-            pageOverlay.style.backgroundColor = 'rgba(0,0,0,0)';
-        });
-    });
+    }
     
     const scrollingTexts = document.querySelectorAll('.scrolling-text');
     scrollingTexts.forEach(textElement => {
