@@ -9,18 +9,13 @@
 // 3. Update paths below with actual filenames
 
 const usGallery = [
-    // Placeholder structure - replace with actual images
-    // {
-    //     thumb: 'assets/us/gallery/thumbs/image1.webp',
-    //     full: 'assets/us/gallery/full/image1.webp',
-    //     title: 'Behind the Scenes',
-    //     date: '2024'
-    // },
-    // {
-    //     thumb: 'assets/us/gallery/thumbs/image2.webp',
-    //     full: 'assets/us/gallery/full/image2.webp',
-    //     title: 'On Set',
-    //     date: '2024'
-    // },
-    // Add more images here...
+    { thumb: 'assets/us/gallery/thumbs/image-1.webp', full: 'assets/us/gallery/full/image-1.webp', title: 'Placeholder 1', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-2.webp', full: 'assets/us/gallery/full/image-2.webp', title: 'Placeholder 2', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-3.webp', full: 'assets/us/gallery/full/image-3.webp', title: 'Placeholder 3', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-4.webp', full: 'assets/us/gallery/full/image-4.webp', title: 'Placeholder 4', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-5.webp', full: 'assets/us/gallery/full/image-5.webp', title: 'Placeholder 5', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-6.webp', full: 'assets/us/gallery/full/image-6.webp', title: 'Placeholder 6', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-7.webp', full: 'assets/us/gallery/full/image-7.webp', title: 'Placeholder 7', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-8.webp', full: 'assets/us/gallery/full/image-8.webp', title: 'Placeholder 8', date: '2024' },
+    { thumb: 'assets/us/gallery/thumbs/image-9.webp', full: 'assets/us/gallery/full/image-9.webp', title: 'Placeholder 9', date: '2024' },
 ];

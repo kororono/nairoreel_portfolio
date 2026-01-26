@@ -44,10 +44,25 @@
   --card-bg: #1d1d1d;
   --hover-bg: #252525;
   --overlay-bg: rgba(0,0,0,0.5);
-  
+
   /* Font variables for easier maintenance */
   --heading-font: 'Boska', serif;
   --body-font: 'Avenir Next W05 Thin', serif;
+
+  /* Transitions */
+  --trans-fast: 0.2s ease;
+  --trans-normal: 0.3s ease;
+  --trans-slow: 0.5s ease;
+
+  /* Overlays */
+  --overlay-light: rgba(255, 255, 255, 0.1);
+  --overlay-medium: rgba(255, 255, 255, 0.9);
+
+  /* Z-index scale */
+  --z-nav: 100;
+  --z-modal: 1000;
+  --z-overlay: 2000;
+  --z-preloader: 9999;
 }
 
 html, body {
