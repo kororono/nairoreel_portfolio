@@ -1,37 +1,69 @@
 <!doctype html>
+<!--
+    ============================================================
+    TEMPLATE: Video Project Page (_template-video.html)
+    ============================================================
+    USE FOR: Projects with a single Wistia video embed and no
+    photo gallery (e.g. KFC, Car PP, Reload, Ekuc).
+
+    PLACEHOLDERS TO REPLACE:
+      [PROJECT_NAME]      - Display name of the project (e.g. "KFC")
+      [META_DESCRIPTION]  - Unique meta description, 120-160 chars, include "Nairoreel Productions" + "Nairobi, Kenya" + service keyword
+      [FILENAME]          - HTML filename without extension (e.g. "kfc")
+      [FOLDER]            - Asset folder name under assets/projects/ (e.g. "kfc")
+      [IMAGE_FILE]        - Thumbnail/hero image filename (e.g. "KFC-thumb.webp")
+      [YEAR]              - Year of project (e.g. "2024")
+      [GENRE]             - Genre for structured data (e.g. "3D Animation", "Film")
+      [HERO_IMAGE_PATH]   - Relative or absolute path to hero background image
+      [TAGLINE]           - Short tagline shown below project name in hero
+      [CLIENT]            - Client name
+      [SERVICES]          - Services provided (e.g. "3D Animation, Post-Production")
+      [WISTIA_MEDIA_ID]   - Wistia media ID (e.g. "r61mjj8wit")
+      [ABOUT_TEXT]        - Project description paragraph(s)
+      [NEXT_URL]          - URL for the "Explore More" link
+      [NEXT_LABEL]        - Label for the "Explore More" link
+
+    AFTER CREATING A NEW PAGE:
+      - Add the page URL to sitemap.xml
+      - Add the project to the our-work page data if applicable
+    ============================================================
+-->
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reload KE 3D Product Animation — Nairoreel Productions, Nairobi</title>
-    <meta name="description" content="3D product animation for Reload KE isotonic drink by Nairoreel Productions, a 3D animation and VFX studio in Nairobi, Kenya.">
-    <link rel="canonical" href="https://nairoreelproductions.com/projects/reload.html">
+    <!-- REPLACE: Page title — format: "[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi" -->
+    <title>[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi</title>
+    <!-- REPLACE: Meta description (unique, 120-160 chars, include "Nairoreel Productions" + "Nairobi, Kenya" + service keyword) -->
+    <meta name="description" content="[META_DESCRIPTION]">
+    <link rel="canonical" href="https://nairoreelproductions.com/projects/[FILENAME].html">
     <meta name="theme-color" content="#0a0a0a">
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Nairoreel Productions">
-    <meta property="og:title" content="Reload KE 3D Product Animation — Nairoreel Productions, Nairobi">
-    <meta property="og:description" content="3D product animation for Reload KE isotonic drink by Nairoreel Productions, a 3D animation and VFX studio in Nairobi, Kenya.">
-    <meta property="og:url" content="https://nairoreelproductions.com/projects/reload.html">
-    <meta property="og:image" content="https://nairoreelproductions.com/assets/projects/reload/reload-thumb.webp">
+    <meta property="og:title" content="[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi">
+    <meta property="og:description" content="[META_DESCRIPTION]">
+    <meta property="og:url" content="https://nairoreelproductions.com/projects/[FILENAME].html">
+    <!-- REPLACE: Full absolute URL to the project thumbnail/hero image -->
+    <meta property="og:image" content="https://nairoreelproductions.com/assets/projects/[FOLDER]/[IMAGE_FILE]">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Reload KE 3D Product Animation — Nairoreel Productions, Nairobi">
-    <meta name="twitter:description" content="3D product animation for Reload KE isotonic drink by Nairoreel Productions, a 3D animation and VFX studio in Nairobi, Kenya.">
-    <meta name="twitter:image" content="https://nairoreelproductions.com/assets/projects/reload/reload-thumb.webp">
+    <meta name="twitter:title" content="[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi">
+    <meta name="twitter:description" content="[META_DESCRIPTION]">
+    <meta name="twitter:image" content="https://nairoreelproductions.com/assets/projects/[FOLDER]/[IMAGE_FILE]">
     <link rel="stylesheet" href="../css/style.css">
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
-        "name": "Reload KE",
-        "description": "3D product animation showcase demonstrating dynamic visualization and realistic rendering for the RELOAD isotonic drink brand.",
-        "url": "https://nairoreelproductions.com/projects/reload.html",
-        "image": "https://nairoreelproductions.com/assets/projects/reload/reload-thumb.webp",
-        "dateCreated": "2025-04",
+        "name": "[PROJECT_NAME]",
+        "description": "[META_DESCRIPTION]",
+        "url": "https://nairoreelproductions.com/projects/[FILENAME].html",
+        "image": "https://nairoreelproductions.com/assets/projects/[FOLDER]/[IMAGE_FILE]",
+        "dateCreated": "[YEAR]",
         "creator": { "@id": "https://nairoreelproductions.com/#organization" },
-        "genre": "3D Animation"
+        "genre": "[GENRE]"
     }
     </script>
     <style>
@@ -71,16 +103,18 @@
         </div>
     </div>
 </nav>
-    
+
     <header class="project-header parallax">
-    <div class="project-header-bg" style="background-image: url('/assets/projects/reload/reload-thumb.webp'); 
-	    background-position: top center; 
-	    background-size: cover; 
-	    background-repeat: no-repeat;"></div>
+    <!-- REPLACE: Hero background image path -->
+    <div class="project-header-bg" style="background-image: url('[HERO_IMAGE_PATH]');
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;"></div>
     <div class="project-hero-overlay dark-gradient-overlay"></div>
     <div class="project-info">
-        <h1>Reload KE</h1>
-        <p class="project-tagline">3D Product Animation Showcase</p>
+        <!-- REPLACE: Project name and tagline -->
+        <h1>[PROJECT_NAME]</h1>
+        <p class="project-tagline">[TAGLINE]</p>
     </div>
 </header>
 
@@ -90,15 +124,18 @@
                 <div class="project-details">
                     <div class="detail-column">
                         <h3>Client</h3>
-                        <p>Reload KE</p>
+                        <!-- REPLACE: Client name -->
+                        <p>[CLIENT]</p>
                     </div>
                     <div class="detail-column">
                         <h3>Services</h3>
-                        <p>3D Animation, Motion Graphics, Post-Production</p>
+                        <!-- REPLACE: Services provided -->
+                        <p>[SERVICES]</p>
                     </div>
                     <div class="detail-column">
                         <h3>Year</h3>
-                        <p>April 2025</p>
+                        <!-- REPLACE: Year -->
+                        <p>[YEAR]</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +145,8 @@
         <section>
             <div class="gallery-item full-width">
                 <div class="video-container">
-                    <wistia-player media-id="4jzutfowyg" aspect="1.7777777777777777"></wistia-player>
+                    <!-- REPLACE: Wistia media ID -->
+                    <wistia-player media-id="[WISTIA_MEDIA_ID]" aspect="1.7777777777777777"></wistia-player>
                 </div>
             </div>
         </section>
@@ -117,22 +155,17 @@
         <section class="project-description">
             <div class="container">
                 <h2>About the Project</h2>
-                <p>This 3D product animation was created as a showcase project to demonstrate our 
-                    capabilities to the RELOAD brand. Through dynamic visualization and realistic 
-                    rendering techniques, we brought their isotonic drink to life in an immersive 
-                    animated environment. While the client ultimately decided not to move forward 
-                    with a full commercial production, the project served as an invaluable learning 
-                    experience for us. We explored new animation workflows, refined our product 
-                    visualization skills, and enjoyed pushing the boundaries of what we could achieve 
-                    with 3D motion graphics.</p>
+                <!-- REPLACE: Project description -->
+                <p>[ABOUT_TEXT]</p>
             </div>
         </section>
-        
+
         <!-- Explore More Link -->
         <section class="next-project">
             <div class="container">
-                <a href="../our-work.html#3d" class="next-project-link">
-                    <span class="project-name">Explore More 3D Animation</span>
+                <!-- REPLACE: Next project URL and label -->
+                <a href="[NEXT_URL]" class="next-project-link">
+                    <span class="project-name">[NEXT_LABEL]</span>
                     <span class="arrow">→</span>
                 </a>
             </div>
@@ -176,40 +209,31 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <!-- REPLACE: Wistia embed scripts - update media ID -->
     <script src="https://fast.wistia.com/player.js" async></script>
-    <script src="https://fast.wistia.com/embed/4jzutfowyg.js" async type="module"></script>
+    <script src="https://fast.wistia.com/embed/[WISTIA_MEDIA_ID].js" async type="module"></script>
     <script>
-        // ==========================================
-        // IMPROVED PARALLAX EFFECT
-        // Smooth, reliable parallax for background only
-        // ==========================================
+        // Parallax effect for project header
         document.addEventListener('DOMContentLoaded', () => {
             const header = document.querySelector('.project-header');
             const headerBg = document.querySelector('.project-header-bg');
-            
+
             if (!header || !headerBg) return;
-            
+
             function applyParallax() {
-                // Get header position relative to viewport
                 const headerRect = header.getBoundingClientRect();
                 const headerHeight = header.offsetHeight;
-                
-                // Only apply parallax when header is visible or partially visible
+
                 if (headerRect.bottom > 0) {
-                    // Calculate scroll progress (0 = at top, 1 = header scrolled past viewport)
                     const scrollProgress = Math.max(0, -headerRect.top / headerHeight);
-                    
-                    // Apply transform with 30% parallax effect to background only
                     const translateY = scrollProgress * headerHeight * 0.3;
                     headerBg.style.transform = `translateY(${translateY}px)`;
                 } else {
-                    // Header completely scrolled past - lock position
                     const maxTranslate = headerHeight * 0.3;
                     headerBg.style.transform = `translateY(${maxTranslate}px)`;
                 }
             }
-            
-            // Apply on scroll with requestAnimationFrame for smoothness
+
             let ticking = false;
             window.addEventListener('scroll', () => {
                 if (!ticking) {
@@ -220,11 +244,9 @@
                     ticking = true;
                 }
             });
-            
-            // Apply on load
+
             applyParallax();
         });
     </script>
-
 </body>
 </html>

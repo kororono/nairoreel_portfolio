@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /projects/_template-
+
+Sitemap: https://nairoreelproductions.com/sitemap.xml

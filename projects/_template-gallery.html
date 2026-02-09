@@ -1,37 +1,71 @@
 <!doctype html>
+<!--
+    ============================================================
+    TEMPLATE: Gallery Project Page (_template-gallery.html)
+    ============================================================
+    USE FOR: Photography projects with a gallery grid and modal
+    viewer, no video embed (e.g. Nairobi Fashion Week).
+
+    PLACEHOLDERS TO REPLACE:
+      [PROJECT_NAME]      - Display name of the project (e.g. "Nairobi Fashion Week")
+      [META_DESCRIPTION]  - Unique meta description, 120-160 chars, include "Nairoreel Productions" + "Nairobi, Kenya" + service keyword
+      [FILENAME]          - HTML filename without extension (e.g. "nairobi-fashion-week")
+      [FOLDER]            - Asset folder name under assets/projects/ (e.g. "nfw")
+      [IMAGE_FILE]        - Thumbnail/hero image filename (e.g. "nfw-thumb.webp")
+      [YEAR]              - Year of project (e.g. "2024")
+      [GENRE]             - Genre for structured data (e.g. "Photography")
+      [HERO_IMAGE_PATH]   - Relative or absolute path to hero background image
+      [TAGLINE]           - Short tagline shown below project name in hero
+      [CLIENT]            - Client name
+      [SERVICES]          - Services provided (e.g. "Photography, Post-Production")
+      [GALLERY_ID]        - Camel-case gallery ID used in HTML and JS (e.g. "nfw")
+      [GALLERY_FILTER]    - Title string to filter from photographyGallery data (e.g. "Nairobi Fashion Week")
+      [ABOUT_TEXT]        - Project description paragraph(s)
+      [NEXT_URL]          - URL for the "Explore More" link
+      [NEXT_LABEL]        - Label for the "Explore More" link
+
+    AFTER CREATING A NEW PAGE:
+      - Add the page URL to sitemap.xml
+      - Add gallery images to photography-data.js with the matching title
+      - Add the project to the our-work page data if applicable
+    ============================================================
+-->
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nairobi Fashion Week Photography — Nairoreel Productions, Kenya</title>
-    <meta name="description" content="Photography series capturing Nairobi Fashion Week and East African fashion by Nairoreel Productions, a creative studio in Nairobi, Kenya.">
-    <link rel="canonical" href="https://nairoreelproductions.com/projects/nairobi-fashion-week.html">
+    <!-- REPLACE: Page title — format: "[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi" -->
+    <title>[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi</title>
+    <!-- REPLACE: Meta description (unique, 120-160 chars, include "Nairoreel Productions" + "Nairobi, Kenya" + service keyword) -->
+    <meta name="description" content="[META_DESCRIPTION]">
+    <link rel="canonical" href="https://nairoreelproductions.com/projects/[FILENAME].html">
     <meta name="theme-color" content="#0a0a0a">
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Nairoreel Productions">
-    <meta property="og:title" content="Nairobi Fashion Week Photography — Nairoreel Productions, Kenya">
-    <meta property="og:description" content="Photography series capturing Nairobi Fashion Week and East African fashion by Nairoreel Productions, a creative studio in Nairobi, Kenya.">
-    <meta property="og:url" content="https://nairoreelproductions.com/projects/nairobi-fashion-week.html">
-    <meta property="og:image" content="https://nairoreelproductions.com/assets/projects/nfw/nfw-thumb.webp">
+    <meta property="og:title" content="[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi">
+    <meta property="og:description" content="[META_DESCRIPTION]">
+    <meta property="og:url" content="https://nairoreelproductions.com/projects/[FILENAME].html">
+    <!-- REPLACE: Full absolute URL to the project thumbnail/hero image -->
+    <meta property="og:image" content="https://nairoreelproductions.com/assets/projects/[FOLDER]/[IMAGE_FILE]">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nairobi Fashion Week Photography — Nairoreel Productions, Kenya">
-    <meta name="twitter:description" content="Photography series capturing Nairobi Fashion Week and East African fashion by Nairoreel Productions, a creative studio in Nairobi, Kenya.">
-    <meta name="twitter:image" content="https://nairoreelproductions.com/assets/projects/nfw/nfw-thumb.webp">
+    <meta name="twitter:title" content="[PROJECT_NAME] [GENRE] — Nairoreel Productions, Nairobi">
+    <meta name="twitter:description" content="[META_DESCRIPTION]">
+    <meta name="twitter:image" content="https://nairoreelproductions.com/assets/projects/[FOLDER]/[IMAGE_FILE]">
     <link rel="stylesheet" href="../css/style.css">
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
-        "name": "Nairobi Fashion Week",
-        "description": "Photography series capturing the vibrant energy and creativity of Nairobi Fashion Week, showcasing East African designers and models.",
-        "url": "https://nairoreelproductions.com/projects/nairobi-fashion-week.html",
-        "image": "https://nairoreelproductions.com/assets/projects/nfw/nfw-thumb.webp",
-        "dateCreated": "2024",
+        "name": "[PROJECT_NAME]",
+        "description": "[META_DESCRIPTION]",
+        "url": "https://nairoreelproductions.com/projects/[FILENAME].html",
+        "image": "https://nairoreelproductions.com/assets/projects/[FOLDER]/[IMAGE_FILE]",
+        "dateCreated": "[YEAR]",
         "creator": { "@id": "https://nairoreelproductions.com/#organization" },
-        "genre": "Photography"
+        "genre": "[GENRE]"
     }
     </script>
     <style>
@@ -258,16 +292,18 @@
         </div>
     </div>
 </nav>
-    
+
     <header class="project-header parallax">
-    <div class="project-header-bg" style="background-image: url('../assets/projects/nfw/nfw-thumb.webp'); 
-	    background-position: center center; 
-	    background-size: cover; 
-	    background-repeat: no-repeat;"></div>
+    <!-- REPLACE: Hero background image path -->
+    <div class="project-header-bg" style="background-image: url('[HERO_IMAGE_PATH]');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;"></div>
     <div class="project-hero-overlay dark-gradient-overlay"></div>
     <div class="project-info">
-        <h1>Nairobi Fashion Week</h1>
-        <p class="project-tagline">Photography</p>
+        <!-- REPLACE: Project name and tagline -->
+        <h1>[PROJECT_NAME]</h1>
+        <p class="project-tagline">[TAGLINE]</p>
     </div>
 </header>
 
@@ -277,23 +313,27 @@
                 <div class="project-details">
                     <div class="detail-column">
                         <h3>Client</h3>
-                        <p>Nairobi Fashion Week</p>
+                        <!-- REPLACE: Client name -->
+                        <p>[CLIENT]</p>
                     </div>
                     <div class="detail-column">
                         <h3>Services</h3>
-                        <p>Photography, Post-Production</p>
+                        <!-- REPLACE: Services provided -->
+                        <p>[SERVICES]</p>
                     </div>
                     <div class="detail-column">
                         <h3>Year</h3>
-                        <p>2024</p>
+                        <!-- REPLACE: Year -->
+                        <p>[YEAR]</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Gallery Section -->
+        <!-- REPLACE: Gallery ID must match the ID used in the init script below -->
         <section class="project-gallery-section">
-            <div class="gallery-grid" id="nfwGallery">
+            <div class="gallery-grid" id="[GALLERY_ID]Gallery">
                 <!-- Gallery items will be generated by JavaScript -->
             </div>
         </section>
@@ -302,22 +342,23 @@
         <section class="project-description">
             <div class="container">
                 <h2>About the Project</h2>
-                <p>Capturing the vibrant energy and creativity of Nairobi Fashion Week, this photography series showcases the incredible talent of East African designers and models. Through dynamic compositions and careful attention to detail, we documented the intersection of traditional African aesthetics with contemporary fashion, creating a visual narrative that celebrates the region's growing influence in the global fashion industry.</p>
+                <!-- REPLACE: Project description -->
+                <p>[ABOUT_TEXT]</p>
             </div>
         </section>
-        
+
         <!-- Explore More Link -->
         <section class="next-project">
             <div class="container">
-                <a href="../our-work.html#photography" class="next-project-link">
-                    <span class="project-name">Explore More Photography</span>
+                <!-- REPLACE: Next project URL and label -->
+                <a href="[NEXT_URL]" class="next-project-link">
+                    <span class="project-name">[NEXT_LABEL]</span>
                     <span class="arrow">→</span>
                 </a>
             </div>
         </section>
     </main>
 
-    <!-- Gallery Modal - Matching our-work structure -->
     <!-- Gallery Modal -->
     <div class="gallery-modal" id="galleryModal">
         <div class="modal-backdrop"></div>
@@ -377,19 +418,20 @@
     <script src="../js/projects.js" defer></script>
     <script src="../js/photography-data.js" defer></script>
     <script src="../js/gallery.js" defer></script>
+    <!-- REPLACE: Update gallery filter and grid selector -->
     <script defer>
         // ==========================================
-        // NFW PROJECT GALLERY
-        // Filter NFW images and initialize gallery
+        // PROJECT GALLERY INIT
+        // Filter images and initialize gallery
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
-            // Filter images for Nairobi Fashion Week
-            const nfwImages = photographyGallery.filter(item => item.title === 'Nairobi Fashion Week');
+            // REPLACE: Filter string must match the "title" field in photography-data.js
+            const filteredImages = photographyGallery.filter(item => item.title === '[GALLERY_FILTER]');
 
-            // Initialize gallery with filtered images
-            if (nfwImages.length > 0) {
-                initGallery(nfwImages, {
-                    gridSelector: '#nfwGallery',
+            // REPLACE: Grid selector must match the gallery-grid ID above
+            if (filteredImages.length > 0) {
+                initGallery(filteredImages, {
+                    gridSelector: '#[GALLERY_ID]Gallery',
                     pathPrefix: '../'
                 });
             }
