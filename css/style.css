@@ -66,6 +66,19 @@
   --border-red: rgba(234, 24, 33, 0.3);
   --border-orange: rgba(251, 119, 60, 0.3);
 
+  /* Animated Gradient Blobs */
+  --blob-bg1: #180161;
+  --blob-bg2: #0a0024;
+  --blob-color1: 79, 23, 135;      /* purple */
+  --blob-color2: 235, 54, 120;     /* pink */
+  --blob-color3: 251, 119, 60;     /* orange */
+  --blob-color4: 234, 24, 33;      /* red */
+  --blob-color5: 24, 1, 97;        /* deep indigo */
+  --blob-opacity: 1;
+  --blob-blend: hard-light;
+  --blob-size: 80%;
+  --blob-blur: 40px;
+
   /* Font variables for easier maintenance */
   --heading-font: 'Boska', serif;
   --body-font: 'Avenir Next W05 Thin', serif;

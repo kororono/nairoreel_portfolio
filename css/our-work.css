@@ -13,36 +13,132 @@
    ========================================== */
 
 /* ========================================
-   1. FIXED VIDEO BACKGROUND
-   Video stays fixed, content scrolls over it
+   1. FIXED ANIMATED GRADIENT BACKGROUND
+   Animated blob gradients, fixed behind content
    ======================================== */
-.video-background-fixed {
+.gradient-background-fixed {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;                                /* Behind all content */
+    z-index: -1;
     overflow: hidden;
+    background: linear-gradient(40deg, var(--blob-bg1), var(--blob-bg2));
 }
 
-.video-background-fixed video {
+.gradient-background-fixed svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.gradients-container {
+    filter: url(#goo) blur(var(--blob-blur));
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    position: relative;
 }
 
-/* Dark overlay for better text readability */
-.video-overlay {
+.gradients-container [class^="g"] {
+    position: absolute;
+    mix-blend-mode: var(--blob-blend);
+    width: var(--blob-size);
+    height: var(--blob-size);
+    top: calc(50% - var(--blob-size) / 2);
+    left: calc(50% - var(--blob-size) / 2);
+    opacity: var(--blob-opacity);
+}
+
+.g1 {
+    background: radial-gradient(circle at center, rgba(var(--blob-color1), 0.8) 0, rgba(var(--blob-color1), 0) 50%) no-repeat;
+    transform-origin: center center;
+    animation: blobMoveVertical 30s ease infinite;
+}
+
+.g2 {
+    background: radial-gradient(circle at center, rgba(var(--blob-color2), 0.8) 0, rgba(var(--blob-color2), 0) 50%) no-repeat;
+    transform-origin: calc(50% - 400px);
+    animation: blobMoveCircle 20s reverse infinite;
+}
+
+.g3 {
+    background: radial-gradient(circle at center, rgba(var(--blob-color3), 0.8) 0, rgba(var(--blob-color3), 0) 50%) no-repeat;
+    top: calc(50% - var(--blob-size) / 2 + 200px);
+    left: calc(50% - var(--blob-size) / 2 - 500px);
+    transform-origin: calc(50% + 400px);
+    animation: blobMoveCircle 40s linear infinite;
+}
+
+.g4 {
+    background: radial-gradient(circle at center, rgba(var(--blob-color4), 0.8) 0, rgba(var(--blob-color4), 0) 50%) no-repeat;
+    transform-origin: calc(50% - 200px);
+    animation: blobMoveHorizontal 40s ease infinite;
+    opacity: calc(var(--blob-opacity) * 0.7);
+}
+
+.g5 {
+    background: radial-gradient(circle at center, rgba(var(--blob-color5), 0.8) 0, rgba(var(--blob-color5), 0) 50%) no-repeat;
+    width: calc(var(--blob-size) * 2);
+    height: calc(var(--blob-size) * 2);
+    top: calc(50% - var(--blob-size));
+    left: calc(50% - var(--blob-size));
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+    animation: blobMoveCircle 20s ease infinite;
+}
+
+/* Dark overlay for readability */
+.gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);             /* Adjust darkness here */
-   backdrop-filter: blur(10px);          /* <-- This creates the blur */
-  -webkit-backdrop-filter: blur(10px);  /* For Safari support */
-  pointer-events: none;                 /* So it doesn’t block clicks */
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: none;
+}
+
+/* Blob keyframes */
+@keyframes blobMoveCircle {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes blobMoveVertical {
+    0%   { transform: translateY(-50%); }
+    50%  { transform: translateY(50%); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes blobMoveHorizontal {
+    0%   { transform: translateX(-50%) translateY(-10%); }
+    50%  { transform: translateX(50%) translateY(10%); }
+    100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+/* Reduce blur cost on mobile */
+@media (max-width: 767px) {
+    .gradients-container {
+        filter: url(#goo) blur(20px);
+    }
+    .g2 { transform-origin: calc(50% - 150px); }
+    .g3 {
+        top: calc(50% - var(--blob-size) / 2 + 80px);
+        left: calc(50% - var(--blob-size) / 2 - 150px);
+        transform-origin: calc(50% + 150px);
+    }
+    .g4 { transform-origin: calc(50% - 80px); }
+    .g5 { transform-origin: calc(50% - 300px) calc(50% + 80px); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .gradients-container [class^="g"] {
+        animation: none;
+    }
 }
 
 /* Main content container - scrolls over video */
