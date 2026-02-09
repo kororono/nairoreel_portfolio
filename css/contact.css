@@ -33,11 +33,17 @@ body {
     cursor: pointer;
     height: 20vh; /* Fixed height for each link */
     transition: color 0.3s ease;
+    border-bottom: 1px solid var(--border);
 }
 
-.contact-link:hover {
-    color: var(--accent);
-}
+.contact-link:nth-child(1):hover { border-bottom-color: var(--border-pink); }
+.contact-link:nth-child(2):hover { border-bottom-color: var(--border-orange); }
+.contact-link:nth-child(3) { border-bottom: none; }
+
+/* Per-link brand hover colors: Instagram=pink, Email=orange, Inquire=purple */
+.contact-link:nth-child(1):hover { color: var(--brand-pink); }
+.contact-link:nth-child(2):hover { color: var(--brand-orange); }
+.contact-link:nth-child(3):hover { color: var(--brand-purple); }
 
 /* The main visible text */
 .link-text {
@@ -80,6 +86,11 @@ body {
     position: relative;
     animation: scrollText 20s linear infinite;
 }
+
+/* Per-link scrolling text brand colors */
+.contact-link:nth-child(1) .scrolling-text { color: var(--brand-pink); }
+.contact-link:nth-child(2) .scrolling-text { color: var(--brand-orange); }
+.contact-link:nth-child(3) .scrolling-text { color: var(--brand-purple); }
 
 /* On hover, hide original text and show scrolling text */
 .contact-link:hover .link-text {

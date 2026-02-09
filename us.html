@@ -59,7 +59,14 @@
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 1rem;
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.3s ease;
         }
+
+        /* Per-member image hover border */
+        .team-card:nth-child(1):hover img { border-bottom-color: var(--brand-purple); }
+        .team-card:nth-child(2):hover img { border-bottom-color: var(--brand-pink); }
+        .team-card:nth-child(3):hover img { border-bottom-color: var(--brand-orange); }
         
         .team-card h3 {
             font-size: 1.4rem;
@@ -67,10 +74,14 @@
         }
         
         .team-card p {
-            color: var(--accent);
             font-size: 1rem;
             margin: 0;
         }
+
+        /* Per-member brand role colors: Brandon=purple (3D), Bill=pink (Film/Photo), Maria=orange (Comms) */
+        .team-card:nth-child(1) p { color: var(--brand-purple); }
+        .team-card:nth-child(2) p { color: var(--brand-pink); }
+        .team-card:nth-child(3) p { color: var(--brand-orange); }
         
         /* Story Section */
         .story-section {

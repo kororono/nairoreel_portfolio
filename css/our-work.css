@@ -125,6 +125,24 @@
     color: var(--foreground);
 }
 
+/* Per-category brand colors on filter buttons */
+.filter-btn[data-filter="film"]:hover { border-color: var(--brand-pink); }
+.filter-btn[data-filter="3d"]:hover { border-color: var(--brand-purple); }
+.filter-btn[data-filter="photography"]:hover { border-color: var(--brand-orange); }
+
+.filter-btn[data-filter="film"].active {
+    background: var(--brand-pink);
+    border-color: var(--brand-pink);
+}
+.filter-btn[data-filter="3d"].active {
+    background: var(--brand-purple);
+    border-color: var(--brand-purple);
+}
+.filter-btn[data-filter="photography"].active {
+    background: var(--brand-orange);
+    border-color: var(--brand-orange);
+}
+
 /* ========================================
    4. PROJECT CARDS (Film & 3D)
    Standard work cards with hover effects
@@ -163,6 +181,11 @@
 .work-card:hover {
     transform: translateY(-5px);
 }
+
+/* Per-category card hover border accent */
+[data-category="film"] .work-card:hover { border-color: var(--border-pink); }
+[data-category="3d"] .work-card:hover { border-color: var(--border-purple); }
+[data-category="photography"] .work-card:hover { border-color: var(--border-orange); }
 
 .work-card img {
     width: 100%;
@@ -250,6 +273,9 @@
     margin-bottom: 30px;
     text-align: center;
 }
+
+/* Brand tint on section labels within photography */
+[data-category="photography"] .section-label { color: var(--brand-orange); opacity: 0.7; }
 
 /* Photography Gallery Grid */
 .photo-gallery {
