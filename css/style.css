@@ -45,6 +45,27 @@
   --hover-bg: #252525;
   --overlay-bg: rgba(0,0,0,0.5);
 
+  /* Brand Palette */
+  --brand-indigo: #180161;
+  --brand-purple: #4F1787;
+  --brand-pink: #EB3678;
+  --brand-red: #EA1821;
+  --brand-orange: #FB773C;
+
+  /* Brand Tints (subtle card backgrounds) */
+  --tint-indigo: rgba(24, 1, 97, 0.12);
+  --tint-purple: rgba(79, 23, 135, 0.10);
+  --tint-pink: rgba(235, 54, 120, 0.10);
+  --tint-red: rgba(234, 24, 33, 0.10);
+  --tint-orange: rgba(251, 119, 60, 0.10);
+
+  /* Brand Border Accents */
+  --border-indigo: rgba(24, 1, 97, 0.4);
+  --border-purple: rgba(79, 23, 135, 0.35);
+  --border-pink: rgba(235, 54, 120, 0.3);
+  --border-red: rgba(234, 24, 33, 0.3);
+  --border-orange: rgba(251, 119, 60, 0.3);
+
   /* Font variables for easier maintenance */
   --heading-font: 'Boska', serif;
   --body-font: 'Avenir Next W05 Thin', serif;
@@ -618,9 +639,24 @@ header, section {
     position: relative;
     overflow: hidden;
     min-height: 180px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
     display: block;
     color: var(--text-color);
+    border-left: 2px solid transparent;
+}
+
+/* Per-card brand tints: Film=pink, 3D=purple, Photography=orange */
+.bento-item:nth-child(1) {
+    background: linear-gradient(135deg, var(--tint-pink), rgba(28, 28, 28, 0.7));
+    border-left-color: var(--border-pink);
+}
+.bento-item:nth-child(2) {
+    background: linear-gradient(135deg, var(--tint-purple), rgba(28, 28, 28, 0.7));
+    border-left-color: var(--border-purple);
+}
+.bento-item:nth-child(3) {
+    background: linear-gradient(135deg, var(--tint-orange), rgba(28, 28, 28, 0.7));
+    border-left-color: var(--border-orange);
 }
 
 .bento-item:hover {
@@ -635,6 +671,14 @@ header, section {
     position: relative;
     z-index: 2;
 }
+
+/* Per-card title accent colors */
+.bento-item:nth-child(1) .bento-title { color: var(--brand-pink); }
+.bento-item:nth-child(2) .bento-title { color: var(--brand-purple); }
+.bento-item:nth-child(3) .bento-title { color: var(--brand-orange); }
+
+/* Reset to white on hover */
+.bento-item:hover .bento-title { color: var(--foreground); }
 
 .bento-desc {
     font-size: 0.9rem;
@@ -744,6 +788,25 @@ header, section {
     overflow: hidden;
     min-height: 100px;
     z-index: 1;
+    border-left: 2px solid transparent;
+}
+
+/* Brand gradient across process steps */
+.process-item:nth-child(1) {
+    background: linear-gradient(135deg, var(--tint-indigo), var(--card-bg));
+    border-left-color: var(--border-indigo);
+}
+.process-item:nth-child(2) {
+    background: linear-gradient(135deg, var(--tint-purple), var(--card-bg));
+    border-left-color: var(--border-purple);
+}
+.process-item:nth-child(3) {
+    background: linear-gradient(135deg, var(--tint-pink), var(--card-bg));
+    border-left-color: var(--border-pink);
+}
+.process-item:nth-child(4) {
+    background: linear-gradient(135deg, var(--tint-red), var(--card-bg));
+    border-left-color: var(--border-red);
 }
 
 .process-item:hover {
@@ -785,6 +848,12 @@ header, section {
     transition: opacity 0.3s ease;
 }
 
+/* Process numbers match their card's brand color */
+.process-item:nth-child(1) .process-number { color: var(--brand-indigo); }
+.process-item:nth-child(2) .process-number { color: var(--brand-purple); }
+.process-item:nth-child(3) .process-number { color: var(--brand-pink); }
+.process-item:nth-child(4) .process-number { color: var(--brand-red); }
+
 .process-item:hover .process-number {
     opacity: 0.2;
 }
@@ -808,13 +877,24 @@ header, section {
 
 .detail-item {
     padding: 20px 0;
+    border-top: 2px solid transparent;
 }
+
+/* Per-item brand accent on approach section */
+.detail-item:nth-child(1) { border-top-color: var(--border-purple); }
+.detail-item:nth-child(2) { border-top-color: var(--border-pink); }
+.detail-item:nth-child(3) { border-top-color: var(--border-orange); }
+.detail-item:nth-child(4) { border-top-color: var(--border-red); }
 
 .detail-item h3 {
     margin-bottom: 1rem;
-    color: var(--accent);
-	opacity: .7;
+    opacity: .85;
 }
+
+.detail-item:nth-child(1) h3 { color: var(--brand-purple); }
+.detail-item:nth-child(2) h3 { color: var(--brand-pink); }
+.detail-item:nth-child(3) h3 { color: var(--brand-orange); }
+.detail-item:nth-child(4) h3 { color: var(--brand-red); }
 
 /* Testimonials */
 .testimonials-grid {
@@ -825,9 +905,10 @@ header, section {
 }
 
 .testimonial {
-    background-color: var(--card-bg);
+    background: linear-gradient(135deg, var(--tint-pink), var(--card-bg));
     padding: 30px;
     border-radius: 10px;
+    border-left: 2px solid var(--border-pink);
 }
 
 .quote {
@@ -847,7 +928,7 @@ header, section {
 }
 
 .client-role {
-    color: var(--accent);
+    color: var(--brand-pink);
     font-size: 0.9rem;
     margin-bottom: 0;
 }
@@ -1089,14 +1170,16 @@ footer {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .social-icons li a:hover {
-    background-color: #555;
+    background-color: var(--tint-pink);
+    border-color: var(--border-pink);
     transform: translateY(-3px);
 }
 
