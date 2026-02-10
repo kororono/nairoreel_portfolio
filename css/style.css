@@ -719,8 +719,11 @@ header, section {
 /* Studio overview - keyword paragraph */
 .studio-overview {
     margin-top: 3rem;
-    padding: 0 1rem;
-    max-width: 800px;
+    width: 100%;
+}
+
+.studio-toggle {
+    display: none;
 }
 
 .studio-overview p {
@@ -728,6 +731,32 @@ header, section {
     line-height: 1.8;
     color: var(--text-color);
     opacity: 0.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-bottom: 0.5rem;
+}
+
+.studio-toggle:checked ~ p {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+.studio-read-more {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.studio-read-more:hover {
+    color: var(--foreground);
+}
+
+.studio-toggle:checked ~ .studio-read-more {
+    display: none;
 }
 
 /* Pricing info - Services Section - TRANSPARENT */
