@@ -716,6 +716,20 @@ header, section {
     opacity: 0.2;
 }
 
+/* Studio overview - keyword paragraph */
+.studio-overview {
+    margin-top: 3rem;
+    padding: 0 1rem;
+    max-width: 800px;
+}
+
+.studio-overview p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
 /* Pricing info - Services Section - TRANSPARENT */
 .pricing-info {
     margin-top: 6rem;
