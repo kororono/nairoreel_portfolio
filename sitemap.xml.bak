@@ -78,18 +78,4 @@
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://nairoreelproductions.com/projects/costa</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Production kit — private/targeted page, noindex set on the page itself -->
-  <url>
-    <loc>https://nairoreelproductions.com/tranzit</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.3</priority>
-  </url>
 </urlset>
