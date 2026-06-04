@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Nairoreel Productions — Production Kit</title>
+<meta name="description" content="A production kit from Nairoreel Productions — cinematic CGI, VFX, sound design, colour and post.">
+
+<!-- ============================================================
+     FAVICON
+     Files live on the portfolio host at /assets/favicon/.
+     These paths work once deployed to nairoreelproductions.com.
+     They will 404 locally — that is expected and harmless.
+     ============================================================ -->
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+
+<link rel="preload" href="fonts/Boska-Black.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<style>
+/* ============================================================  FONTS  */
+@font-face{
+  font-family:'Boska';
+  src:url('fonts/Boska-Black.woff2') format('woff2'),
+      url('fonts/Boska-Black.woff') format('woff'),
+      url('fonts/Boska-Black.ttf') format('truetype');
+  font-weight:800 900; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Avenir Next W05 Thin';
+  src:url('fonts/Avenir Next W05 Thin.woff2') format('woff2'),
+      url('fonts/Avenir Next W05 Thin.woff') format('woff'),
+      url('fonts/Avenir Next W05 Thin.ttf') format('truetype');
+  font-weight:100 900; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Recia';
+  src:url('fonts/Recia-Regular.woff2') format('woff2'),
+      url('fonts/Recia-Regular.woff') format('woff'),
+      url('fonts/Recia-Regular.ttf') format('truetype');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Recia';
+  src:url('fonts/Recia-Medium.woff2') format('woff2'),
+      url('fonts/Recia-Medium.woff') format('woff'),
+      url('fonts/Recia-Medium.ttf') format('truetype');
+  font-weight:500; font-style:normal; font-display:swap;
+}
+
+/* ============================================================  TOKENS  */
+:root{
+  --black:#000000;
+  --bg:#0a0a0a;
+  --card:#111111;
+  --border:#1e1e1e;
+  --white:#ffffff;
+  --text:#e0e0e0;
+  --muted:#999999;
+  --faint:#555555;
+  --red:#ea1821;
+  --violet:#4f1787;
+  --orange:#fb773c;
+  --pink:#eb3678;
+  --indigo:#180161;
+  --heading:'Boska', serif;
+  --body:'Avenir Next W05 Thin', sans-serif;
+  --editorial:'Recia', serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --gutter:clamp(1.25rem, 5vw, 6rem);
+  --maxw:1600px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+html,body{max-width:100vw; overflow-x:clip;}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--body); font-weight:400;
+  line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{display:block; max-width:100%;}
+a{color:inherit; text-decoration:none;}
+html.lenis,html.lenis body{height:auto;}
+.lenis.lenis-smooth{scroll-behavior:auto !important;}
+
+/* ============================================================  TYPE  */
+h1,h2,h3{font-family:var(--heading); font-weight:900; line-height:1.02; letter-spacing:-0.035em; color:var(--white);}
+.eyebrow{
+  font-family:var(--body); font-weight:600;
+  font-size:clamp(.6rem,.72vw,.76rem);
+  letter-spacing:.34em; text-transform:uppercase; color:var(--muted);
+}
+.eyebrow .dot{color:var(--red);}
+.lead{
+  font-family:var(--editorial); font-style:normal; font-weight:400;
+  font-size:clamp(1.1rem,2vw,1.55rem); line-height:1.5; color:#cfcfcf;
+}
+.r-line{display:block; overflow:hidden;}
+.r-line > *{display:block; will-change:transform;}
+
+/* ============================================================  GRAIN  */
+.grain{
+  position:fixed; inset:0; z-index:9000; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+
+/* ============================================================  NAV  */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.25rem var(--gutter);
+  transition:background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(8,8,8,.78); backdrop-filter:blur(14px) saturate(120%);
+  border-color:var(--border); padding-top:.85rem; padding-bottom:.85rem;
+}
+/* Logo — double-span hover animation matching the portfolio nav */
+.nav-logo a{
+  color:var(--white); text-decoration:none;
+  position:relative; overflow:hidden; display:block;
+  height:20px; font-family:var(--heading); font-size:1.05rem;
+  font-weight:900; letter-spacing:-.025em;
+}
+.nav-logo a span{ display:block; position:relative; transition:transform .3s ease-out; }
+.nav-logo a span:nth-child(2){ position:absolute; top:20px; left:0; }
+.nav-logo a:hover span:nth-child(1){ transform:translateY(-22px); }
+.nav-logo a:hover span:nth-child(2){ transform:translateY(-22px); }
+/* Right-side personalisation tag */
+.nav-kit-tag{
+  font-family:var(--body); font-weight:600;
+  font-size:.6rem; letter-spacing:.26em; text-transform:uppercase;
+  color:rgba(255,255,255,.42); white-space:nowrap;
+}
+.nav-kit-tag strong{ color:rgba(255,255,255,.72); font-weight:600; }
+@media(max-width:680px){ .nav-kit-tag{ display:none; } }
+
+/* ============================================================  PRELOADER  */
+.preloader{
+  position:fixed; inset:0; z-index:9999; background:var(--black);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.6rem;
+}
+.preloader .pl-word{
+  font-family:var(--heading); font-weight:900; color:var(--white);
+  font-size:clamp(1.4rem,4vw,2.4rem); letter-spacing:-.03em; opacity:.92;
+}
+.preloader .pl-bar{width:min(220px,52vw); height:1px; background:#262626; overflow:hidden;}
+.preloader .pl-bar i{display:block; height:100%; width:0; background:var(--red);}
+
+/* ============================================================  HERO  */
+.hero{position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden;}
+.media-fill{position:absolute; inset:0; overflow:hidden;}
+.media-fill img{position:absolute; inset:-8% 0; width:100%; height:116%; object-fit:cover; object-position:center;}
+.hero .scrim{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(120% 90% at 70% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,.5) 70%, rgba(0,0,0,.84) 100%),
+    linear-gradient(to top, rgba(10,10,10,.96) 0%, rgba(10,10,10,.35) 38%, rgba(10,10,10,0) 70%);
+}
+.hero-inner{position:relative; z-index:2; width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter) clamp(3rem,7vh,6rem);}
+.hero .kicker{display:flex; align-items:center; gap:.9rem; margin-bottom:1.6rem;}
+.hero .kicker .rule{width:clamp(28px,4vw,60px); height:1px; background:var(--red);}
+.hero h1{font-size:clamp(2.7rem,9vw,8.5rem); line-height:.96; max-width:16ch;}
+.hero h1 .it{font-family:var(--editorial); font-style:italic; font-weight:500; letter-spacing:-.01em;}
+.hero .sub{margin-top:1.7rem; max-width:46ch;}
+.scroll-cue{
+  position:absolute; bottom:1.6rem; right:var(--gutter); z-index:3;
+  display:flex; align-items:center; gap:.7rem;
+  font-family:var(--body); font-weight:600; font-size:.58rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted);
+}
+.scroll-cue .line{position:relative; width:1px; height:46px; background:#2a2a2a; overflow:hidden;}
+.scroll-cue .line::after{content:""; position:absolute; top:-50%; left:0; width:100%; height:50%; background:var(--red); animation:cue 2.4s var(--ease) infinite;}
+@keyframes cue{0%{top:-50%}60%,100%{top:100%}}
+@media(max-width:720px){ .scroll-cue{display:none;} }
+
+/* ============================================================  SECTIONS  */
+.section{max-width:var(--maxw); margin:0 auto; padding:clamp(6rem,14vh,12rem) var(--gutter);}
+.sec-head{display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem;}
+.sec-head .rule{flex:0 0 auto; width:46px; height:1px; background:var(--red);}
+
+/* STATEMENT */
+.statement h2{font-size:clamp(2rem,5.5vw,4.6rem); line-height:1.02; max-width:14ch;}
+.statement .accent{color:var(--red);}
+.statement .body{max-width:52ch; margin-top:2.2rem;}
+
+/* FILM TITLE */
+.film{position:relative; text-align:center; padding:clamp(7rem,16vh,13rem) var(--gutter) clamp(3rem,6vh,5rem);}
+.film .title{font-size:clamp(4rem,20vw,17rem); line-height:.82; letter-spacing:-.04em;}
+.film .logline{font-family:var(--editorial); font-style:italic; font-weight:500; font-size:clamp(1.1rem,2.4vw,1.8rem); color:#cfcfcf; max-width:30ch; margin:2rem auto 0;}
+.film .meta{display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem 1.5rem; margin-top:2.6rem;}
+.film .meta span{font-family:var(--body); font-weight:600; font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:var(--muted);}
+.film .meta .sep{color:var(--red);}
+
+/* SCENE NOTE */
+.scene-note{
+  text-align:center; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:clamp(2.8rem,6vh,4.5rem) var(--gutter); background:rgba(234,24,33,.03);
+}
+.scene-note .inner{max-width:58ch; margin:0 auto;}
+.scene-note .inner p{font-family:var(--editorial); font-style:italic; font-size:clamp(1rem,1.8vw,1.35rem); color:#bfbfbf; line-height:1.6;}
+.scene-note .inner p strong{color:var(--white); font-style:normal; font-family:var(--body); font-weight:700; letter-spacing:.02em;}
+
+/* ============================================================  BEATS  */
+.beat{position:relative; height:100svh; min-height:560px; overflow:hidden; display:flex; align-items:flex-end; cursor:pointer;}
+.beat .media-fill img{height:124%; inset:-12% 0;}
+.beat .scrim{
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(8,8,8,.92) 0%, rgba(8,8,8,.22) 38%, rgba(8,8,8,0) 66%);
+}
+.beat .scrim.left{
+  background:
+    linear-gradient(to top, rgba(8,8,8,.92) 0%, rgba(8,8,8,.18) 40%, rgba(8,8,8,0) 66%),
+    linear-gradient(to right, rgba(8,8,8,.68) 0%, rgba(8,8,8,0) 48%);
+}
+.beat-cap{position:relative; z-index:2; width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter) clamp(2.5rem,6vh,5rem);}
+.beat-cap .no{font-family:var(--body); font-weight:700; color:var(--red); font-size:.66rem; letter-spacing:.28em; text-transform:uppercase; margin-bottom:.5rem;}
+.beat-cap h3{font-size:clamp(1.8rem,5vw,4rem); line-height:1; margin:.2rem 0 .8rem;}
+.beat-cap p{max-width:40ch; color:#dadada; font-size:clamp(.95rem,1.2vw,1.1rem); line-height:1.55;}
+/* expand icon hint */
+.beat::after{
+  content:"⤢"; position:absolute; top:1.4rem; right:1.6rem; z-index:3;
+  font-size:1rem; color:rgba(255,255,255,.25); transition:color .3s var(--ease);
+  font-style:normal;
+}
+.beat:hover::after{color:rgba(255,255,255,.6);}
+
+/* SURVEILLANCE */
+.surv{position:relative; background:var(--black);}
+.surv-stage{position:relative; height:100svh; min-height:560px; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+.surv-grid{position:relative; z-index:2; width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter); display:grid; grid-template-columns:1fr 1fr; gap:clamp(1rem,2.5vw,2.4rem); align-items:center;}
+.surv-cam{position:relative; border:1px solid var(--border); background:#060606; overflow:hidden; cursor:pointer; transition:border-color .35s var(--ease);}
+.surv-cam:hover{border-color:#3a3a3a;}
+.surv-cam img{width:100%; aspect-ratio:16/9; object-fit:cover; opacity:.9;}
+.surv-cam::after{content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(to bottom, rgba(255,255,255,.02) 0 1px, transparent 1px 3px);}
+.surv-copy{position:absolute; z-index:3; left:var(--gutter); bottom:clamp(2.5rem,7vh,5rem);}
+.surv-copy .no{font-family:var(--body); font-weight:700; color:var(--red); font-size:.66rem; letter-spacing:.28em; text-transform:uppercase; margin-bottom:.5rem;}
+.surv-copy h3{font-size:clamp(1.8rem,5vw,4rem); line-height:1; margin:.2rem 0 .8rem;}
+.surv-copy p{max-width:34ch; color:#dadada; font-size:clamp(.95rem,1.2vw,1.1rem); line-height:1.55;}
+@media(max-width:760px){
+  .surv-grid{grid-template-columns:1fr; gap:1rem;}
+  .surv-stage{height:auto; min-height:0; padding:8rem 0 4rem;}
+  .surv-copy{position:relative; left:0; bottom:0; padding:2.5rem var(--gutter) 0;}
+}
+
+/* ============================================================  CAPABILITIES  */
+.caps{border-top:1px solid var(--border);}
+.caps .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); border-left:1px solid var(--border); border-top:1px solid var(--border);}
+.cap{padding:clamp(1.8rem,3vw,2.8rem); border-right:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; transition:background .4s var(--ease);}
+.cap:hover{background:#0e0e0e;}
+.cap .n{font-family:var(--body); font-weight:600; font-size:.62rem; letter-spacing:.28em; color:var(--faint);}
+.cap h3{font-size:clamp(1.5rem,2.6vw,2.2rem); margin:.9rem 0 .8rem; line-height:1.04;}
+.cap h3 .mk{color:var(--red);}
+.cap p{font-size:.95rem; color:var(--muted); max-width:34ch; line-height:1.55;}
+
+/* PIPELINE */
+.pipeline{border-top:1px solid var(--border); padding:clamp(5rem,12vh,9rem) var(--gutter);}
+.pipeline .inner{max-width:var(--maxw); margin:0 auto;}
+.pipeline h2{font-size:clamp(2rem,5vw,4.2rem); max-width:18ch; margin-top:1.4rem;}
+.pipeline .body{max-width:52ch; margin-top:1.8rem; font-size:clamp(.95rem,1.3vw,1.1rem); color:#bfbfbf; line-height:1.6;}
+.pipeline .projects{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:2.2rem;}
+.pipeline .proj-tag{
+  font-family:var(--body); font-weight:600; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase;
+  border:1px solid var(--border); padding:.55rem 1.1rem; color:var(--muted);
+  transition:border-color .3s var(--ease), color .3s var(--ease);
+}
+.pipeline .proj-tag:hover{border-color:var(--red); color:var(--white);}
+
+/* ============================================================  CLOSING NOTE  */
+.note{position:relative; text-align:center; padding:clamp(7rem,18vh,14rem) var(--gutter);}
+.note .quote{font-family:var(--editorial); font-style:italic; font-weight:400; font-size:clamp(1.6rem,4vw,3.2rem); line-height:1.3; color:var(--white); max-width:22ch; margin:1.6rem auto 0;}
+.note .sign{margin-top:2.6rem; font-family:var(--body); font-weight:600; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);}
+.note .sign b{color:var(--white); font-weight:600;}
+.note .glow{position:absolute; left:50%; top:55%; transform:translate(-50%,-50%); width:min(60vw,640px); height:min(60vw,640px); border-radius:50%; pointer-events:none; filter:blur(80px); opacity:.14;
+  background:radial-gradient(circle, var(--red) 0%, var(--violet) 55%, transparent 72%);}
+
+/* ============================================================  GALLERY SECTION  */
+.gal-section{border-top:1px solid var(--border); padding:clamp(5rem,12vh,9rem) var(--gutter);}
+.gal-section .inner{max-width:var(--maxw); margin:0 auto;}
+.gal-section h2{font-size:clamp(2rem,5vw,4.2rem); max-width:16ch; margin-top:1.4rem;}
+.gal-section .sub{max-width:44ch; margin-top:1rem; color:var(--muted); font-size:.95rem; line-height:1.55;}
+
+.gal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:clamp(.5rem,1vw,1rem);
+  margin-top:3rem;
+}
+@media(max-width:1100px){ .gal-grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:700px){  .gal-grid{grid-template-columns:repeat(2,1fr);} }
+
+.gal-thumb{
+  position:relative; overflow:hidden; aspect-ratio:16/9;
+  background:var(--card); cursor:pointer;
+  border:1px solid var(--border); transition:border-color .35s var(--ease);
+}
+.gal-thumb:hover{border-color:#3a3a3a;}
+.gal-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease), filter .5s var(--ease);}
+.gal-thumb:hover img{transform:scale(1.05); filter:brightness(1.1);}
+.gal-thumb .gal-no{
+  position:absolute; bottom:.7rem; left:.8rem; z-index:2;
+  font-family:var(--body); font-weight:600; font-size:.58rem; letter-spacing:.22em; color:rgba(255,255,255,.5);
+}
+.gal-thumb .gal-label{
+  position:absolute; inset:0; z-index:2; display:flex; align-items:flex-end;
+  background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 50%);
+  padding:.9rem 1rem; opacity:0; transition:opacity .35s var(--ease);
+}
+.gal-thumb:hover .gal-label{opacity:1;}
+.gal-thumb .gal-label span{
+  font-family:var(--body); font-weight:600; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--white);
+}
+
+/* ============================================================  LIGHTBOX  */
+.lightbox{
+  position:fixed; inset:0; z-index:9500; background:rgba(0,0,0,.94);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .4s var(--ease);
+}
+.lightbox.open{opacity:1; pointer-events:all;}
+.lb-stage{position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:5rem 1rem 5.5rem;}
+.lb-img-wrap{position:relative; max-width:min(92vw,1440px); max-height:calc(100svh - 10rem); display:flex; align-items:center; justify-content:center;}
+.lb-img-wrap img{
+  max-width:100%; max-height:calc(100svh - 10rem);
+  width:auto; height:auto; object-fit:contain;
+  will-change:transform, opacity;
+}
+.lb-close{
+  position:absolute; top:1.4rem; right:1.5rem; z-index:10;
+  width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+  background:rgba(20,20,20,.8); border:1px solid var(--border); cursor:pointer;
+  font-size:1.2rem; color:var(--white); transition:background .3s var(--ease), border-color .3s var(--ease);
+}
+.lb-close:hover{background:rgba(40,40,40,.9); border-color:#444;}
+.lb-btn{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+  width:50px; height:50px; display:flex; align-items:center; justify-content:center;
+  background:rgba(20,20,20,.8); border:1px solid var(--border); cursor:pointer;
+  font-size:1.5rem; color:var(--white); transition:background .3s var(--ease), border-color .3s var(--ease);
+}
+.lb-btn:hover{background:rgba(50,50,50,.9); border-color:#444;}
+.lb-btn:active{background:var(--red); border-color:var(--red);}
+.lb-prev{left:1.2rem;}
+.lb-next{right:1.2rem;}
+@media(max-width:600px){
+  .lb-prev{left:.5rem;} .lb-next{right:.5rem;}
+  .lb-btn{width:42px; height:42px; font-size:1.2rem;}
+}
+.lb-bar{
+  position:absolute; bottom:0; left:0; right:0;
+  padding:1.1rem var(--gutter);
+  background:linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 100%);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.lb-cap{font-family:var(--editorial); font-style:italic; font-size:clamp(.95rem,1.4vw,1.15rem); color:#d0d0d0; max-width:55ch;}
+.lb-counter{font-family:var(--body); font-weight:600; font-size:.62rem; letter-spacing:.28em; color:var(--muted); flex-shrink:0; margin-left:2rem;}
+.lb-dots{
+  position:absolute; bottom:1.2rem; left:50%; transform:translateX(-50%);
+  display:flex; gap:.5rem; z-index:10;
+}
+.lb-dot{width:5px; height:5px; border-radius:50%; background:#444; cursor:pointer; transition:background .3s var(--ease), transform .3s var(--ease);}
+.lb-dot.active{background:var(--red); transform:scale(1.4);}
+
+/* ============================================================  FOOTER  */
+.footer{border-top:1px solid var(--border); background:var(--black); padding:clamp(3.5rem,8vh,6rem) var(--gutter) 2.5rem;}
+.footer-inner{max-width:var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; gap:2.5rem 4rem; justify-content:space-between; align-items:flex-start;}
+.footer .f-brand p{font-size:.85rem; color:var(--muted); max-width:30ch; margin-top:.7rem;}
+.f-contact{display:flex; flex-direction:column; gap:1.2rem;}
+.f-contact .contact-item{ display:flex; flex-direction:column; gap:.25rem; }
+.f-contact .lbl{font-family:var(--body); font-weight:700; font-size:.56rem; letter-spacing:.34em; text-transform:uppercase; color:var(--faint);}
+.f-contact a{font-size:.98rem; color:var(--red); transition:opacity .3s var(--ease); width:fit-content;}
+.f-contact a:hover{opacity:.7;}
+.footer-base{max-width:var(--maxw); margin:3.5rem auto 0; padding-top:1.6rem; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:.6rem 2rem; justify-content:space-between;}
+.footer-base span{font-family:var(--body); font-weight:600; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint);}
+
+/* ============================================================
+   TIMER BEAT — shorter height so the briefcase/timer is visible.
+   The image has intentional negative space at the top (the seat);
+   reducing height + shifting object-position down keeps the case in frame.
+   ============================================================ */
+.beat--timer{ height:68svh; min-height:420px; }
+.beat--timer .media-fill img{ object-position:center 72%; }
+
+/* ============================================================  REVEALS  */
+.reveal{opacity:0;}
+.no-js .reveal{opacity:1;}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important; transition:none !important;}
+  .reveal{opacity:1 !important; transform:none !important;}
+  .lightbox{transition:none !important;}
+}
+</style>
+</head>
+<body class="no-js">
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pl-word">Nairoreel</div>
+  <div class="pl-bar"><i id="plBar"></i></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <!-- Double-span hover animation — same treatment as the rest of the portfolio -->
+    <a href="/">
+      <span>Nairoreel Productions</span>
+      <span>Nairoreel Productions</span>
+    </a>
+  </div>
+  <div class="nav-kit-tag">
+    Prepared for <strong>Marvel Simiyu</strong> &nbsp;&middot;&nbsp; P&amp;L Consulting Group
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="media-fill"><img data-img="aerial" data-parallax alt="Drone overhead of the white Corvette on an empty forest road"></div>
+  <div class="scrim"></div>
+  <div class="hero-inner">
+    <div class="kicker reveal" data-rise>
+      <span class="rule"></span>
+      <span class="eyebrow">Prepared for Marvel Simiyu <span class="dot">·</span> P&amp;L Consulting Group</span>
+    </div>
+    <h1>
+      <span class="r-line"><span data-line>Cinema,</span></span>
+      <span class="r-line"><span data-line>fully <span class="it">rendered.</span></span></span>
+    </h1>
+    <p class="lead sub reveal" data-rise>A look at where Nairoreel Productions is right now — hyper-real CGI, VFX, and post, built frame by frame with full sound design.</p>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</header>
+
+<!-- STATEMENT -->
+<section class="section statement-sec">
+  <div class="sec-head reveal" data-rise><span class="rule"></span><span class="eyebrow">The Studio</span></div>
+  <div class="statement">
+    <h2>
+      <span class="r-line"><span data-line>We make work</span></span>
+      <span class="r-line"><span data-line>that holds up at</span></span>
+      <span class="r-line"><span data-line><span class="accent">cinema scale.</span></span></span>
+    </h2>
+    <p class="lead body reveal" data-rise style="max-width:52ch; margin-top:2.2rem;">Every frame is modelled, lit, graded, and scored with intent — nothing left to chance. The result is the kind of cinematic, hyper-realistic image that reads as real long before anyone asks how it was made.</p>
+  </div>
+</section>
+
+<!-- FILM TITLE -->
+<section class="film" id="film">
+  <div class="eyebrow reveal" data-rise>Selected Work <span class="dot">·</span> In Post-Production</div>
+  <h1 class="title">
+    <span class="r-line"><span data-line>TRANZIT</span></span>
+  </h1>
+  <p class="logline reveal" data-rise>A short, fast-paced CGI film about the delivery of a mysterious case — and the clock counting down to get it there.</p>
+  <div class="meta reveal" data-rise>
+    <span>CGI</span><span class="sep">/</span><span>VFX</span><span class="sep">/</span><span>Sound Design</span><span class="sep">/</span><span>Colour</span><span class="sep">/</span><span>Post</span>
+  </div>
+</section>
+
+<!-- SCENE NOTE -->
+<div class="scene-note">
+  <div class="inner reveal" data-rise>
+    <p>Everything here is from a <strong>single scene</strong> — the forest road sequence. TRANZIT has two more. We're still in post and the rest stays under wraps for now. These are the stills we've cleared for release, and they're enough to show you what we're building at the level of quality we work at.</p>
+  </div>
+</div>
+
+<!-- BEAT 01 — 86407 top-down aerial drone -->
+<section class="beat" data-gal-index="0">
+  <div class="media-fill"><img data-img="aerial" data-parallax alt="Drone overhead tracking shot of the white Corvette on a forest road"></div>
+  <div class="scrim left"></div>
+  <div class="beat-cap">
+    <div class="no reveal" data-rise>Forest Road — Aerial</div>
+    <h3 class="reveal" data-rise>Drone Line</h3>
+    <p class="reveal" data-rise>A drone tracking shot directly overhead — the Corvette holds the line down an empty forest road. The lighting, the colour grade, the tarmac detail — all of it fully CG, and the quality speaks for itself.</p>
+  </div>
+</section>
+
+<!-- BEAT 02 — 86403 rear fisheye, drift smoke -->
+<section class="beat" data-gal-index="1">
+  <div class="media-fill"><img data-img="rear" data-parallax alt="Rear fisheye mounted shot, drift smoke coming off the rear wheels"></div>
+  <div class="scrim left"></div>
+  <div class="beat-cap">
+    <div class="no reveal" data-rise>Drift Sequence — Fisheye</div>
+    <h3 class="reveal" data-rise>Wide Back</h3>
+    <p class="reveal" data-rise>A camera mounted to the rear with a wide fisheye catches the full shape of the drift — smoke kicking off both sides, the road bending at the edges of the lens, the rear lights burning through it.</p>
+  </div>
+</section>
+
+<!-- BEAT 03 — 86402 road-railing mounted, drifting toward camera, god rays, silhouettes -->
+<section class="beat" data-gal-index="2">
+  <div class="media-fill"><img data-img="mist" data-parallax alt="Road-railing mounted camera, Corvette drifting toward it with headlight god rays in the fog"></div>
+  <div class="scrim left"></div>
+  <div class="beat-cap">
+    <div class="no reveal" data-rise>Drift Sequence — Approach</div>
+    <h3 class="reveal" data-rise>On the Rail</h3>
+    <p class="reveal" data-rise>Bolted to the road-side railing as the Corvette comes in on a drift angle. Headlights push god rays through the environment fog. Behind it, the tree line and overhead signs hold as dark silhouettes against a cloudy dusky sky.</p>
+  </div>
+</section>
+
+<!-- BEAT 04 — SURVEILLANCE pair (86405 + 86406) -->
+<section class="surv" id="surv">
+  <div class="surv-stage">
+    <div class="surv-grid">
+      <div class="surv-cam reveal" data-rise data-gal-index="3"><img data-img="cam1" alt="CCTV footage — Corvette approaching"></div>
+      <div class="surv-cam reveal" data-rise data-gal-index="4"><img data-img="cam2" alt="CCTV footage — Corvette clearing the frame"></div>
+    </div>
+    <div class="surv-copy">
+      <div class="no reveal" data-rise>CCTV</div>
+      <h3 class="reveal" data-rise>On Footage</h3>
+      <p class="reveal" data-rise>Fixed cameras on the route catch the Corvette coming in and clearing out. The VHS overlay, the timestamp, the scan lines — whatever is in that case, someone is tracking it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BEAT 05 — briefcase timer interior (shorter section, timer stays visible) -->
+<section class="beat beat--timer" data-gal-index="5">
+  <div class="media-fill"><img data-img="timer" data-parallax alt="Interior shot of the briefcase, digital timer glowing red"></div>
+  <div class="scrim left"></div>
+  <div class="beat-cap">
+    <div class="no reveal" data-rise>Interior</div>
+    <h3 class="reveal" data-rise>The Case</h3>
+    <p class="reveal" data-rise>Inside the car, the briefcase sits open — red digits counting down on the face of it. The driver is barely in frame. The clock is not waiting.</p>
+  </div>
+</section>
+
+<!-- BEAT 06 — 86400 left-side mounted, start of drift -->
+<section class="beat" data-gal-index="6">
+  <div class="media-fill"><img data-img="drift" data-parallax alt="Left-side mounted camera at the start of the drift, headlights across wet concrete"></div>
+  <div class="scrim left"></div>
+  <div class="beat-cap">
+    <div class="no reveal" data-rise>Drift Sequence — Side Mount</div>
+    <h3 class="reveal" data-rise>Left Side</h3>
+    <p class="reveal" data-rise>A camera mounted low on the left, catching the moment the drift starts. Headlights throw across wet concrete, the railing runs alongside, and the car leans into the turn as it goes.</p>
+  </div>
+</section>
+
+<!-- BEAT 07 — 86401 tracking through tree line, 88 LED lights -->
+<section class="beat" data-gal-index="7">
+  <div class="media-fill"><img data-img="treeline" data-parallax alt="Tracking shot through the tree line, red 88 LED lights visible as the Corvette drifts past"></div>
+  <div class="scrim left"></div>
+  <div class="beat-cap">
+    <div class="no reveal" data-rise>Drift Sequence — Tree Line</div>
+    <h3 class="reveal" data-rise>Through the Trees</h3>
+    <p class="reveal" data-rise>The camera sits in the dark of the forest, tracking the car as it drifts past on the lit road — headlights and tail lights cutting through, the tree silhouette in the foreground framing the shot.</p>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="section caps" id="capabilities">
+  <div class="sec-head reveal" data-rise><span class="rule"></span><span class="eyebrow">What We Do</span></div>
+  <div class="grid">
+    <div class="cap reveal" data-rise><div class="n">01</div><h3>CGI<span class="mk">.</span></h3><p>Photoreal 3D — vehicles, environments and products, modelled and rendered to hold a close-up.</p></div>
+    <div class="cap reveal" data-rise><div class="n">02</div><h3>VFX<span class="mk">.</span></h3><p>Smoke, spray, light and integration work that sits invisibly inside the frame.</p></div>
+    <div class="cap reveal" data-rise><div class="n">03</div><h3>Sound Design<span class="mk">.</span></h3><p>Full mixes built from the ground up — engine, atmosphere, and score in lockstep with the cut.</p></div>
+    <div class="cap reveal" data-rise><div class="n">04</div><h3>Colour<span class="mk">.</span></h3><p>Cinematic grading that sets the mood and time of day and carries a look across every shot.</p></div>
+    <div class="cap reveal" data-rise><div class="n">05</div><h3>Post<span class="mk">.</span></h3><p>Edit, finishing and delivery — the whole back end, handled in one house.</p></div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline">
+  <div class="inner">
+    <div class="sec-head reveal" data-rise><span class="rule"></span><span class="eyebrow">What's Next</span></div>
+    <h2 class="reveal" data-rise>More in the pipeline.</h2>
+    <p class="body reveal" data-rise>TRANZIT is one project in a full slate. Alongside it we have a CGI clothing brand reveal in production for Costa Archive, and more CGI work coming. It's worth saying directly — the portfolio is a little behind on showing where we actually are right now. What you see in this kit is closer to the truth. As each project clears post, it goes up and the portfolio catches up.</p>
+    <div class="projects reveal" data-rise>
+      <span class="proj-tag">TRANZIT — Short Film</span>
+      <span class="proj-tag">Costa Archive — CGI Brand Reveal</span>
+      <span class="proj-tag">More Releasing Soon</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="gal-section" id="gallery">
+  <div class="inner">
+    <div class="sec-head reveal" data-rise><span class="rule"></span><span class="eyebrow">Full Stills — Forest Road Scene</span></div>
+    <h2 class="reveal" data-rise>All eight frames, full screen.</h2>
+    <p class="sub reveal" data-rise>Click any still to open it at full resolution. These are from a single scene — eight angles on the same road.</p>
+    <div class="gal-grid" id="galGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING NOTE -->
+<section class="note">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="eyebrow reveal" data-rise>A Note</div>
+  <p class="quote reveal" data-rise>"Marvel — this is where we are right now. If it speaks to you, we'd love to build something at this level, together."</p>
+  <div class="sign reveal" data-rise><b>Brandon Kiprono</b> &nbsp;·&nbsp; 3D&VFX Creative Director, Nairoreel Productions</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+
+    <div class="f-brand">
+      <!-- LOGO — nr-logoL.png (white, transparent BG). Swap src if an SVG is exported. -->
+      <img src="assets/nr-logoL.png" alt="Nairoreel Productions" style="height:60px; width:auto; display:block; margin-bottom:.6rem;">
+      <p>Cinematic CGI, VFX, sound design and post — Nairobi, Kenya.</p>
+    </div>
+
+    <div class="f-contact">
+      <!-- Update addresses here if they change -->
+      <div class="contact-item">
+        <span class="lbl">General</span>
+        <a href="mailto:hello@nairoreelproductions.com">hello@nairoreelproductions.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="lbl">Maria Yusufali — Communications</span>
+        <a href="mailto:maria@nairoreelproductions.com">maria@nairoreelproductions.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="lbl">Instagram</span>
+        <a href="https://instagram.com/nairoreel_productions" target="_blank" rel="noopener">@nairoreel_productions</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-base">
+    <span>© 2026 Nairoreel Productions</span>
+    <span>Production Kit — TRANZIT</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">&#x2715;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#x2039;</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#x203a;</button>
+  <div class="lb-stage">
+    <div class="lb-img-wrap" id="lbImgWrap">
+      <img id="lbImg" src="" alt="">
+    </div>
+  </div>
+  <div class="lb-bar">
+    <span class="lb-cap" id="lbCap"></span>
+    <span class="lb-counter" id="lbCounter"></span>
+  </div>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+document.body.classList.remove('no-js');
+
+/* ============================================================
+   IMAGE CONFIG — single place to swap all image sources.
+
+   HOW TO GO LIVE:
+   1. Upload all 8 WebP files from /webp/ to Cloudinary.
+      Cloud name: dt5qlqxln  (confirmed from test upload)
+   2. For each file, copy the public ID from Cloudinary
+      (it looks like: tranzit-01-drone-overhead or with a suffix, e.g. tranzit-01-drone-overhead_abc123)
+   3. Replace each src below with the full Cloudinary URL using this format:
+      'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp'
+      — f_auto  : serves WebP/AVIF automatically based on browser support
+      — q_auto  : Cloudinary picks optimal quality (usually matches our q90)
+      — w_1920  : caps width at 1920px (saves bandwidth on lower-res screens)
+
+   FILE ORDER — matches the page scroll order top to bottom:
+     01  tranzit-01-drone-overhead.webp        → aerial
+     02  tranzit-02-drift-fisheye-rear.webp    → rear
+     03  tranzit-03-drift-railing-approach.webp → mist
+     04  tranzit-04-cctv-approaching.webp      → cam1
+     05  tranzit-05-cctv-clearing.webp         → cam2
+     06  tranzit-06-briefcase-timer.webp       → timer
+     07  tranzit-07-drift-leftside-mount.webp  → drift
+     08  tranzit-08-treeline-tracking.webp     → treeline
+
+   CURRENT STATE: local WebP files (webp/ subfolder).
+   ============================================================ */
+var STILLS = [
+  // 01 — Drone overhead tracking shot, empty forest road
+  { key:'aerial',   src:'webp/tranzit-01-drone-overhead.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'Drone tracking overhead — empty forest road. Beautifully framed.' },
+
+  // 02 — Rear fisheye mount, drift smoke off both sides
+  { key:'rear',     src:'webp/tranzit-02-drift-fisheye-rear.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'Fisheye rear mount during the drift. Smoke off both sides, empty road ahead.' },
+
+  // 03 — Road-railing mount, car in drift approach, god rays, tree silhouettes
+  { key:'mist',     src:'webp/tranzit-03-drift-railing-approach.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'Road-railing mount, car in drift angle on approach. God rays through the fog, tree silhouettes behind.' },
+
+  // 04 — CCTV: Corvette approaching (VHS overlay)
+  { key:'cam1',     src:'webp/tranzit-04-cctv-approaching.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'CCTV — the Corvette closing in.' },
+
+  // 05 — CCTV: Corvette clearing frame (VHS overlay, same overlay as 04 — intentional)
+  { key:'cam2',     src:'webp/tranzit-05-cctv-clearing.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'CCTV — the Corvette clearing the frame, VHS overlay and timestamp.' },
+
+  // 06 — Briefcase interior, red digital timer counting down, driver glimpsed
+  { key:'timer',    src:'webp/tranzit-06-briefcase-timer.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'Interior. Briefcase, red digital countdown. Driver barely in frame.' },
+
+  // 07 — Left-side mount at start of drift, headlights across wet concrete
+  { key:'drift',    src:'webp/tranzit-07-drift-leftside-mount.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'Left-side mount at the start of the drift — headlights across the concrete, railing running alongside.' },
+
+  // 08 — Tracking shot through tree line, red 88 LEDs on rear quarters
+  { key:'treeline', src:'webp/tranzit-08-treeline-tracking.webp',
+    /* CLOUDINARY → */ // src:'https://res.cloudinary.com/dt5qlqxln/image/upload/f_auto,q_auto,w_1920/<PUBLIC_ID>.webp',
+    caption:'Tracking shot through the tree line. Red accents hold the car in the dark as it drifts past.' }
+];
+
+/* Map stills by key for quick lookup */
+var STILL_MAP = {};
+STILLS.forEach(function(s){ STILL_MAP[s.key] = s; });
+
+/* Set all img[data-img] src values */
+document.querySelectorAll('img[data-img]').forEach(function(img){
+  var key = img.getAttribute('data-img');
+  var s = STILL_MAP[key];
+  if(s){
+    img.src = decodeURIComponent(s.src);
+    if(key !== 'aerial') img.loading = 'lazy';
+  }
+});
+
+/* ============================================================
+   GALLERY GRID — build thumbnails
+   ============================================================ */
+(function(){
+  var grid = document.getElementById('galGrid');
+  var labels = [
+    'Drone Line','Wide Back','On the Rail','CCTV — In',
+    'CCTV — Gone','The Case','Left Side','Through the Trees'
+  ];
+  STILLS.forEach(function(s, i){
+    var div = document.createElement('div');
+    div.className = 'gal-thumb reveal';
+    div.setAttribute('data-rise','');
+    div.setAttribute('data-lb-index', i);
+    div.setAttribute('tabindex','0');
+    div.setAttribute('role','button');
+    div.setAttribute('aria-label','Open still ' + (i+1));
+    div.innerHTML =
+      '<img src="' + decodeURIComponent(s.src) + '" loading="lazy" alt="' + s.caption + '">' +
+      '<div class="gal-label"><span>' + labels[i] + '</span></div>' +
+      '<div class="gal-no">' + String(i+1).padStart(2,'0') + ' / ' + STILLS.length + '</div>';
+    grid.appendChild(div);
+  });
+})();
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+(function(){
+  var lb     = document.getElementById('lightbox');
+  var lbImg  = document.getElementById('lbImg');
+  var lbCap  = document.getElementById('lbCap');
+  var lbCnt  = document.getElementById('lbCounter');
+  var lbDots = document.getElementById('lbDots');
+  var wrap   = document.getElementById('lbImgWrap');
+  var cur    = 0;
+  var dots   = [];
+
+  /* build dots */
+  STILLS.forEach(function(_, i){
+    var d = document.createElement('button');
+    d.className = 'lb-dot'; d.setAttribute('aria-label', 'Go to still ' + (i+1));
+    d.addEventListener('click', function(){ goto(i); });
+    lbDots.appendChild(d);
+    dots.push(d);
+  });
+
+  function syncDots(){
+    dots.forEach(function(d,i){ d.classList.toggle('active', i === cur); });
+  }
+
+  function goto(index, dir){
+    var prev = cur;
+    cur = (index + STILLS.length) % STILLS.length;
+    var s = STILLS[cur];
+    var xFrom = dir === 1 ? 40 : dir === -1 ? -40 : 0;
+
+    gsap.fromTo(wrap,
+      { x: xFrom, autoAlpha: 0 },
+      { x: 0, autoAlpha: 1, duration: .45, ease: 'power3.out', clearProps:'x' }
+    );
+
+    lbImg.src = decodeURIComponent(s.src);
+    lbImg.alt = s.caption;
+    lbCap.textContent = s.caption;
+    lbCnt.textContent = String(cur+1).padStart(2,'0') + ' / ' + String(STILLS.length).padStart(2,'0');
+    syncDots();
+  }
+
+  function open(index){
+    cur = index;
+    var s = STILLS[cur];
+    lbImg.src = decodeURIComponent(s.src);
+    lbImg.alt = s.caption;
+    lbCap.textContent = s.caption;
+    lbCnt.textContent = String(cur+1).padStart(2,'0') + ' / ' + String(STILLS.length).padStart(2,'0');
+    syncDots();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    gsap.fromTo(lb, {autoAlpha:0}, {autoAlpha:1, duration:.35, ease:'power2.out'});
+    gsap.fromTo(wrap, {scale:.92, autoAlpha:0}, {scale:1, autoAlpha:1, duration:.5, ease:'power3.out'});
+    lb.focus();
+  }
+
+  function close(){
+    gsap.to(lb, {autoAlpha:0, duration:.3, ease:'power2.in',
+      onComplete:function(){ lb.classList.remove('open'); document.body.style.overflow=''; }});
+  }
+
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', function(){ goto(cur - 1, -1); });
+  document.getElementById('lbNext').addEventListener('click', function(){ goto(cur + 1,  1); });
+
+  lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape')      close();
+    if(e.key === 'ArrowLeft')   goto(cur - 1, -1);
+    if(e.key === 'ArrowRight')  goto(cur + 1,  1);
+  });
+
+  /* open from beat sections */
+  document.querySelectorAll('[data-gal-index]').forEach(function(el){
+    el.addEventListener('click', function(){ open(+el.getAttribute('data-gal-index')); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' ') open(+el.getAttribute('data-gal-index')); });
+  });
+
+  /* open from gallery grid */
+  document.addEventListener('click', function(e){
+    var thumb = e.target.closest('[data-lb-index]');
+    if(thumb) open(+thumb.getAttribute('data-lb-index'));
+  });
+  document.addEventListener('keydown', function(e){
+    var thumb = e.target.closest('[data-lb-index]');
+    if(thumb && (e.key==='Enter'||e.key===' ')) open(+thumb.getAttribute('data-lb-index'));
+  });
+})();
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+(function(){
+  var pl = document.getElementById('preloader');
+  var bar = document.getElementById('plBar');
+  gsap.to(bar, {width:'100%', duration:1.0, ease:'power2.inOut', delay:.15});
+  window.addEventListener('load', function(){
+    gsap.to(pl, {autoAlpha:0, duration:.7, delay:.3, ease:'power2.out',
+      onComplete:function(){ pl.style.display='none'; ScrollTrigger.refresh(); }});
+  });
+})();
+
+/* ============================================================
+   NAV scroll state
+   ============================================================ */
+(function(){
+  var nav = document.getElementById('nav');
+  ScrollTrigger.create({start:'top -60', end:99999,
+    onUpdate:function(self){ nav.classList.toggle('scrolled', self.scroll() > 60); }});
+})();
+
+/* ============================================================
+   ANIMATIONS (skipped if prefers-reduced-motion)
+   ============================================================ */
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if(!reduce){
+  var lenis = new Lenis({lerp:.09, wheelMultiplier:1, smoothWheel:true});
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  /* hero headlines */
+  gsap.set('[data-line]', {yPercent:115});
+  gsap.to('.hero [data-line], .film [data-line]', {
+    yPercent:0, duration:1.15, ease:'power3.out', stagger:.12,
+    scrollTrigger:{trigger:'.film .title', start:'top 85%', toggleActions:'play none none none'}
+  });
+  gsap.to('.hero [data-line]', {yPercent:0, duration:1.15, ease:'power3.out', stagger:.12, delay:1.1});
+
+  /* statement + section lines */
+  gsap.utils.toArray('.statement [data-line]').forEach(function(el){
+    gsap.fromTo(el, {yPercent:115}, {yPercent:0, duration:1, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+
+  /* generic rise/fade */
+  gsap.utils.toArray('[data-rise]').forEach(function(el){
+    gsap.fromTo(el, {y:30, autoAlpha:0}, {y:0, autoAlpha:1, duration:.9, ease:'power2.out',
+      scrollTrigger:{trigger:el, start:'top 90%'}});
+  });
+
+  /* full-bleed image: blur+scale reveal, then parallax */
+  gsap.utils.toArray('img[data-parallax]').forEach(function(img){
+    var wrap = img.closest('.media-fill') || img.parentElement;
+    gsap.fromTo(img, {scale:1.18, filter:'blur(14px)'},
+      {scale:1.06, filter:'blur(0px)', ease:'none',
+       scrollTrigger:{trigger:wrap, start:'top 85%', end:'top 30%', scrub:true}});
+    gsap.fromTo(img, {yPercent:-6}, {yPercent:6, ease:'none',
+      scrollTrigger:{trigger:wrap, start:'top bottom', end:'bottom top', scrub:true}});
+  });
+
+  /* pin surveillance block on desktop */
+  if(window.matchMedia('(min-width:761px)').matches){
+    ScrollTrigger.create({trigger:'#surv', start:'top top', end:'+=80%', pin:'.surv-stage', pinSpacing:true});
+  }
+
+  /* gallery thumbnails stagger */
+  gsap.utils.toArray('.gal-thumb').forEach(function(el, i){
+    gsap.fromTo(el, {y:24, autoAlpha:0}, {y:0, autoAlpha:1, duration:.8, ease:'power2.out', delay: i * .04,
+      scrollTrigger:{trigger:el, start:'top 92%'}});
+  });
+
+} else {
+  document.querySelectorAll('[data-line]').forEach(function(e){ e.style.transform='none'; });
+}
+</script>
+</body>
+</html>

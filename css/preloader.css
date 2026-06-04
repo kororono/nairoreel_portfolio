@@ -27,13 +27,13 @@
     height: 100%;
     background-image:
         image-set(
-            url('../assets/preloader/preloader-art-composite.webp') type('image/webp'),
-            url('../assets/preloader/preloader-art-composite.jpg') type('image/jpeg')
+            url('../assets/preloader/preloader-art.webp') type('image/webp'),
+            url('../assets/preloader/preloader-art.jpg') type('image/jpeg')
         );
     background-image:
         -webkit-image-set(
-            url('../assets/preloader/preloader-art-composite.webp') 1x,
-            url('../assets/preloader/preloader-art-composite.jpg') 1x
+            url('../assets/preloader/preloader-art.webp') 1x,
+            url('../assets/preloader/preloader-art.jpg') 1x
         );
     background-size: contain;
     background-position: center;
@@ -55,16 +55,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 0.3rem;
     position: relative;
     z-index: 2;
 }
 
 /* Arrow Animation */
 .preloader-arrow {
-    width: 2.5rem;
-    height: 2.5rem;
-    color: #ff6b6b;
+    width: 2rem;
+    height: 2rem;
+    color: #Ea1821;
     opacity: 0;
     animation:
         preloaderFadeIn 2s ease-out 1s forwards,
@@ -79,7 +79,7 @@
 
 @keyframes arrowBounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
+    50% { transform: translateY(6px); }
 }
 
 /* Reduced motion support */
@@ -325,12 +325,12 @@ body.preloader-active {
 /* MOBILE: Small screens (up to 768px) */
 @media (max-width: 768px) {
     .preloader-central-stack {
-        gap: 1rem;
+        gap: 0.1rem;
     }
 
     .preloader-arrow {
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 
     .preloader-switch {
@@ -341,8 +341,8 @@ body.preloader-active {
 /* TABLET / MEDIUM SCREENS: 769px to 1279px */
 @media (min-width: 769px) and (max-width: 1279px) {
     .preloader-arrow {
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 2rem;
+        height: 2rem;
     }
 
     .preloader-switch {

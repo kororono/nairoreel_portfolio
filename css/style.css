@@ -11,10 +11,10 @@
 }*/
 
 @font-face {
-  font-family: 'Avenir Next W05 Thin';
-  src: url('../fonts/Avenir Next W05 Thin.woff2') format('woff2'),
-       url('../fonts/Avenir Next W05 Thin.woff') format('woff'),
-       url('../fonts/Avenir Next W05 Thin.ttf') format('truetype');
+  font-family: 'Recia-Regular';
+  src: url('../fonts/Recia-Regular.woff2') format('woff2'),
+       url('../fonts/Recia-Regular.woff') format('woff'),
+       url('../fonts/Recia-Regular.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -81,7 +81,7 @@
 
   /* Font variables for easier maintenance */
   --heading-font: 'Boska', serif;
-  --body-font: 'Avenir Next W05 Thin', serif;
+  --body-font: 'Recia-Regular', serif;
 
   /* Transitions */
   --trans-fast: 0.2s ease;

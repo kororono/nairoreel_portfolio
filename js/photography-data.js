@@ -81,7 +81,7 @@ const photographyGallery = [
     { src: 'assets/photography/gallery/wohoro_01.webp', title: 'Personal Shoot', date: 'January 2024' },
 */
         // === BABY SHOWER - APRIL 2024 ===
-    {
+/*    {
     thumb: 'assets/photography/gallery/thumbs/shower_.webp',
     full: 'assets/photography/gallery/full/shower_.webp', title: 'Baby Shower', date: 'April 2024'},
     {

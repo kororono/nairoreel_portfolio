@@ -1,0 +1,15 @@
+# Claude Code internal files
+.claude/
+CLAUDE.md
+
+# Backup files
+*.bak
+
+# TRANZIT — source PNGs are not served (WebP versions in tranzit/webp/ are used)
+tranzit/P&L*.png
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
