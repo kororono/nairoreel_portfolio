@@ -8,6 +8,9 @@ CLAUDE.md
 # TRANZIT — source PNGs are not served (WebP versions in tranzit/webp/ are used)
 tranzit/P&L*.png
 
+# Lab sandbox — temporary, not for production
+_lab/
+
 # OS / editor noise
 .DS_Store
 Thumbs.db

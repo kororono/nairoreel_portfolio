@@ -1,0 +1,156 @@
+/* atmosphere.css — orbs, grid, NRR watermark, LED ticker
+   All elements are position:fixed, z-index:0, pointer-events:none
+   GPU-only: transform + opacity animations only
+   ---------------------------------------------------------------- */
+
+/* ── Atmosphere root ──────────────────────────────────────────── */
+#atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── Background shift (replaces pure #000) ────────────────────── */
+body {
+  background-color: #0a0613;
+}
+
+/* ── Orbs ─────────────────────────────────────────────────────── */
+.atm-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.16;
+  will-change: transform;
+}
+
+.atm-orb-1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, #4F1787, transparent 70%);
+  top: -10%;
+  left: -8%;
+  animation: orb-drift-1 22s ease-in-out infinite alternate;
+}
+
+.atm-orb-2 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #EB3678, transparent 70%);
+  bottom: 10%;
+  right: -5%;
+  animation: orb-drift-2 28s ease-in-out infinite alternate;
+}
+
+.atm-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #FB773C, transparent 70%);
+  top: 40%;
+  left: 45%;
+  animation: orb-drift-3 18s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift-1 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(60px, 80px); }
+}
+@keyframes orb-drift-2 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-70px, -50px); }
+}
+@keyframes orb-drift-3 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-40px, 60px); }
+}
+
+/* ── Grid ─────────────────────────────────────────────────────── */
+.atm-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── NRR diagonal watermark ───────────────────────────────────── */
+.atm-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.atm-watermark-inner {
+  font-family: 'Boska', serif;
+  font-size: clamp(80px, 14vw, 160px);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  transform: rotate(-25deg) translateX(0);
+  animation: watermark-drift 40s linear infinite;
+  user-select: none;
+}
+
+@keyframes watermark-drift {
+  from { transform: rotate(-25deg) translateX(0); }
+  to   { transform: rotate(-25deg) translateX(-33.33%); }
+}
+
+/* ── LED ticker ───────────────────────────────────────────────── */
+.atm-ticker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: rgba(234, 24, 33, 0.08);
+  border-top: 1px solid rgba(234, 24, 33, 0.2);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.atm-ticker-track {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: ticker-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.atm-ticker-track span {
+  font-family: 'Recia-Regular', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(234, 24, 33, 0.6);
+  padding: 0 2em;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Mobile: fewer orbs, smaller blur ────────────────────────── */
+@media (max-width: 768px) {
+  .atm-orb-3 { display: none; }
+  .atm-orb { filter: blur(70px); }
+  .atm-watermark-inner { font-size: clamp(60px, 18vw, 100px); }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .atm-orb,
+  .atm-watermark-inner,
+  .atm-ticker-track { animation: none; }
+}
