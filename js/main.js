@@ -125,9 +125,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
-    // Prevent menu clicks from bubbling to document
-    navLinks.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
 });

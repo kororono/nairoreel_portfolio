@@ -6,7 +6,9 @@
   'use strict';
 
   const WIPE_DURATION = 520; // ms per panel
-  const WIPE_OFFSET   = 110; // ms stagger between panels
+  const WIPE_OFFSET    = 110; // ms stagger between panels
+  let pageWipeFns      = null;
+  let preloaderTakeover = false;
 
   /* Proper cubic-bezier(0.76,0,0.24,1) solver via Newton's method */
   function makeCubicBezier(x1, y1, x2, y2) {
@@ -137,19 +139,21 @@
     const red   = curtain.querySelector('.curtain-panel-red');
     const black = curtain.querySelector('.curtain-panel-black');
 
-    // wipeIn: panels sweep LEFT→RIGHT (origin left, 0→1). Red leads, black offset.
-    function wipeIn(done) {
+    // wipeIn: fromRight=true → panels sweep RIGHT→LEFT (home arrival). Default LEFT→RIGHT.
+    function wipeIn(done, fromRight) {
+      const origin = fromRight ? 'right center' : 'left center';
       curtain.style.pointerEvents = 'all';
-      red.style.transformOrigin   = 'left center';
-      black.style.transformOrigin = 'left center';
+      red.style.transformOrigin   = origin;
+      black.style.transformOrigin = origin;
       animate(red, 'scaleX', 0, 1, WIPE_DURATION);
       setTimeout(() => animate(black, 'scaleX', 0, 1, WIPE_DURATION, done), WIPE_OFFSET);
     }
 
-    // wipeOut: panels retreat LEFT→RIGHT (origin right, 1→0). Black leads, red offset.
-    function wipeOut(done) {
-      black.style.transformOrigin = 'right center';
-      red.style.transformOrigin   = 'right center';
+    // wipeOut: fromRight=true → panels retreat RIGHT→LEFT (home arrival). Default LEFT→RIGHT.
+    function wipeOut(done, fromRight) {
+      const origin = fromRight ? 'left center' : 'right center';
+      black.style.transformOrigin = origin;
+      red.style.transformOrigin   = origin;
       animate(black, 'scaleX', 1, 0, WIPE_DURATION);
       setTimeout(() => animate(red, 'scaleX', 1, 0, WIPE_DURATION, () => {
         curtain.style.pointerEvents = 'none';
@@ -157,7 +161,22 @@
       }), WIPE_OFFSET);
     }
 
-    // Click: navigate immediately — arrival page owns all the visual
+    // Preloader → page handoff: lift the curtain above the preloader, sweep it IN
+    // across the preloader UI, drop the preloader behind the cover, then sweep OUT
+    // to reveal the hero. One continuous colored sweep — no indigo→black jump.
+    function preloaderReveal(onCovered) {
+      curtain.style.zIndex  = '9500';   // above preloader (9000) so the cover sweep is visible
+      red.style.transform   = 'scaleX(0)';
+      black.style.transform = 'scaleX(0)';
+      wipeIn(() => {
+        if (onCovered) onCovered();
+        wipeOut(() => { curtain.style.zIndex = ''; });
+      });
+    }
+
+    pageWipeFns = { wipeIn, wipeOut, preloaderReveal };
+
+    // Click: departure wipeIn → navigate when covered.
     document.addEventListener('click', e => {
       const a = e.target.closest('a');
       if (!a) return;
@@ -169,13 +188,16 @@
         if (url.origin !== location.origin) return;
       } catch (_) { return; }
       e.preventDefault();
-      location.href = href;
+      wipeIn(() => { location.href = href; });
     });
 
-    // Every page arrival: wipeIn (panels sweep in covering) → wipeOut (retreat revealing)
+    // Arrival: panels rest covered (CSS), so every page just retreats to reveal.
+    // Home retreats left; all other pages retreat right.
     window.addEventListener('pageshow', () => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      wipeIn(() => wipeOut());
+      if (preloaderTakeover) return;
+      const fromRight = document.body.dataset.page === 'home';
+      wipeOut(null, fromRight);
     });
   }
 
@@ -188,11 +210,11 @@
       return;
     }
 
-    const pl      = document.getElementById('preloader-new');
-    const fill    = document.getElementById('pl-bar-fill');
-    const pcRed   = document.querySelector('#preloader-curtain .pc-red');
-    const pcOrange= document.querySelector('#preloader-curtain .pc-black');
-    if (!pl || !fill || !pcRed || !pcOrange) return;
+    preloaderTakeover = true;
+
+    const pl   = document.getElementById('preloader-new');
+    const fill = document.getElementById('pl-bar-fill');
+    if (!pl || !fill) return;
 
     const start = performance.now();
     const FILL_DURATION = 1400;
@@ -206,23 +228,15 @@
     requestAnimationFrame(tickFill);
 
     function revealCurtain() {
-      pl.style.opacity = '0';
-      pl.style.transition = 'opacity 0.2s ease';
-      // Red rises first, black follows (offset). Black on top = majority black, red peeks.
-      animate(pcRed, 'scaleY', 0, 1, WIPE_DURATION);
-      setTimeout(() => {
-        animate(pcOrange, 'scaleY', 0, 1, WIPE_DURATION, () => {
-          // Both covering — now retreat: black first then red
-          animate(pcOrange, 'scaleY', 1, 0, WIPE_DURATION);
-          setTimeout(() => {
-            animate(pcRed, 'scaleY', 1, 0, WIPE_DURATION, () => {
-              pl.remove();
-              document.getElementById('preloader-curtain')?.remove();
-            });
-          }, WIPE_OFFSET);
-        });
-      }, WIPE_OFFSET);
       sessionStorage.setItem('nairoreelPreloaderSeen', 'true');
+      const cleanup = () => {
+        pl.remove();
+        document.getElementById('preloader-curtain')?.remove();
+        preloaderTakeover = false;
+      };
+      // Sweep the curtain in over the preloader, drop the preloader behind it, then reveal.
+      if (pageWipeFns && pageWipeFns.preloaderReveal) pageWipeFns.preloaderReveal(cleanup);
+      else cleanup();
     }
   }
 

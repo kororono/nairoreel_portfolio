@@ -73,7 +73,7 @@
 #page-curtain .curtain-panel {
   flex: 1;
   transform-origin: left center;
-  transform: scaleX(0);
+  transform: scaleX(1); /* rest covered: every fresh load paints covered, no JS race */
   will-change: transform;
 }
 
@@ -83,8 +83,13 @@
   position: absolute;
   inset: 0;
   transform-origin: left center;
-  transform: scaleX(0);
+  transform: scaleX(1);
   z-index: 1;
+}
+
+/* Reduced motion / no-JS safety: rest revealed so the page is never stuck covered */
+@media (prefers-reduced-motion: reduce) {
+  #page-curtain .curtain-panel { transform: scaleX(0); }
 }
 
 /* ── Homepage preloader (upward curtain) ──────────────────────── */
