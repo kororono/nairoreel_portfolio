@@ -78,12 +78,13 @@
 }
 
 #page-curtain .curtain-panel-red   { background: #EA1821; }
-#page-curtain .curtain-panel-orange {
-  background: #FB773C;
+#page-curtain .curtain-panel-black {
+  background: #000000;
   position: absolute;
   inset: 0;
   transform-origin: left center;
   transform: scaleX(0);
+  z-index: 1;
 }
 
 /* ── Homepage preloader (upward curtain) ──────────────────────── */
@@ -132,7 +133,7 @@
 }
 
 #preloader-curtain .pc-red,
-#preloader-curtain .pc-orange {
+#preloader-curtain .pc-black {
   position: absolute;
   inset: 0;
   transform-origin: bottom center;
@@ -140,5 +141,5 @@
   will-change: transform;
 }
 
-#preloader-curtain .pc-red    { background: #EA1821; }
-#preloader-curtain .pc-orange { background: #FB773C; }
+#preloader-curtain .pc-red   { background: #EA1821; }
+#preloader-curtain .pc-black { background: #000000; }

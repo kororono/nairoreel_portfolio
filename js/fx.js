@@ -5,9 +5,27 @@
 (function () {
   'use strict';
 
-  const EASING = 'cubic-bezier(0.76,0,0.24,1)';
-  const WIPE_DURATION = 480; // ms per panel
-  const WIPE_OFFSET = 120;   // ms stagger red→orange
+  const WIPE_DURATION = 520; // ms per panel
+  const WIPE_OFFSET   = 110; // ms stagger between panels
+
+  /* Proper cubic-bezier(0.76,0,0.24,1) solver via Newton's method */
+  function makeCubicBezier(x1, y1, x2, y2) {
+    function B(a, b, t)  { return 3*a*(1-t)*(1-t)*t + 3*b*(1-t)*t*t + t*t*t; }
+    function Bp(a, b, t) { return 3*a*(1-t)*(1-t) + 6*(b-a)*(1-t)*t + 3*(1-b)*t*t; }
+    return function(t) {
+      if (t <= 0) return 0;
+      if (t >= 1) return 1;
+      let u = t;
+      for (let i = 0; i < 8; i++) {
+        const dx = B(x1, x2, u) - t;
+        const d  = Bp(x1, x2, u);
+        if (Math.abs(d) < 1e-10) break;
+        u = Math.max(0, Math.min(1, u - dx / d));
+      }
+      return B(y1, y2, u);
+    };
+  }
+  const EASE = makeCubicBezier(0.76, 0, 0.24, 1);
 
   /* ── 1. Atmosphere ────────────────────────────────────────────── */
   function initAtmosphere() {
@@ -111,29 +129,35 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 
-  /* ── 4. Page-transition wipe (left → right) ───────────────────── */
+  /* ── 4. Page-transition wipe ─────────────────────────────────── */
   function initPageWipe() {
     const curtain = document.getElementById('page-curtain');
     if (!curtain) return;
 
-    const red    = curtain.querySelector('.curtain-panel-red');
-    const orange = curtain.querySelector('.curtain-panel-orange');
+    const red   = curtain.querySelector('.curtain-panel-red');
+    const black = curtain.querySelector('.curtain-panel-black');
 
-    function wipeIn(cb) {
+    // wipeIn: panels sweep LEFT→RIGHT (origin left, 0→1). Red leads, black offset.
+    function wipeIn(done) {
       curtain.style.pointerEvents = 'all';
-      animate(red,    'scaleX', 0, 1, WIPE_DURATION, EASING);
-      setTimeout(() => animate(orange, 'scaleX', 0, 1, WIPE_DURATION, EASING, cb), WIPE_OFFSET);
+      red.style.transformOrigin   = 'left center';
+      black.style.transformOrigin = 'left center';
+      animate(red, 'scaleX', 0, 1, WIPE_DURATION);
+      setTimeout(() => animate(black, 'scaleX', 0, 1, WIPE_DURATION, done), WIPE_OFFSET);
     }
 
-    function wipeOut() {
-      animate(orange, 'scaleX', 1, 0, WIPE_DURATION, EASING);
-      setTimeout(() => {
-        animate(red, 'scaleX', 1, 0, WIPE_DURATION, EASING, () => {
-          curtain.style.pointerEvents = 'none';
-        });
-      }, WIPE_OFFSET);
+    // wipeOut: panels retreat LEFT→RIGHT (origin right, 1→0). Black leads, red offset.
+    function wipeOut(done) {
+      black.style.transformOrigin = 'right center';
+      red.style.transformOrigin   = 'right center';
+      animate(black, 'scaleX', 1, 0, WIPE_DURATION);
+      setTimeout(() => animate(red, 'scaleX', 1, 0, WIPE_DURATION, () => {
+        curtain.style.pointerEvents = 'none';
+        if (done) done();
+      }), WIPE_OFFSET);
     }
 
+    // Click: navigate immediately — arrival page owns all the visual
     document.addEventListener('click', e => {
       const a = e.target.closest('a');
       if (!a) return;
@@ -144,12 +168,15 @@
         const url = new URL(href, location.href);
         if (url.origin !== location.origin) return;
       } catch (_) { return; }
-
       e.preventDefault();
-      wipeIn(() => { location.href = href; });
+      location.href = href;
     });
 
-    window.addEventListener('pageshow', () => wipeOut());
+    // Every page arrival: wipeIn (panels sweep in covering) → wipeOut (retreat revealing)
+    window.addEventListener('pageshow', () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      wipeIn(() => wipeOut());
+    });
   }
 
   /* ── 5. Homepage preloader (upward curtain) ───────────────────── */
@@ -164,7 +191,7 @@
     const pl      = document.getElementById('preloader-new');
     const fill    = document.getElementById('pl-bar-fill');
     const pcRed   = document.querySelector('#preloader-curtain .pc-red');
-    const pcOrange= document.querySelector('#preloader-curtain .pc-orange');
+    const pcOrange= document.querySelector('#preloader-curtain .pc-black');
     if (!pl || !fill || !pcRed || !pcOrange) return;
 
     const start = performance.now();
@@ -181,12 +208,14 @@
     function revealCurtain() {
       pl.style.opacity = '0';
       pl.style.transition = 'opacity 0.2s ease';
-      animate(pcRed,    'scaleY', 0, 1, WIPE_DURATION, EASING);
+      // Red rises first, black follows (offset). Black on top = majority black, red peeks.
+      animate(pcRed, 'scaleY', 0, 1, WIPE_DURATION);
       setTimeout(() => {
-        animate(pcOrange, 'scaleY', 0, 1, WIPE_DURATION, EASING, () => {
-          animate(pcOrange, 'scaleY', 1, 0, WIPE_DURATION, EASING);
+        animate(pcOrange, 'scaleY', 0, 1, WIPE_DURATION, () => {
+          // Both covering — now retreat: black first then red
+          animate(pcOrange, 'scaleY', 1, 0, WIPE_DURATION);
           setTimeout(() => {
-            animate(pcRed, 'scaleY', 1, 0, WIPE_DURATION, EASING, () => {
+            animate(pcRed, 'scaleY', 1, 0, WIPE_DURATION, () => {
               pl.remove();
               document.getElementById('preloader-curtain')?.remove();
             });
@@ -198,24 +227,16 @@
   }
 
   /* ── Utility: animate a single CSS transform value ────────────── */
-  function animate(el, prop, from, to, duration, easing, cb) {
+  function animate(el, prop, from, to, duration, cb) {
     const start = performance.now();
     function step(now) {
       const t = Math.min((now - start) / duration, 1);
-      const v = ease(t, easing) * (to - from) + from;
-      el.style.transform = prop === 'scaleX'
-        ? `scaleX(${v})`
-        : `scaleY(${v})`;
+      const v = EASE(t) * (to - from) + from;
+      el.style.transform = prop === 'scaleX' ? `scaleX(${v})` : `scaleY(${v})`;
       if (t < 1) { requestAnimationFrame(step); }
       else if (cb) { cb(); }
     }
     requestAnimationFrame(step);
-  }
-
-  function ease(t, curve) {
-    // cubic-bezier(0.76,0,0.24,1) approximated via simple smoothstep for perf
-    // Replace with a proper cubic-bezier solver if needed
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
   /* ── Boot ─────────────────────────────────────────────────────── */
