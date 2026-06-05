@@ -24,18 +24,46 @@
           <div class="atm-watermark-inner">NRR&nbsp;&nbsp;NRR&nbsp;&nbsp;NRR&nbsp;&nbsp;NRR&nbsp;&nbsp;NRR&nbsp;&nbsp;NRR</div>
         </div>
       </div>
-      <div class="atm-ticker">
-        <div class="atm-ticker-track">
-          <span>${tickerContent}</span>
-          <span>${tickerContent}</span>
-        </div>
-      </div>
     `;
 
     document.body.insertAdjacentHTML('afterbegin', html);
   }
 
-  /* ── 2. Custom cursor (desktop only) ──────────────────────────── */
+  /* ── 2. Ticker (home page only — runs if #tickerWrap exists) ─── */
+  function initTicker() {
+    const wrap  = document.getElementById('tickerWrap');
+    const track = document.getElementById('tickerTrack');
+    const src   = document.getElementById('tickerSource');
+    if (!wrap || !track || !src) return;
+
+    function fillTicker() {
+      const itemW = src.offsetWidth;
+      if (!itemW) return;
+      const need = Math.ceil((window.innerWidth * 3) / itemW) + 2;
+      while (track.children.length > 1) track.removeChild(track.lastChild);
+      for (let i = 0; i < need; i++) track.appendChild(src.cloneNode(true));
+    }
+
+    fillTicker();
+    window.addEventListener('resize', fillTicker, { passive: true });
+
+    let pos = 0, last = null;
+    const speed = 0.4; // px/frame at 60fps — slower than AKT's 0.6
+
+    function step(ts) {
+      if (last !== null) {
+        pos -= speed * (ts - last) * (60 / 1000);
+        const itemW = src.offsetWidth;
+        if (itemW && pos <= -itemW) pos += itemW;
+        track.style.transform = `translateX(${pos}px)`;
+      }
+      last = ts;
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── 3. Custom cursor (desktop only) ─────────────────────────── */
   function initCursor() {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
@@ -193,6 +221,7 @@
   /* ── Boot ─────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
     initAtmosphere();
+    initTicker();
     initCursor();
     initReveals();
     initPreloader();

@@ -104,41 +104,42 @@ body {
   to   { transform: rotate(-25deg) translateX(-33.33%); }
 }
 
-/* ── LED ticker ───────────────────────────────────────────────── */
+/* ── LED ticker (home page only, in-flow hero separator) ─────── */
 .atm-ticker {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 32px;
-  background: rgba(234, 24, 33, 0.08);
-  border-top: 1px solid rgba(234, 24, 33, 0.2);
-  display: flex;
-  align-items: center;
   overflow: hidden;
-  z-index: 1;
+  padding: 1.2rem 0;
+  background: linear-gradient(90deg, rgba(234,24,33,.04), rgba(251,119,60,.04));
+  border-top: 1px solid rgba(234,24,33,0.3);
+  border-bottom: 1px solid rgba(234,24,33,0.3);
+  position: relative;
+  z-index: 10;
 }
 
 .atm-ticker-track {
   display: flex;
-  gap: 0;
   white-space: nowrap;
-  animation: ticker-scroll 30s linear infinite;
   will-change: transform;
 }
 
-.atm-ticker-track span {
+.atm-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
   font-family: 'Recia-Regular', serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: .7rem;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  color: rgba(234, 24, 33, 0.6);
-  padding: 0 2em;
+  color: rgba(234,24,33,0.6);
+  padding: 0 4rem;
+  flex-shrink: 0;
 }
 
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+.atm-ticker-item .star { color: #FB773C; }
+
+.atm-ticker-item .batch-sep {
+  width: 7rem;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 /* ── Mobile: fewer orbs, smaller blur ────────────────────────── */
