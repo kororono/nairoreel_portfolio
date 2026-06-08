@@ -71,8 +71,8 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(79,23,135,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,23,135,0.08) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -86,24 +86,24 @@ body {
 .atm-wm-row {
   position: absolute;
   white-space: nowrap;
-  font-family: 'Boska', serif;
-  font-size: clamp(60px, 9vw, 110px);
+  font-family: 'Syne', sans-serif;
+  font-size: 9rem;
   font-weight: 800;
   color: transparent;
   -webkit-text-stroke: 1px rgba(255,255,255,0.04);
   letter-spacing: 0.15em;
   user-select: none;
-  animation: wm-drift 40s linear infinite;
+  animation: wm-drift 28s linear infinite;
 }
 
-.atm-wm-row:nth-child(1) { top:  5%; animation-duration: 40s; }
-.atm-wm-row:nth-child(2) { top: 35%; animation-duration: 32s; animation-delay: -8s; }
-.atm-wm-row:nth-child(3) { top: 62%; animation-duration: 48s; animation-delay: -16s; }
-.atm-wm-row:nth-child(4) { top: 89%; animation-duration: 36s; animation-delay: -6s; }
+.atm-wm-row:nth-child(1) { top:  5%; animation-duration: 30s; }
+.atm-wm-row:nth-child(2) { top: 35%; animation-duration: 26s; animation-delay: -6s; }
+.atm-wm-row:nth-child(3) { top: 62%; animation-duration: 32s; animation-delay: -12s; }
+.atm-wm-row:nth-child(4) { top: 89%; animation-duration: 27s; animation-delay: -3s; }
 
 @keyframes wm-drift {
-  from { transform: translateX(0)    rotate(-22deg); }
-  to   { transform: translateX(-50%) rotate(-22deg); }
+  from { transform: translateX(-60%) rotate(-22deg); }
+  to   { transform: translateX(60%)  rotate(-22deg); }
 }
 
 /* ── LED ticker (home page only, in-flow hero separator) ─────── */
