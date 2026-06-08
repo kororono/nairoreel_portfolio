@@ -80,28 +80,30 @@ body {
 .atm-watermark {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-.atm-watermark-inner {
+.atm-wm-row {
+  position: absolute;
+  white-space: nowrap;
   font-family: 'Boska', serif;
-  font-size: clamp(80px, 14vw, 160px);
+  font-size: clamp(60px, 9vw, 110px);
   font-weight: 800;
   color: transparent;
   -webkit-text-stroke: 1px rgba(255,255,255,0.04);
-  letter-spacing: 0.2em;
-  white-space: nowrap;
-  transform: rotate(-25deg) translateX(0);
-  animation: watermark-drift 40s linear infinite;
+  letter-spacing: 0.15em;
   user-select: none;
+  animation: wm-drift 40s linear infinite;
 }
 
-@keyframes watermark-drift {
-  from { transform: rotate(-25deg) translateX(0); }
-  to   { transform: rotate(-25deg) translateX(-33.33%); }
+.atm-wm-row:nth-child(1) { top:  3%; animation-duration: 40s; }
+.atm-wm-row:nth-child(2) { top: 27%; animation-duration: 32s; animation-delay: -8s; }
+.atm-wm-row:nth-child(3) { top: 52%; animation-duration: 48s; animation-delay: -16s; }
+.atm-wm-row:nth-child(4) { top: 74%; animation-duration: 36s; animation-delay: -6s; }
+
+@keyframes wm-drift {
+  from { transform: translateX(0)    rotate(-22deg); }
+  to   { transform: translateX(-50%) rotate(-22deg); }
 }
 
 /* ── LED ticker (home page only, in-flow hero separator) ─────── */
@@ -140,6 +142,18 @@ body {
   width: 7rem;
   display: inline-block;
   flex-shrink: 0;
+}
+
+/* ── Film grain overlay ───────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 7999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
+  background-size: 200px 200px;
+  opacity: 0.04;
 }
 
 /* ── Mobile: fewer orbs, smaller blur ────────────────────────── */
