@@ -244,6 +244,18 @@
     }
   }
 
+  /* ── 6. Nav scroll glass ──────────────────────────────────────── */
+  function initNavScroll() {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    function update() {
+      nav.classList.toggle('scrolled', window.scrollY > 60 || document.body.classList.contains('menu-open'));
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    new MutationObserver(update).observe(document.body, { attributeFilter: ['class'] });
+    update();
+  }
+
   /* ── Utility: animate a single CSS transform value ────────────── */
   function animate(el, prop, from, to, duration, cb) {
     const start = performance.now();
@@ -265,6 +277,7 @@
     initReveals();
     initPreloader();
     initPageWipe();
+    initNavScroll();
   });
 
 })();
