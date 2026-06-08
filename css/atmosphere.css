@@ -151,9 +151,10 @@ body::after {
   inset: 0;
   z-index: 7999;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
-  background-size: 200px 200px;
-  opacity: 0.07;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='g'><feTurbulence type='turbulence' baseFrequency='0.55' numOctaves='6' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feColorMatrix type='matrix' values='-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0'/></filter><rect width='300' height='300' filter='url(%23g)'/></svg>");
+  background-size: 300px 300px;
+  mix-blend-mode: overlay;
+  opacity: 0.04;
 }
 
 /* ── Mobile: fewer orbs, smaller blur ────────────────────────── */
