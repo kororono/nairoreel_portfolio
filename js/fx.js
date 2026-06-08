@@ -34,7 +34,7 @@
     const TICKER_TEXT = '3D ANIMATION ✦ VFX ✦ PHOTOGRAPHY ✦ FILM ✦ ';
     const tickerContent = TICKER_TEXT.repeat(8);
 
-    const WM = 'nrr  nrr  nrr  nrr  nrr  nrr  nrr  nrr  ';
+    const WM = 'nrr    nrr    nrr  ';
     const html = `
       <div id="atmosphere">
         <div class="atm-orb atm-orb-1"></div>

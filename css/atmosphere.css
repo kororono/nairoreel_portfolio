@@ -29,7 +29,7 @@ body {
 .atm-orb-1 {
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, #4F1787, transparent 70%);
+  background: radial-gradient(circle, #431473, transparent 70%);
   top: -10%;
   left: -8%;
   animation: orb-drift-1 22s ease-in-out infinite alternate;
@@ -38,7 +38,7 @@ body {
 .atm-orb-2 {
   width: 480px;
   height: 480px;
-  background: radial-gradient(circle, #EB3678, transparent 70%);
+  background: radial-gradient(circle, #C82E66, transparent 70%);
   bottom: 10%;
   right: -5%;
   animation: orb-drift-2 28s ease-in-out infinite alternate;
@@ -47,7 +47,7 @@ body {
 .atm-orb-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #FB773C, transparent 70%);
+  background: radial-gradient(circle, #D56533, transparent 70%);
   top: 40%;
   left: 45%;
   animation: orb-drift-3 18s ease-in-out infinite alternate;
@@ -96,10 +96,10 @@ body {
   animation: wm-drift 40s linear infinite;
 }
 
-.atm-wm-row:nth-child(1) { top:  3%; animation-duration: 40s; }
-.atm-wm-row:nth-child(2) { top: 27%; animation-duration: 32s; animation-delay: -8s; }
-.atm-wm-row:nth-child(3) { top: 52%; animation-duration: 48s; animation-delay: -16s; }
-.atm-wm-row:nth-child(4) { top: 74%; animation-duration: 36s; animation-delay: -6s; }
+.atm-wm-row:nth-child(1) { top:  5%; animation-duration: 40s; }
+.atm-wm-row:nth-child(2) { top: 35%; animation-duration: 32s; animation-delay: -8s; }
+.atm-wm-row:nth-child(3) { top: 62%; animation-duration: 48s; animation-delay: -16s; }
+.atm-wm-row:nth-child(4) { top: 89%; animation-duration: 36s; animation-delay: -6s; }
 
 @keyframes wm-drift {
   from { transform: translateX(0)    rotate(-22deg); }
@@ -153,7 +153,7 @@ body::after {
   pointer-events: none;
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
   background-size: 200px 200px;
-  opacity: 0.04;
+  opacity: 0.07;
 }
 
 /* ── Mobile: fewer orbs, smaller blur ────────────────────────── */
