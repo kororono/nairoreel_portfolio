@@ -164,6 +164,9 @@ body::after {
   .atm-orb-3 { display: none; }
   .atm-orb { filter: blur(70px); }
   .atm-watermark-inner { font-size: clamp(60px, 18vw, 100px); }
+  .atm-ticker { padding: 0.75rem 0; }
+  .atm-ticker-item { font-size: 0.85rem; gap: 1.2rem; }
+  .atm-ticker-item .batch-sep { width: 4rem; }
 }
 
 /* ── Reduced motion ───────────────────────────────────────────── */
