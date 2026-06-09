@@ -111,8 +111,8 @@ body {
   overflow: hidden;
   padding: 1.2rem 0;
   background: linear-gradient(90deg, rgba(234,24,33,.04), rgba(251,119,60,.04));
-  border-top: 1px solid rgba(234,24,33,0.3);
-  border-bottom: 1px solid rgba(234,24,33,0.3);
+  border-top: 1px solid rgba(234,24,33,0.12);
+  border-bottom: 1px solid rgba(234,24,33,0.12);
   position: relative;
   z-index: 10;
 }
@@ -128,7 +128,7 @@ body {
   align-items: center;
   gap: 2rem;
   font-family: 'Recia-Regular', serif;
-  font-size: .7rem;
+  font-size: 1.5rem;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: rgba(234,24,33,0.6);

@@ -60,31 +60,42 @@
     const src   = document.getElementById('tickerSource');
     if (!wrap || !track || !src) return;
 
+    track.style.visibility = 'hidden';
+
     function fillTicker() {
       const itemW = src.offsetWidth;
-      if (!itemW) return;
-      const need = Math.ceil((window.innerWidth * 3) / itemW) + 2;
+      if (!itemW) return 0;
+      const need = Math.ceil((window.innerWidth * 3) / itemW) + 4;
       while (track.children.length > 1) track.removeChild(track.lastChild);
       for (let i = 0; i < need; i++) track.appendChild(src.cloneNode(true));
+      return itemW;
     }
 
-    fillTicker();
-    window.addEventListener('resize', fillTicker, { passive: true });
+    window.addEventListener('resize', () => fillTicker(), { passive: true });
 
-    let pos = 0, last = null;
-    const speed = 0.4; // px/frame at 60fps — slower than AKT's 0.6
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    fontsReady.then(() => {
+      const itemW = fillTicker();
+      if (!itemW) return;
 
-    function step(ts) {
-      if (last !== null) {
-        pos -= speed * (ts - last) * (60 / 1000);
-        const itemW = src.offsetWidth;
-        if (itemW && pos <= -itemW) pos += itemW;
-        track.style.transform = `translateX(${pos}px)`;
+      // Start half an item in so the first visible frame looks mid-scroll
+      let pos = -(itemW * 0.5);
+      let last = null;
+      const speed = 0.4;
+
+      function step(ts) {
+        if (last !== null) {
+          pos -= speed * (ts - last) * (60 / 1000);
+          const w = src.offsetWidth;
+          if (w && pos <= -w) pos += w;
+          track.style.transform = `translateX(${pos}px)`;
+        }
+        last = ts;
+        if (track.style.visibility !== 'visible') track.style.visibility = 'visible';
+        requestAnimationFrame(step);
       }
-      last = ts;
       requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+    });
   }
 
   /* ── 3. Custom cursor (desktop only) ─────────────────────────── */
