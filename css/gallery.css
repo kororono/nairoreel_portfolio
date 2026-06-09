@@ -7,7 +7,7 @@
 /* ── Masonry Grid ─────────────────────────────────────────────── */
 .gal-grid {
   columns: 4;
-  column-gap: 0px;
+  column-gap: 1px;
   padding: 0 5vw 120px;
   position: relative;
   z-index: 10;
@@ -19,7 +19,7 @@
 
 .gal-item {
   break-inside: avoid;
-  margin-bottom: 0px;
+  margin: 0 0 1px 0;    /* reset browser figure default; 1px bottom seam */
   cursor: pointer;
   display: block;
   overflow: hidden;
