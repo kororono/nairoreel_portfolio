@@ -70,12 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.classList.add('active');
         document.body.classList.add('menu-open');
         
-        // Apply staggered animation
-        const links = navLinks.querySelectorAll('a');
-        links.forEach((link, index) => {
-            link.style.animation = `fadeIn 0.4s ease forwards ${index * 0.07}s`;
-        });
-        
         // Push state to history for back button support
         history.pushState({ menuOpen: true }, '', window.location.href);
     }
@@ -83,15 +77,50 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close menu
     function closeMenu() {
         menuOpen = false;
+        navLinks.style.transform = '';
+        navLinks.style.transition = '';
+        // Force reflow so CSS transition is active before class removal
+        navLinks.offsetHeight; // eslint-disable-line no-unused-expressions
         navLinks.classList.remove('active');
         hamburger.classList.remove('active');
         document.body.classList.remove('menu-open');
-        
-        // Clear animations
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(link => link.style.animation = '');
     }
     
+    // Swipe-up / drag-to-dismiss
+    let _touchY = 0;
+    let _dragging = false;
+
+    navLinks.addEventListener('touchstart', (e) => {
+        if (!menuOpen) return;
+        _touchY = e.touches[0].clientY;
+        _dragging = false;
+        navLinks.style.transition = 'none';
+    }, { passive: true });
+
+    navLinks.addEventListener('touchmove', (e) => {
+        if (!menuOpen) return;
+        const dy = e.touches[0].clientY - _touchY;
+        if (dy < 0) {
+            _dragging = true;
+            navLinks.style.transform = `translateY(${dy}px)`;
+        }
+    }, { passive: true });
+
+    navLinks.addEventListener('touchend', (e) => {
+        if (!menuOpen) return;
+        const dy = e.changedTouches[0].clientY - _touchY;
+        _dragging = false;
+        if (dy < -60) {
+            closeMenu();
+            if (window.history.state && window.history.state.menuOpen) history.back();
+        } else {
+            requestAnimationFrame(() => {
+                navLinks.style.transition = '';
+                requestAnimationFrame(() => { navLinks.style.transform = ''; });
+            });
+        }
+    }, { passive: true });
+
     // Hamburger click handler
     hamburger.addEventListener('click', () => {
         if (!menuOpen) {

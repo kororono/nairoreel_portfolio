@@ -326,18 +326,19 @@ nav.scrolled {
   height: 2px;
   background: var(--foreground);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.76,0,0.24,1), opacity 0.25s ease;
 }
 
 /* Animate hamburger → X */
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(7px);
+  transform: translateY(7px) rotate(45deg);
 }
 .hamburger.active span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-7px);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Layout */
@@ -1297,54 +1298,65 @@ footer {
         display: flex;
     }
 
-    .nav-links {
-        position: fixed;
-    }
-
+    /* Top-drop panel */
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
+        left: 0;
+        right: 0;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        width: 80%;
-        max-width: 320px;
-        transition: right 0.3s ease;
-        z-index: 150;
-        gap: 20px; /* Adjusted gap for mobile */
-
-        /* 🧊 Frosted glass look */
-        background: rgba(10, 10, 10, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-left: 0px solid rgba(255, 255, 255, 0.08);
+        align-items: flex-start;
+        justify-content: flex-start;
+        height: auto;
+        width: 100%;
+        padding-top: 68px;
+        padding-bottom: 20px;
+        transform: translateY(-100%);
+        transition: transform 0.45s cubic-bezier(0.76,0,0.24,1);
+        z-index: 99;
+        gap: 0;
+        background: rgba(5, 3, 12, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(79, 23, 135, 0.2);
     }
 
     .nav-links.active {
-        right: 0;
+        transform: translateY(0);
     }
 
     .nav-links a {
-        font-size: 1.5rem; /* Larger font for mobile menu */
-        height: auto; /* Allow height to be auto */
+        font-size: 0.95rem;
+        height: auto;
         width: 100%;
-        text-align: center;
-        text-transform: none; /* Optional: remove uppercase for mobile */
-        padding: 15px;
-    }
-    
-    .nav-links a span:nth-child(2){
-        display: none; /* Hide the second span for hover effect on mobile */
+        text-align: left;
+        padding: 15px 24px;
+        border-bottom: 1px solid rgba(79, 23, 135, 0.1);
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        transition-delay: 0s;
     }
 
-    /* 🌫️ Soft overlay behind nav */
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links.active a:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
+    .nav-links.active a:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+    .nav-links.active a:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.24s; }
+    .nav-links.active a:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.30s; }
+
+    .nav-links a span:nth-child(2) {
+        display: none;
+    }
+
+    /* Soft overlay */
     body.menu-open::after {
         content: "";
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.35);
         z-index: 1;
         transition: opacity 0.3s ease;
         opacity: 1;
