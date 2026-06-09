@@ -1,189 +1,227 @@
-// ==========================================
-// REUSABLE GALLERY MODULE
-// Standardized gallery system for all pages
-// ==========================================
+/* gallery.js — masonry lightbox controller
+   Works on any page with a .gal-grid containing .gal-item figures.
+   Each .gal-item needs: data-title, data-desc. Image src comes from
+   the nested <img> or from data-src (override for hi-res Cloudinary URL).
+   Auto-inits on DOMContentLoaded; call window.NRR.gallery.init(selector)
+   to re-init with a custom grid selector.
+   ---------------------------------------------------------------- */
+(function () {
+  'use strict';
 
-/**
- * Initialize gallery with data
- * @param {Array} galleryData - Array of { thumb, full, title, date } objects
- * @param {Object} options - Configuration options
- * @param {string} options.gridSelector - CSS selector for gallery grid (default: '.gallery-grid')
- * @param {string} options.modalId - ID of modal element (default: 'galleryModal')
- * @param {string} options.pathPrefix - Prefix for image paths (e.g., '../' for project pages)
- */
-function initGallery(galleryData, options = {}) {
-    const config = {
-        gridSelector: options.gridSelector || '.gallery-grid',
-        modalId: options.modalId || 'galleryModal',
-        pathPrefix: options.pathPrefix || '',
-        ...options
-    };
+  const EASING    = 'cubic-bezier(0.76,0,0.24,1)';
+  const SWITCH_MS = 220;
 
-    const galleryGrid = document.querySelector(config.gridSelector);
+  let items         = [];
+  let current       = -1;
+  let isOpen        = false;
+  let switchId      = 0;
+  let touchX0       = 0;
+  let historyPushed = false;
 
-    if (!galleryGrid || !galleryData || galleryData.length === 0) {
-        return;
-    }
+  let modal, imgEl, captionEl, titleEl, descEl, counterEl, prevBtn, nextBtn;
 
-    // ========================================
-    // 1. GENERATE GALLERY GRID
-    // ========================================
-    galleryGrid.innerHTML = '';
+  /* ── Build item index ─────────────────────────────────────── */
+  function buildIndex(grid) {
+    items = Array.from(grid.querySelectorAll('.gal-item')).map((el, i) => {
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', () => open(i));
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+      });
+      const thumb = el.querySelector('img');
+      return {
+        src:   el.dataset.src   || (thumb ? thumb.src : ''),
+        title: el.dataset.title || '',
+        desc:  el.dataset.desc  || '',
+      };
+    });
+  }
 
-    galleryData.forEach((photo, index) => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.dataset.title = photo.title;
-        galleryItem.dataset.date = photo.date;
-        galleryItem.dataset.index = index;
+  /* ── Create modal DOM (once, lazily) ──────────────────────── */
+  function ensureModal() {
+    if (modal) return;
 
-        const img = document.createElement('img');
-        img.src = config.pathPrefix + photo.thumb;
-        img.alt = photo.title;
-        img.loading = 'lazy';
-        img.decoding = 'async';
+    modal = document.createElement('div');
+    modal.id = 'gal-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Image viewer');
 
-        const overlay = document.createElement('div');
-        overlay.className = 'gallery-overlay';
-        overlay.innerHTML = `
-            <h3>${photo.title}</h3>
-            <p>${photo.date}</p>
-        `;
+    modal.innerHTML =
+      '<button class="gal-modal-close" aria-label="Close">' +
+        '<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
+          '<path d="M1 1l12 12M13 1L1 13"/>' +
+        '</svg>' +
+      '</button>' +
+      '<button class="gal-modal-nav gal-modal-prev" aria-label="Previous image">' +
+        '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
+          '<path d="M10 2L4 8l6 6"/>' +
+        '</svg>' +
+      '</button>' +
+      '<button class="gal-modal-nav gal-modal-next" aria-label="Next image">' +
+        '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
+          '<path d="M6 2l6 6-6 6"/>' +
+        '</svg>' +
+      '</button>' +
+      '<div class="gal-modal-inner">' +
+        '<div class="gal-modal-img-wrap">' +
+          '<img id="gal-modal-img" src="" alt="">' +
+        '</div>' +
+        '<div class="gal-modal-caption" id="gal-modal-caption">' +
+          '<h2 id="gal-modal-title"></h2>' +
+          '<p id="gal-modal-desc"></p>' +
+        '</div>' +
+      '</div>' +
+      '<span class="gal-modal-counter" id="gal-modal-counter" aria-live="polite"></span>';
 
-        galleryItem.appendChild(img);
-        galleryItem.appendChild(overlay);
-        galleryGrid.appendChild(galleryItem);
+    document.body.appendChild(modal);
+
+    imgEl     = modal.querySelector('#gal-modal-img');
+    captionEl = modal.querySelector('#gal-modal-caption');
+    titleEl   = modal.querySelector('#gal-modal-title');
+    descEl    = modal.querySelector('#gal-modal-desc');
+    counterEl = modal.querySelector('#gal-modal-counter');
+    prevBtn   = modal.querySelector('.gal-modal-prev');
+    nextBtn   = modal.querySelector('.gal-modal-next');
+
+    modal.querySelector('.gal-modal-close').addEventListener('click', close);
+    prevBtn.addEventListener('click', () => navigate(-1));
+    nextBtn.addEventListener('click', () => navigate(1));
+
+    /* Backdrop click — only fires when clicking the dark bg, not inner content */
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+
+    /* Touch swipe */
+    modal.addEventListener('touchstart', e => {
+      touchX0 = e.touches[0].clientX;
+    }, { passive: true });
+    modal.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchX0;
+      if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    /* Keyboard */
+    document.addEventListener('keydown', e => {
+      if (!isOpen) return;
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
     });
 
-    // ========================================
-    // 2. MODAL SETUP
-    // ========================================
-    const modal = document.getElementById(config.modalId);
-    const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDate = document.getElementById('modalDate');
-    const modalCounter = document.getElementById('modalCounter');
-    const modalClose = document.getElementById('modalClose');
-    const modalPrev = document.getElementById('modalPrev');
-    const modalNext = document.getElementById('modalNext');
-
-    if (!modal) return;
-
-    let currentGalleryIndex = 0;
-    let modalOpen = false;
-
-    // Click handler for gallery items
-    document.addEventListener('click', (e) => {
-        const galleryItem = e.target.closest('.gallery-item');
-        if (galleryItem && galleryItem.dataset.index !== undefined) {
-            const clickedIndex = Number(galleryItem.dataset.index);
-            // Only handle items from this gallery instance
-            if (clickedIndex >= 0 && clickedIndex < galleryData.length) {
-                openModal(clickedIndex);
-            }
-        }
+    /* Hardware back button (mobile) — popstate fires before navigation */
+    window.addEventListener('popstate', () => {
+      if (isOpen) { historyPushed = false; _closeImmediate(); }
     });
+  }
 
-    // Open modal
-    function openModal(index) {
-        currentGalleryIndex = index;
-        updateModalImage();
-        modal.classList.add('active');
-        modalOpen = true;
+  /* ── Open ─────────────────────────────────────────────────── */
+  function open(index) {
+    ensureModal();
+    setContent(index);
 
-        // Push history state for back button
-        history.pushState({ modal: 'open' }, '');
+    imgEl.style.transition = 'none';
+    imgEl.style.opacity    = '0';
+    imgEl.style.transform  = 'scale(0.93)';
 
-        // Disable body scroll
-        document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    isOpen = true;
+    modal.classList.add('is-open');
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      imgEl.style.transition = 'opacity 0.4s ease, transform 0.45s ' + EASING;
+      imgEl.style.opacity    = '1';
+      imgEl.style.transform  = 'scale(1)';
+      captionEl.classList.add('cap-visible');
+    }));
+
+    history.pushState({ galleryOpen: true }, '');
+    historyPushed = true;
+  }
+
+  /* ── Close ────────────────────────────────────────────────── */
+  function close() {
+    if (!isOpen) return;
+    isOpen = false;
+    switchId++;
+    captionEl.classList.remove('cap-visible');
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+
+    if (historyPushed) {
+      historyPushed = false;
+      history.back();
     }
+  }
 
-    // Close modal
-    function closeModal(skipHistory = false) {
-        modal.classList.remove('active');
-        modalOpen = false;
+  function _closeImmediate() {
+    if (!isOpen) return;
+    isOpen = false;
+    switchId++;
+    captionEl.classList.remove('cap-visible');
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
 
-        // Re-enable body scroll
-        document.body.style.overflow = '';
+  /* ── Navigate (wraps) ─────────────────────────────────────── */
+  function navigate(dir) {
+    if (!isOpen || items.length <= 1) return;
+    switchTo((current + dir + items.length) % items.length, dir);
+  }
 
-        // Handle history
-        if (!skipHistory && window.history.state && window.history.state.modal === 'open') {
-            window.history.back();
-        }
-    }
+  /* ── Switch with slide animation ─────────────────────────── */
+  function switchTo(index, dir) {
+    const id   = ++switchId;
+    const xOut = dir > 0 ? '-4%' : '4%';
+    const xIn  = dir > 0 ? '4%'  : '-4%';
 
-    // Update modal image and metadata
-    function updateModalImage() {
-        const data = galleryData[currentGalleryIndex];
+    imgEl.style.transition = 'opacity 0.2s ease, transform 0.22s ease';
+    imgEl.style.opacity    = '0';
+    imgEl.style.transform  = 'translateX(' + xOut + ') scale(0.97)';
+    captionEl.classList.remove('cap-visible');
 
-        // Update content directly (no fade)
-        modalImage.src = config.pathPrefix + data.full;
-        modalImage.alt = data.title;
-        modalTitle.textContent = data.title;
-        modalDate.textContent = data.date;
+    setTimeout(() => {
+      if (id !== switchId) return;
 
-        // Update counter
-        modalCounter.textContent = `${currentGalleryIndex + 1} / ${galleryData.length}`;
+      setContent(index);
+      imgEl.style.transition = 'none';
+      imgEl.style.opacity    = '0';
+      imgEl.style.transform  = 'translateX(' + xIn + ') scale(0.97)';
 
-        // Update button states
-        modalPrev.disabled = currentGalleryIndex === 0;
-        modalNext.disabled = currentGalleryIndex === galleryData.length - 1;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (id !== switchId) return;
+        imgEl.style.transition = 'opacity 0.35s ease, transform 0.4s ' + EASING;
+        imgEl.style.opacity    = '1';
+        imgEl.style.transform  = 'translateX(0) scale(1)';
+        captionEl.classList.add('cap-visible');
+      }));
+    }, SWITCH_MS);
+  }
 
-        // Preload next image
-        const next = galleryData[currentGalleryIndex + 1];
-        if (next) {
-            const preloadNext = new Image();
-            preloadNext.src = config.pathPrefix + next.full;
-        }
+  /* ── Populate modal fields ────────────────────────────────── */
+  function setContent(index) {
+    current = index;
+    const item = items[index];
+    imgEl.src             = item.src;
+    imgEl.alt             = item.title;
+    titleEl.textContent   = item.title;
+    descEl.textContent    = item.desc;
+    counterEl.textContent = (index + 1) + ' – ' + items.length;
 
-        // Preload previous image
-        const prev = galleryData[currentGalleryIndex - 1];
-        if (prev) {
-            const preloadPrev = new Image();
-            preloadPrev.src = config.pathPrefix + prev.full;
-        }
-    }
+    const solo = items.length <= 1;
+    prevBtn.classList.toggle('is-hidden', solo);
+    nextBtn.classList.toggle('is-hidden', solo);
+  }
 
-    // Navigate gallery
-    function navigateGallery(direction) {
-        currentGalleryIndex += direction;
+  /* ── Public API ───────────────────────────────────────────── */
+  function initGallery(selector) {
+    const grid = document.querySelector(selector || '.gal-grid');
+    if (!grid) return;
+    buildIndex(grid);
+  }
 
-        // Clamp index
-        if (currentGalleryIndex < 0) currentGalleryIndex = 0;
-        if (currentGalleryIndex >= galleryData.length) {
-            currentGalleryIndex = galleryData.length - 1;
-        }
+  window.NRR          = window.NRR || {};
+  window.NRR.gallery  = { init: initGallery };
 
-        updateModalImage();
-    }
-
-    // Event listeners
-    if (modalClose) modalClose.addEventListener('click', () => closeModal());
-    if (modalPrev) modalPrev.addEventListener('click', () => navigateGallery(-1));
-    if (modalNext) modalNext.addEventListener('click', () => navigateGallery(1));
-
-    // Click backdrop to close
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
-                closeModal();
-            }
-        });
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (modal.classList.contains('active')) {
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') navigateGallery(-1);
-            if (e.key === 'ArrowRight') navigateGallery(1);
-        }
-    });
-
-    // Back button handler
-    window.addEventListener('popstate', (e) => {
-        if (modalOpen) {
-            closeModal(true);
-        }
-    });
-}
+  document.addEventListener('DOMContentLoaded', () => initGallery());
+})();
