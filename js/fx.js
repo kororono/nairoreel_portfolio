@@ -109,9 +109,15 @@
     const dot  = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
 
-    let mx = 0, my = 0, rx = 0, ry = 0;
+    const _saved = sessionStorage.getItem('cursorPos');
+    let [mx, my] = _saved ? JSON.parse(_saved) : [0, 0];
+    let rx = mx, ry = my;
+    sessionStorage.removeItem('cursorPos');
 
     window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    document.addEventListener('mousedown', () => {
+      sessionStorage.setItem('cursorPos', JSON.stringify([mx, my]));
+    }, { passive: true });
 
     document.querySelectorAll('a, button, [role="button"]').forEach(el => {
       el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
