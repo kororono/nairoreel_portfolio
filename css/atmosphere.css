@@ -70,6 +70,7 @@ body {
 .atm-grid {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image:
     linear-gradient(rgba(79,23,135,0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(79,23,135,0.08) 1px, transparent 1px);
@@ -80,6 +81,7 @@ body {
 .atm-watermark {
   position: absolute;
   inset: 0;
+  z-index: 2;
   overflow: hidden;
 }
 
