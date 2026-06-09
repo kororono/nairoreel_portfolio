@@ -147,7 +147,8 @@ body {
 }
 
 /* ── Film grain overlay ───────────────────────────────────────── */
-body::after {
+/* Uses html::after to avoid conflict with body::after mobile nav overlay */
+html::after {
   content: '';
   position: fixed;
   inset: 0;
