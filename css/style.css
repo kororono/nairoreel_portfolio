@@ -350,7 +350,7 @@ header, section {
 
 .divider {
     height: 1px;
-    background-color: var(--border);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
     width: 100%;
     margin: 0 auto;
 }

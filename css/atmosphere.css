@@ -13,8 +13,9 @@
 }
 
 /* ── Background shift (replaces pure #000) ────────────────────── */
+/* #05030a = #0a0613 darkened ~50% — closer to black, keeps the indigo identity */
 body {
-  background-color: #0a0613;
+  background-color: #05030a;
 }
 
 /* ── Orbs ─────────────────────────────────────────────────────── */
@@ -22,7 +23,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.16;
+  opacity: 0.12;   /* lowered from 0.16 to keep morphs subtle against the darker field */
   will-change: transform;
 }
 
@@ -77,44 +78,13 @@ body {
   background-size: 60px 60px;
 }
 
-/* ── NRR diagonal watermark ───────────────────────────────────── */
-.atm-watermark {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.atm-wm-row {
-  position: absolute;
-  white-space: nowrap;
-  font-family: 'Syne', sans-serif;
-  font-size: 9rem;
-  font-weight: 800;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
-  letter-spacing: 0.15em;
-  user-select: none;
-  animation: wm-drift 28s linear infinite;
-}
-
-.atm-wm-row:nth-child(1) { top:  5%; animation-duration: 30s; }
-.atm-wm-row:nth-child(2) { top: 35%; animation-duration: 26s; animation-delay: -6s; }
-.atm-wm-row:nth-child(3) { top: 62%; animation-duration: 32s; animation-delay: -12s; }
-.atm-wm-row:nth-child(4) { top: 89%; animation-duration: 27s; animation-delay: -3s; }
-
-@keyframes wm-drift {
-  from { transform: translateX(-60%) rotate(-22deg); }
-  to   { transform: translateX(60%)  rotate(-22deg); }
-}
-
-/* ── LED ticker (home page only, in-flow hero separator) ─────── */
+/* ── Brand ticker (home page only, in-flow hero separator) ───── */
 .atm-ticker {
   overflow: hidden;
-  padding: 0.75rem 0;
-  background: linear-gradient(90deg, rgba(234,24,33,.04), rgba(251,119,60,.04));
-  border-top: 1px solid rgba(234,24,33,0.12);
-  border-bottom: 1px solid rgba(234,24,33,0.12);
+  padding: 1rem 0;
+  background: transparent;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   position: relative;
   z-index: 10;
 }
@@ -130,15 +100,15 @@ body {
   align-items: center;
   gap: 1.2rem;
   font-family: 'Recia-Regular', serif;
-  font-size: 1.1rem;
-  letter-spacing: .18em;
+  font-size: 0.8rem;
+  letter-spacing: .32em;
   text-transform: uppercase;
-  color: rgba(234,24,33,0.6);
+  color: rgba(245,242,238,0.42);
   padding: 0 4rem;
   flex-shrink: 0;
 }
 
-.atm-ticker-item .star { color: #FB773C; }
+.atm-ticker-item .star { color: #EA1821; opacity: 0.85; }
 
 .atm-ticker-item .batch-sep {
   width: 7rem;
@@ -164,15 +134,13 @@ html::after {
 @media (max-width: 768px) {
   .atm-orb-3 { display: none; }
   .atm-orb { filter: blur(70px); }
-  .atm-watermark-inner { font-size: clamp(60px, 18vw, 100px); }
-  .atm-ticker { padding: 0.75rem 0; }
-  .atm-ticker-item { font-size: 0.85rem; gap: 1.2rem; }
+  .atm-ticker { padding: 0.85rem 0; }
+  .atm-ticker-item { font-size: 0.68rem; gap: 1.2rem; letter-spacing: .28em; }
   .atm-ticker-item .batch-sep { width: 4rem; }
 }
 
 /* ── Reduced motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .atm-orb,
-  .atm-watermark-inner,
   .atm-ticker-track { animation: none; }
 }

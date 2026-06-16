@@ -31,22 +31,12 @@
 
   /* ── 1. Atmosphere ────────────────────────────────────────────── */
   function initAtmosphere() {
-    const TICKER_TEXT = '3D ANIMATION ✦ VFX ✦ PHOTOGRAPHY ✦ FILM ✦ ';
-    const tickerContent = TICKER_TEXT.repeat(8);
-
-    const WM = 'nrr    nrr    nrr  ';
     const html = `
       <div id="atmosphere">
         <div class="atm-orb atm-orb-1"></div>
         <div class="atm-orb atm-orb-2"></div>
         <div class="atm-orb atm-orb-3"></div>
         <div class="atm-grid"></div>
-        <div class="atm-watermark">
-          <div class="atm-wm-row">${WM}</div>
-          <div class="atm-wm-row">${WM}</div>
-          <div class="atm-wm-row">${WM}</div>
-          <div class="atm-wm-row">${WM}</div>
-        </div>
       </div>
     `;
 
