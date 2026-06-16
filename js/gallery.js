@@ -15,14 +15,20 @@
   let current       = -1;
   let isOpen        = false;
   let switchId      = 0;
+  let loadToken     = 0;
   let touchX0       = 0;
   let historyPushed = false;
 
   let modal, imgEl, captionEl, titleEl, descEl, counterEl, prevBtn, nextBtn;
 
+  let orderedEls = [];   /* .gal-item elements in display sequence (by data-index) */
+
   /* ── Build item index ─────────────────────────────────────── */
   function buildIndex(grid) {
-    items = Array.from(grid.querySelectorAll('.gal-item')).map((el, i) => {
+    orderedEls = Array.from(grid.querySelectorAll('.gal-item'))
+      .sort((a, b) => (+a.dataset.index || 0) - (+b.dataset.index || 0));
+
+    items = orderedEls.map((el, i) => {
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.addEventListener('click', () => open(i));
@@ -30,8 +36,10 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
       });
       const thumb = el.querySelector('img');
+      const thumbSrc = thumb ? (thumb.currentSrc || thumb.src) : '';
       return {
-        src:   el.dataset.src   || (thumb ? thumb.src : ''),
+        thumb: thumbSrc,
+        src:   el.dataset.src   || thumbSrc,
         title: el.dataset.title || '',
         desc:  el.dataset.desc  || '',
       };
@@ -201,8 +209,13 @@
   /* ── Populate modal fields ────────────────────────────────── */
   function setContent(index) {
     current = index;
-    const item = items[index];
-    imgEl.src             = item.src;
+    const item  = items[index];
+    const token = ++loadToken;
+
+    /* Instant paint with the already-cached thumb, then upgrade to hi-res
+       once it has decoded off-screen — avoids showing the previous image
+       while the large Cloudinary derivation downloads. */
+    imgEl.src             = item.thumb || item.src;
     imgEl.alt             = item.title;
     titleEl.textContent   = item.title;
     descEl.textContent    = item.desc;
@@ -211,6 +224,66 @@
     const solo = items.length <= 1;
     prevBtn.classList.toggle('is-hidden', solo);
     nextBtn.classList.toggle('is-hidden', solo);
+
+    if (item.src && item.src !== item.thumb) {
+      const hi = new Image();
+      hi.onload = () => { if (token === loadToken) imgEl.src = item.src; };
+      hi.src = item.src;
+    }
+
+    /* Preload neighbours so navigation is instant */
+    [1, -1].forEach(d => {
+      const n = items[(index + d + items.length) % items.length];
+      if (n && n.src) { const p = new Image(); p.src = n.src; }
+    });
+  }
+
+  /* ── Reading-order masonry: round-robin into flex columns ─── */
+  function colCountFor() {
+    const w = window.innerWidth;
+    if (w <= 480)  return 1;
+    if (w <= 900)  return 2;
+    if (w <= 1400) return 3;
+    return 4;
+  }
+
+  /* Estimated relative height of an item at equal column width = aspect
+     ratio (h/w). Read synchronously from the <img> width/height attributes
+     (no load event needed); fall back to h_/w_ in the URL, then 1. */
+  function aspectRatio(el) {
+    const img = el.querySelector('img');
+    if (img) {
+      const w = +img.getAttribute('width'), h = +img.getAttribute('height');
+      if (w > 0 && h > 0) return h / w;
+      const m = (img.getAttribute('src') || '').match(/w_(\d+)[^/]*h_(\d+)/);
+      if (m) return (+m[2]) / (+m[1]);
+    }
+    return 1;
+  }
+
+  /* Place each item into the currently-shortest column (ties → lowest index,
+     so the first visual row still reads 1·2·3·4). Balances by HEIGHT, not
+     count, so columns end at similar depths — natural jagged bottom, no gap. */
+  function layoutColumns(grid) {
+    const n = colCountFor();
+    if (grid._cols === n) return;       // no breakpoint change → keep layout
+    grid._cols = n;
+
+    const cols = [], colH = [];
+    grid.textContent = '';
+    for (let c = 0; c < n; c++) {
+      const col = document.createElement('div');
+      col.className = 'gal-col';
+      grid.appendChild(col);
+      cols.push(col);
+      colH.push(0);
+    }
+    orderedEls.forEach(el => {
+      let t = 0;
+      for (let c = 1; c < n; c++) if (colH[c] < colH[t]) t = c;
+      cols[t].appendChild(el);
+      colH[t] += aspectRatio(el);
+    });
   }
 
   /* ── Public API ───────────────────────────────────────────── */
@@ -218,6 +291,13 @@
     const grid = document.querySelector(selector || '.gal-grid');
     if (!grid) return;
     buildIndex(grid);
+    layoutColumns(grid);
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => layoutColumns(grid), 150);
+    });
   }
 
   window.NRR          = window.NRR || {};

@@ -5,21 +5,30 @@
    ---------------------------------------------------------------- */
 
 /* ── Masonry Grid ─────────────────────────────────────────────── */
+/* Reading-order masonry: a flex row of equal-width columns, each stacking
+   images at their NATURAL height (true masonry — never cropped/squared).
+   js/gallery.js deals items round-robin across the columns so they read
+   left→right then down (1·2·3·4 across the first row, 5·6·7·8 next, …) and
+   redistributes on breakpoint change. Lightbox order follows data-index. */
 .gal-grid {
-  columns: 4;
-  column-gap: 1px;
+  display: flex;
+  align-items: flex-start;  /* columns size to their content, not the tallest column */
+  gap: 1px;                 /* hairline seam between columns */
   padding: 0 5vw 120px;
   position: relative;
   z-index: 10;
 }
 
-@media (max-width: 1400px) { .gal-grid { columns: 3; } }
-@media (max-width: 900px)  { .gal-grid { columns: 2; } }
-@media (max-width: 480px)  { .gal-grid { columns: 1; } }
+.gal-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;                 /* hairline seam between stacked images */
+}
 
 .gal-item {
-  break-inside: avoid;
-  margin: 0 0 1px 0;    /* reset browser figure default; 1px bottom seam */
+  margin: 0;
   cursor: pointer;
   display: block;
   overflow: hidden;
@@ -29,7 +38,7 @@
 .gal-item img {
   display: block;
   width: 100%;
-  height: auto;
+  height: auto;             /* natural aspect ratio preserved */
   transition: transform 0.55s cubic-bezier(0.76,0,0.24,1);
 }
 
