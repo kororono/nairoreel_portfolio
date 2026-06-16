@@ -212,13 +212,28 @@
       wipeIn(() => { location.href = href; });
     });
 
+    // Hold the covered curtain until in-viewport images have decoded, then
+    // reveal. Heavy pages (gallery) hold on black a beat longer so the wipe
+    // runs on an idle thread; light pages reveal almost immediately. Capped at
+    // 700ms so the hold never feels stuck.
+    function whenArrivalReady(reveal) {
+      let fired = false;
+      const go = () => { if (!fired) { fired = true; reveal(); } };
+      const vh = window.innerHeight;
+      const decodes = Array.from(document.images)
+        .filter(img => { const r = img.getBoundingClientRect(); return r.top < vh && r.bottom > 0; })
+        .map(img => img.decode ? img.decode().catch(() => {}) : Promise.resolve());
+      Promise.all(decodes).then(() => requestAnimationFrame(go));
+      setTimeout(go, 700);
+    }
+
     // Arrival: panels rest covered (CSS), so every page just retreats to reveal.
     // Home retreats left; all other pages retreat right.
     window.addEventListener('pageshow', () => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (preloaderTakeover) return;
       const fromRight = document.body.dataset.page === 'home';
-      wipeOut(null, fromRight);
+      whenArrivalReady(() => wipeOut(null, fromRight));
     });
   }
 
@@ -275,8 +290,9 @@
 
   /* ── Utility: animate a single CSS transform value ────────────── */
   function animate(el, prop, from, to, duration, cb) {
-    const start = performance.now();
+    let start = null;
     function step(now) {
+      if (start === null) start = now;   // anchor t=0 to the first painted frame, not call time
       const t = Math.min((now - start) / duration, 1);
       const v = EASE(t) * (to - from) + from;
       el.style.transform = prop === 'scaleX' ? `scaleX(${v})` : `scaleY(${v})`;
