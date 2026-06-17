@@ -244,9 +244,7 @@
    Standard work cards with hover effects
    ======================================== */
 .projects-section {
-    padding: 0 20px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 0 0 80px;
     display: none;                              /* Hidden by default, shown by filter */
 }
 
@@ -258,6 +256,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
+    padding: 0 3vw;
 }
 
 /* Work card styling - reuse home page card style */

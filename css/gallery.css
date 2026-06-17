@@ -10,7 +10,7 @@
 .gal-section-header {
   position: relative;
   z-index: 10;
-  padding: 80px 5vw 36px;
+  padding: 80px 3vw 36px;
 }
 
 .gal-section-header .gal-eyebrow {
@@ -31,7 +31,7 @@
 }
 
 @media (max-width: 768px) {
-  .gal-section-header { padding: 56px 5vw 28px; }
+  .gal-section-header { padding: 56px 3vw 28px; }
 }
 
 /* ── Masonry Grid ─────────────────────────────────────────────── */
@@ -44,7 +44,7 @@
   display: flex;
   align-items: flex-start;  /* columns size to their content, not the tallest column */
   gap: 1px;                 /* hairline seam between columns */
-  padding: 0 5vw 120px;
+  padding: 0 3vw 120px;
   position: relative;
   z-index: 10;
 }
