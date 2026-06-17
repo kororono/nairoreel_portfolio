@@ -439,40 +439,10 @@ header, section {
     display: flex;
 }
 
-/* Hero Section - Home */
-.first-section {
-    padding-top: 100px; /* Adjust this value as needed */
-}
-
-/* Page Header - Inner pages */
-.page-header {
-    height: 50vh;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 80px;
-    position: relative;
-    background-color: var(--card-bg);
-}
-
 .page-header-content {
     position: relative;
     z-index: 1;
     max-width: 800px;
-}
-
-.page-header h1 {
-    margin-bottom: 1rem;
-    animation: fadeUp 1s ease-out forwards;
-}
-
-.page-header p {
-    margin: 0 auto;
-    opacity: 0;
-    animation: fadeUp 1s ease-out 0.2s forwards;
 }
 
 /* Project Header - Project detail pages */
@@ -488,21 +458,6 @@ header, section {
     overflow: hidden;
 }
 
-.project-hero-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-}
-
-.project-hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .project-hero-overlay {
     position: absolute;
     top: 0;
@@ -513,23 +468,9 @@ header, section {
     z-index: -1;
 }
 
-.project-header-content {
-    position: relative;
-    z-index: 1;
-    max-width: 100%;
-    width: 100%;
-    margin: 0 auto;
-}
-
 .project-header h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
-}
-
-.project-subtitle {
-    font-size: 1.5rem;
-    color: var(--accent);
-    margin-bottom: 0;
 }
 
 /* Call to Action */
@@ -553,92 +494,9 @@ header, section {
     transform: translateY(-2px);
 }
 
-/* Work Grid */
-.work-grid, .more-projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates exactly 2 columns */
-    gap: 30px; /* Increased gap for more spacing */
-    margin-top: 2rem;
-}
-
-/* Make the images/projects larger */
-.work-grid > *, .more-projects-grid > * {
-    height: 400px; /* Set a fixed height or adjust as needed */
-    width: 100%; /* Take full width of grid cell */
-}
-
-.work-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    aspect-ratio: 16 / 10;
-    background-color: var(--card-bg);
-    transition: transform 0.3s ease;
-}
-
-.work-item:hover {
-    transform: translateY(-5px);
-}
-
-.work-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s ease;
-}
-
-.work-item:hover img {
-    transform: scale(1.03);
-}
-
-.work-info {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    color: var(--foreground);
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.work-item:hover .work-info {
-    opacity: 1;
-}
-
-.work-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.bento-item:hover .bento-title,
-.work-item:hover .work-title {
+.bento-item:hover .bento-title {
     color: var(--foreground);
     transition: color 0.3s ease;
-}
-
-.work-item:hover .work-overlay {
-    opacity: 1;
-}
-
-.work-title {
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-	  color: var(--accent);
-    transition: color 0.3s ease;
-}
-
-.work-desc {
-    font-size: 1rem;
-    opacity: 0.8;
-    margin: 0;
 }
 
 /* Services(What we Do) - Bento Box Layout - TRANSPARENT BACKGROUNDS */
@@ -713,20 +571,6 @@ header, section {
     z-index: 2;
 }
 
-.bento-icon {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    font-size: 3rem;
-    color: var(--foreground);
-    opacity: 0.1;
-    
-}
-
-.bento-item:hover .bento-icon {
-    opacity: 0.2;
-}
-
 /* Studio overview - keyword paragraph */
 .studio-overview {
     margin-top: 3rem;
@@ -787,55 +631,12 @@ header, section {
     background: transparent;
 }
 
-/* Contact Section - TRANSPARENT */
-#contact {
-    background: transparent;
-}
-
 /* Team Section */
 .team-section {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     margin-top: 2rem;
-}
-
-.team-member {
-    flex: 1;
-    min-width: 300px;
-}
-
-.team-image {
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 15px;
-    object-fit: cover;
-    margin-bottom: 1rem;
-}
-
-.team-name {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.team-role {
-    font-size: 1rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-}
-
-.team-social {
-    display: flex;
-    gap: 10px;
-} 
-
-.team-social a {
-    color: var(--text-secondary);
-}
-
-.team-social a:hover {
-    color: var(--accent);
 }
 
 /* Process Section */
@@ -925,11 +726,6 @@ header, section {
     opacity: 0.2;
 }
 
-.section-intro {
-    margin-bottom: 2rem;
-    max-width: 900px;
-}
-
 /* Process Detail Section */
 .process-detail-section {
     margin-top: 5rem;
@@ -1014,79 +810,10 @@ header, section {
     gap: 60px;
 }
 
-.project-info-item h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
-
-.project-info-item p {
-    margin: 0;
-    font-size: 1.2rem;
-}
-
 .project-overview, .project-approach, .project-results {
     padding: 80px 20px;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.project-goals {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 10px;
-    margin-top: 2rem;
-}
-
-.project-goals h3 {
-    margin-bottom: 1rem;
-}
-
-.project-goals ul {
-    padding-left: 20px;
-}
-
-.project-goals li {
-    margin-bottom: 0.5rem;
-}
-
-.project-visual-full {
-    width: 100%;
-    margin: 0;
-    overflow: hidden;
-}
-
-.project-visual-full img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.approach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 2rem;
-}
-
-.approach-item {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 10px;
-}
-
-.approach-item h3 {
-    margin-bottom: 1rem;
-    color: var(--accent);
-}
-
-.project-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 80px auto;
 }
 
 .gallery-item {
@@ -1117,44 +844,6 @@ header, section {
     grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
     gap: 20px;
     margin-top: 30px; /* Space after the video */
-}
-
-.video-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-secondary);
-}
-
-.small {
-    font-size: 0.8rem;
-}
-
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-    margin: 2rem 0;
-}
-
-.result-item {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.result-item h3 {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-}
-
-.project-testimonial {
-    margin-top: 3rem;
 }
 
 #cta-section {
@@ -1275,16 +964,8 @@ footer {
         font-size: 1.8rem;
     }
     
-    .work-grid, .more-projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-    
     .bento-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .project-gallery {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1380,18 +1061,10 @@ footer {
         font-size: 1.6rem;
     }
     
-    .work-grid, .more-projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .process-grid {
         grid-template-columns: 1fr;
     }
-    
-    .project-gallery {
-        grid-template-columns: 1fr;
-    }
-    
+
     .project-header h1 {
         font-size: 2.5rem;
     }

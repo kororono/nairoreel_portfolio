@@ -25,33 +25,6 @@
     pointer-events: none;
 }
 
-/* Preloader Header (Logo Only) */
-.preloader-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0rem;
-    opacity: 0;
-    animation: preloaderFadeIn 2s ease-out 0.5s forwards;
-}
-
-.preloader-logo-img {
-    width: 14rem; /* Adjust size as needed */
-    height: auto;
-    object-fit: contain;
-}
-
-/* Power Text */
-.preloader-power-text {
-    font-size: .9rem;
-    letter-spacing: 0.2em;
-    color: #666;
-    text-transform: uppercase;
-    opacity: 0;
-    animation: preloaderFadeInPulse 2s ease-out 1s forwards;
-    margin-top: 3rem;
-}
-
 @keyframes preloaderFadeIn {
     to { opacity: 1; }
 }
@@ -288,18 +261,3 @@ body.preloader-active {
     overflow: hidden;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .preloader-header {
-        margin-bottom: orem;
-    }
-    
-    .preloader-logo-img {
-        width: 10rem; /* Smaller on mobile */
-    }
-    
-    .preloader-power-text {
-        font-size: 0.85rem;
-        margin-top: 2.5rem;
-    }
-}
