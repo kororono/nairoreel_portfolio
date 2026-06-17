@@ -1,8 +1,38 @@
 /* gallery.css — masonry grid + lightbox
    Supplements fx.css + atmosphere.css; no new font imports.
    z-index: grid 10, modal 5000, modal controls 5001
-   (below grain 7999, below curtain 8000 — intentional)
+   (below curtain 8000 and grain 9997 — intentional)
    ---------------------------------------------------------------- */
+
+/* ── Gallery section header (shared: project pages) ───────────────
+   our-work uses its own .section-label heading; project pages get
+   this generated header from build-gallery.py. */
+.gal-section-header {
+  position: relative;
+  z-index: 10;
+  padding: 80px 5vw 36px;
+}
+
+.gal-section-header .gal-eyebrow {
+  font-family: 'Recia-Regular', serif;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+}
+
+.gal-section-header h2 {
+  font-family: var(--heading-font);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800;
+  color: var(--foreground);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .gal-section-header { padding: 56px 5vw 28px; }
+}
 
 /* ── Masonry Grid ─────────────────────────────────────────────── */
 /* Reading-order masonry: a flex row of equal-width columns, each stacking
