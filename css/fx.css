@@ -65,7 +65,7 @@
 #page-curtain {
   position: fixed;
   inset: 0;
-  z-index: 8000;
+  z-index: 8000;   /* below preloader (9000) so the home preloader shows; grain sits above all of this (9997) */
   pointer-events: none;
   display: flex;
 }
