@@ -10,12 +10,14 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  background-color: #05030a;   /* indigo base lives here (was on body) — so body can stay #000 to match the wipe panel */
 }
 
-/* ── Background shift (replaces pure #000) ────────────────────── */
-/* #05030a = #0a0613 darkened ~50% — closer to black, keeps the indigo identity */
+/* ── Backdrop ─────────────────────────────────────────────────── */
+/* body = pure black to match the wipe panel + critical CSS (kills the arrival
+   flash); the #05030a indigo identity now lives on #atmosphere (above). */
 body {
-  background-color: #05030a;
+  background-color: #000000;
 }
 
 /* ── Orbs ─────────────────────────────────────────────────────── */
