@@ -42,18 +42,6 @@
         "genre": "3D Animation"
     }
     </script>
-    <style>
-        /* Parallax Background Layer */
-        .project-header-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            will-change: transform;
-        }
-    </style>
 </head>
 <body>
     <!-- Page Overlay for darkening effect -->
@@ -80,37 +68,31 @@
     </div>
 </nav>
     
-    <header class="project-header parallax">
-    <div class="project-header-bg" style="background-image: url('/assets/projects/ekuc/ekuc-hero.webp'); 
-	    background-position: top center; 
-	    background-size: cover; 
-	    background-repeat: no-repeat;"></div>
-    <div class="project-hero-overlay dark-gradient-overlay"></div>
-    <div class="project-info">
-        <h1>EKUC Pathfinder Camporee</h1>
-        <p class="project-tagline">Camporee opener animation</p>
+    <header class="proj-hero">
+    <img class="proj-hero-bg" src="/assets/projects/ekuc/ekuc-hero.webp" alt="EKUC Pathfinder Camporee — hero" decoding="async">
+    <div class="proj-hero-overlay"></div>
+    <div class="proj-hero-content">
+        <p class="proj-category reveal">3D Animation &nbsp;·&nbsp; March 2025</p>
+        <h1 class="proj-title reveal" data-delay="1">EKUC Pathfinder Camporee</h1>
+        <p class="proj-tagline reveal" data-delay="2">Camporee opener animation</p>
     </div>
 </header>
 
     <main class="project-content">
-        <section class="project-overview">
-            <div class="container">
-                <div class="project-details">
-                    <div class="detail-column">
-                        <h3>Client</h3>
-                        <p>East Kenya Union Conference SDA-Youth Department</p>
-                    </div>
-                    <div class="detail-column">
-                        <h3>Services</h3>
-                        <p>3D Animation, Post-Production</p>
-                    </div>
-                    <div class="detail-column">
-                        <h3>Year</h3>
-                        <p>March 2025</p>
-                    </div>
-                </div>
+        <div class="proj-meta">
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Client</p>
+                <p class="proj-meta-value">East Kenya Union Conference SDA</p>
             </div>
-        </section>
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Services</p>
+                <p class="proj-meta-value">3D Animation, Post-Production</p>
+            </div>
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Year</p>
+                <p class="proj-meta-value">March 2025</p>
+            </div>
+        </div>
 
         <!-- Video Section -->
         <section>
@@ -122,17 +104,9 @@
         </section>
 
         <!-- About the Project Section -->
-        <section class="project-description">
-            <div class="container">
-                <h2>About the Project</h2>
-                <p>This project started as an idea to implement 3d animation to promote pathfinder camporess
-                    like the international camporess that take place in the USA. Our goal with this animation was to 
-                    promote the event and encourage the taget audience of the EKUC youth department to register and participate.
-                    We had a really fun time making this one. It was a unique opportunity to bringout  our storytelling abilities,
-                    and learn a lot of things.
-                </p>
-            </div>
-        </section>
+        <div class="proj-section">
+            <p>This project started as an idea to implement 3D animation to promote pathfinder camporees like the international camporees that take place in the USA. Our goal was to promote the event and encourage the target audience of the EKUC youth department to register and participate. We had a really fun time making this one — a unique opportunity to bring out our storytelling abilities and learn a lot along the way.</p>
+        </div>
         
         <!-- Gallery (built from gallery-manifest.json by build-gallery.py) -->
         <!-- GAL:START -->
@@ -248,51 +222,13 @@
     <script src="https://fast.wistia.com/player.js" async></script>
     <script src="https://fast.wistia.com/embed/j50o2xyzua.js" async type="module"></script>
     <script>
-        // ==========================================
-        // IMPROVED PARALLAX EFFECT
-        // Smooth, reliable parallax for background only
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            const header = document.querySelector('.project-header');
-            const headerBg = document.querySelector('.project-header-bg');
-            
-            if (!header || !headerBg) return;
-            
-            function applyParallax() {
-                // Get header position relative to viewport
-                const headerRect = header.getBoundingClientRect();
-                const headerHeight = header.offsetHeight;
-                
-                // Only apply parallax when header is visible or partially visible
-                if (headerRect.bottom > 0) {
-                    // Calculate scroll progress (0 = at top, 1 = header scrolled past viewport)
-                    const scrollProgress = Math.max(0, -headerRect.top / headerHeight);
-                    
-                    // Apply transform with 30% parallax effect to background only
-                    const translateY = scrollProgress * headerHeight * 0.3;
-                    headerBg.style.transform = `translateY(${translateY}px)`;
-                } else {
-                    // Header completely scrolled past - lock position
-                    const maxTranslate = headerHeight * 0.3;
-                    headerBg.style.transform = `translateY(${maxTranslate}px)`;
-                }
-            }
-            
-            // Apply on scroll with requestAnimationFrame for smoothness
-            let ticking = false;
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        applyParallax();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-            
-            // Apply on load
-            applyParallax();
-        });
+        (function () {
+            var heroBg = document.querySelector('.proj-hero-bg');
+            if (!heroBg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            window.addEventListener('scroll', function () {
+                heroBg.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+            }, { passive: true });
+        })();
     </script>
 
 </body>

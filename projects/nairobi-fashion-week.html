@@ -42,18 +42,6 @@
         "genre": "Photography"
     }
     </script>
-    <style>
-        /* Parallax Background Layer */
-        .project-header-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            will-change: transform;
-        }
-    </style>
 </head>
 <body>
     <!-- Page Overlay for darkening effect -->
@@ -80,37 +68,31 @@
     </div>
 </nav>
     
-    <header class="project-header parallax">
-    <div class="project-header-bg" style="background-image: url('../assets/projects/nfw/nfw-thumb.webp'); 
-	    background-position: center center; 
-	    background-size: cover; 
-	    background-repeat: no-repeat;"></div>
-    <div class="project-hero-overlay dark-gradient-overlay"></div>
-    <div class="project-info">
-        <h1>Nairobi Fashion Week</h1>
-        <p class="project-tagline">Photography</p>
+    <header class="proj-hero">
+    <img class="proj-hero-bg" src="/assets/projects/nfw/nfw-thumb.webp" alt="Nairobi Fashion Week — hero" decoding="async">
+    <div class="proj-hero-overlay"></div>
+    <div class="proj-hero-content">
+        <p class="proj-category reveal">Photography &nbsp;·&nbsp; 2024</p>
+        <h1 class="proj-title reveal" data-delay="1">Nairobi Fashion Week</h1>
+        <p class="proj-tagline reveal" data-delay="2">Photography</p>
     </div>
 </header>
 
     <main class="project-content">
-        <section class="project-overview">
-            <div class="container">
-                <div class="project-details">
-                    <div class="detail-column">
-                        <h3>Client</h3>
-                        <p>Nairobi Fashion Week</p>
-                    </div>
-                    <div class="detail-column">
-                        <h3>Services</h3>
-                        <p>Photography, Post-Production</p>
-                    </div>
-                    <div class="detail-column">
-                        <h3>Year</h3>
-                        <p>2024</p>
-                    </div>
-                </div>
+        <div class="proj-meta">
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Client</p>
+                <p class="proj-meta-value">Nairobi Fashion Week</p>
             </div>
-        </section>
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Services</p>
+                <p class="proj-meta-value">Photography, Post-Production</p>
+            </div>
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Year</p>
+                <p class="proj-meta-value">2024</p>
+            </div>
+        </div>
 
         <!-- Gallery (built from gallery-manifest.json by build-gallery.py) -->
         <!-- GAL:START -->
@@ -259,12 +241,9 @@
       <!-- GAL:END -->
 
         <!-- About the Project Section -->
-        <section class="project-description">
-            <div class="container">
-                <h2>About the Project</h2>
-                <p>Capturing the vibrant energy and creativity of Nairobi Fashion Week, this photography series showcases the incredible talent of East African designers and models. Through dynamic compositions and careful attention to detail, we documented the intersection of traditional African aesthetics with contemporary fashion, creating a visual narrative that celebrates the region's growing influence in the global fashion industry.</p>
-            </div>
-        </section>
+        <div class="proj-section">
+            <p>Capturing the vibrant energy and creativity of Nairobi Fashion Week, this photography series showcases the incredible talent of East African designers and models. Through dynamic compositions and careful attention to detail, we documented the intersection of traditional African aesthetics with contemporary fashion — a visual narrative that celebrates the region's growing influence in the global fashion industry.</p>
+        </div>
         
         <!-- Explore More Link -->
         <section class="next-project">

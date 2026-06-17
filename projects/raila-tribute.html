@@ -42,18 +42,6 @@
         "genre": "3D Animation"
     }
     </script>
-    <style>
-        /* Parallax Background Layer */
-        .project-header-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            will-change: transform;
-        }
-    </style>
 </head>
 <body>
     <!-- Page Overlay for darkening effect -->
@@ -80,37 +68,31 @@
     </div>
 </nav>
     
-    <header class="project-header parallax">
-    <div class="project-header-bg" style="background-image: url('/assets/projects/raila/raila-hero.jpg'); 
-	    background-position: top center; 
-	    background-size: cover; 
-	    background-repeat: no-repeat;"></div>
-    <div class="project-hero-overlay dark-gradient-overlay"></div>
-    <div class="project-info">
-        <h1>Hon Raila Amollo Odinga</h1>
-        <p class="project-tagline">Farewell Tribte Animation</p>
+    <header class="proj-hero">
+    <img class="proj-hero-bg" src="/assets/projects/raila/raila-hero.jpg" alt="Hon Raila Amollo Odinga — hero" decoding="async">
+    <div class="proj-hero-overlay"></div>
+    <div class="proj-hero-content">
+        <p class="proj-category reveal">3D Animation &nbsp;·&nbsp; October 2025</p>
+        <h1 class="proj-title reveal" data-delay="1">Hon Raila Amollo Odinga</h1>
+        <p class="proj-tagline reveal" data-delay="2">Farewell Tribute Animation</p>
     </div>
 </header>
 
     <main class="project-content">
-        <section class="project-overview">
-            <div class="container">
-                <div class="project-details">
-                    <div class="detail-column">
-                        <h3>Client</h3>
-                        <p>Passion Project</p>
-                    </div>
-                    <div class="detail-column">
-                        <h3>Services</h3>
-                        <p>3D Animation, Post-Production</p>
-                    </div>
-                    <div class="detail-column">
-                        <h3>Year</h3>
-                        <p>October 2025</p>
-                    </div>
-                </div>
+        <div class="proj-meta">
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Client</p>
+                <p class="proj-meta-value">Passion Project</p>
             </div>
-        </section>
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Services</p>
+                <p class="proj-meta-value">3D Animation, Post-Production</p>
+            </div>
+            <div class="proj-meta-item">
+                <p class="proj-meta-label">Year</p>
+                <p class="proj-meta-value">October 2025</p>
+            </div>
+        </div>
 
         <!-- Video Section -->
         <section>
@@ -122,12 +104,9 @@
         </section>
 
         <!-- About the Project Section -->
-        <section class="project-description">
-            <div class="container">
-                <h2>About the Project</h2>
-                <p>In October 2025, Kenya lost a great leader through his untimely death. He was loved by many, adored for his courage, his love for the poeple and how he always fought for the rights of the citizens of Kenya. This is our tribute to the now rested Former Prime Minister, The Right Honourable Raila Amollo Odinga.</p>
-            </div>
-        </section>
+        <div class="proj-section">
+            <p>In October 2025, Kenya lost a great leader through his untimely passing. Adored for his courage, his love for the people, and how he always fought for the rights of the citizens of Kenya — this is our tribute to the now rested Former Prime Minister, The Right Honourable Raila Amollo Odinga.</p>
+        </div>
         
         <!-- Gallery (built from gallery-manifest.json by build-gallery.py) -->
         <!-- GAL:START -->
@@ -186,51 +165,13 @@
     <script src="https://fast.wistia.com/player.js" async></script>
     <script src="https://fast.wistia.com/embed/942nn4xuwu.js" async type="module"></script>
     <script>
-        // ==========================================
-        // IMPROVED PARALLAX EFFECT
-        // Smooth, reliable parallax for background only
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            const header = document.querySelector('.project-header');
-            const headerBg = document.querySelector('.project-header-bg');
-            
-            if (!header || !headerBg) return;
-            
-            function applyParallax() {
-                // Get header position relative to viewport
-                const headerRect = header.getBoundingClientRect();
-                const headerHeight = header.offsetHeight;
-                
-                // Only apply parallax when header is visible or partially visible
-                if (headerRect.bottom > 0) {
-                    // Calculate scroll progress (0 = at top, 1 = header scrolled past viewport)
-                    const scrollProgress = Math.max(0, -headerRect.top / headerHeight);
-                    
-                    // Apply transform with 30% parallax effect to background only
-                    const translateY = scrollProgress * headerHeight * 0.3;
-                    headerBg.style.transform = `translateY(${translateY}px)`;
-                } else {
-                    // Header completely scrolled past - lock position
-                    const maxTranslate = headerHeight * 0.3;
-                    headerBg.style.transform = `translateY(${maxTranslate}px)`;
-                }
-            }
-            
-            // Apply on scroll with requestAnimationFrame for smoothness
-            let ticking = false;
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        applyParallax();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-            
-            // Apply on load
-            applyParallax();
-        });
+        (function () {
+            var heroBg = document.querySelector('.proj-hero-bg');
+            if (!heroBg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            window.addEventListener('scroll', function () {
+                heroBg.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+            }, { passive: true });
+        })();
     </script>
 
 </body>
