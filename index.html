@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0a0a0a">
     <title>Nairoreel Productions – Visual Storytelling Studio in Nairobi, Kenya</title>
     <meta name="description" content="We are a creative studio crafting captivating visuals through 3D & VFX, cinematography, and motion storytelling.">
@@ -28,60 +29,8 @@
     <meta name="apple-mobile-web-app-title" content="Nairoreel" />
     <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
-    <!-- CRITICAL: Immediate preloader check and style -->
-    <script>
-        // Immediate check - runs before anything else
-        (function() {
-            if (sessionStorage.getItem('nairoreelPreloaderSeen') !== 'true') {
-                // First visit - immediately hide everything except preloader
-                document.documentElement.style.visibility = 'hidden';
-                document.documentElement.style.background = '#0a0a0a';
-            }
-        })();
-    </script>
-    
-    <!-- CRITICAL: Prevent any flash -->
-    <style>
-        /* Base styles to prevent flash */
-        html {
-            background-color: #0a0a0a;
-            visibility: visible; /* Will be overridden by script if needed */
-        }
-        
-        body {
-            background-color: #0a0a0a;
-            margin: 0;
-            padding: 0;
-            opacity: 0;
-            animation: bodyFadeIn 0.3s ease-out 0.1s forwards;
-        }
-        
-        @keyframes bodyFadeIn {
-            to { opacity: 1; }
-        }
-        
-        /* Preloader should be visible immediately on first visit */
-        .preloader-overlay {
-            opacity: 1 !important;
-            display: flex !important;
-        }
-        
-        /* Hide main content initially if preloader is active */
-        body.preloader-active > *:not(.preloader-overlay) {
-            opacity: 0;
-        }
-        
-        /* After preloader is done, show content */
-        body:not(.preloader-active) > *:not(.preloader-overlay) {
-            opacity: 1;
-            transition: opacity 0.5s ease-out;
-        }
-        
-        /* Hide preloader immediately if already seen this session */
-        body:not(.preloader-active) .preloader-overlay {
-            display: none !important;
-        }
-        
+    <!-- CRITICAL: dark bg + curtain covered before any external CSS parses -->
+    <style>html,body{background:#000000}#page-curtain{position:fixed;inset:0;z-index:8000;display:flex}#page-curtain .curtain-panel{flex:1;transform:scaleX(1)}.curtain-panel-red{background:#EA1821}.curtain-panel-black{background:#000;position:absolute;inset:0;z-index:1;transform:scaleX(1)}
         /* Mobile video fix - ensure video container has proper sizing */
         @media (max-width: 768px) {
             .hero-video-bg {
@@ -94,7 +43,6 @@
                 background-size: cover;
                 background-position: center;
             }
-            
             .hero-video-bg video {
                 width: 100%;
                 height: 100%;
@@ -104,14 +52,12 @@
             }
         }
     </style>
-    
-    <!-- Preload critical preloader background -->
-    <link rel="preload" as="image" href="assets/preloader/preloader-art.webp" type="image/webp">
-    <link rel="preload" as="image" href="assets/preloader/preloader-art.jpg" type="image/jpeg">
+    <noscript><style>#page-curtain .curtain-panel{transform:scaleX(0)}</style></noscript>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/homepage-featured.css">
-    <link rel="stylesheet" href="css/preloader.css">
+    <link rel="stylesheet" href="css/atmosphere.css">
+    <link rel="stylesheet" href="css/fx.css">
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -163,32 +109,25 @@
     </script>
 </head>
 
-<body>
-    
-    <!-- ========================================
-         PRELOADER OVERLAY (Shows once per session)
-         ======================================== -->
-    <div class="preloader-overlay" id="preloader-overlay">
-        <div class="preloader-central-stack">
-            <!-- Arrow Indicator -->
-            <svg class="preloader-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-			    <path d="M4 9L20 9L12 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
+<body data-preloader="true" data-page="home">
 
-            <!-- Power Switch -->
-            <label class="preloader-switch">
-                <input class="preloader-switch__input" type="checkbox" role="switch" id="preloader-switch">
-                <span class="preloader-switch__lever-shadow"></span>
-                <span class="preloader-switch__lever">
-                    <span class="preloader-switch__lever-sides"></span>
-                    <span class="preloader-switch__lever-half-top"></span>
-                    <span class="preloader-switch__lever-half-bottom"></span>
-                </span>
-                <span class="preloader-switch__label">Power</span>
-            </label>
+    <!-- Page curtain — starts scaleX(1) so every arrival begins covered → wipeOut reveals -->
+    <div id="page-curtain">
+        <div class="curtain-panel curtain-panel-red"></div>
+        <div class="curtain-panel curtain-panel-black"></div>
+    </div>
+
+    <!-- Preloader (home only, first visit gated by sessionStorage in fx.js) -->
+    <div id="preloader-new">
+        <div class="pl-wordmark">Nairoreel</div>
+        <div class="pl-bar-track">
+            <div class="pl-bar-fill" id="pl-bar-fill"></div>
         </div>
     </div>
-    <!-- ======================================== -->
+    <div id="preloader-curtain">
+        <div class="pc-red"></div>
+        <div class="pc-black"></div>
+    </div>
     
     
     <!-- EXISTING HOMEPAGE CONTENT BELOW -->
@@ -218,7 +157,7 @@
     <header class="hero-section">
         <div class="hero-video-bg">
             <!-- Added webkit-playsinline for older iOS versions -->
-            <video id="heroVideo" preload="none" loop muted playsinline webkit-playsinline poster="assets/home/home-hero-poster.png">
+            <video id="heroVideo" autoplay loop muted playsinline webkit-playsinline preload="auto" poster="assets/home/home-hero-poster.png">
                 <source src="assets/home/home-hero-reel.mp4" type="video/mp4">
                 <!-- Fallback message for browsers that don't support video -->
                 Your browser does not support the video tag.
@@ -232,7 +171,21 @@
         </div>
     </header>
 
-    <div class="divider"></div>
+    <!-- Ticker: home-only separator between hero and content -->
+    <div class="atm-ticker" id="tickerWrap">
+      <div class="atm-ticker-track" id="tickerTrack">
+        <div class="atm-ticker-item" id="tickerSource">
+          <span class="star">✦</span> 3D ANIMATION
+          <span class="star">✦</span> VFX
+          <span class="star">✦</span> PHOTOGRAPHY
+          <span class="batch-sep"></span>
+          <span class="star">✦</span> FILM
+          <span class="star">✦</span> MOTION DESIGN
+          <span class="star">✦</span> VISUAL EFFECTS
+          <span class="batch-sep"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- Featured Work Section -->
     <section id="featured-work">
@@ -373,21 +326,9 @@
         </div>
     </footer>
     
-    <!-- GSAP Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSmcEZ9EYFYQkCX4lQniAP11ewV7Ks8Bh/cqQlAlWCBPhPOUNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <!-- NEW: Preloader Script - Runs FIRST, completely isolated -->
-    <script src="js/preloader.js"></script>
-    
-    <!-- Main Scripts - Your existing hamburger menu and other functionality -->
+    <!-- Main Scripts - hamburger menu and other functionality -->
     <script src="js/main.js"></script>
-    
-    <!-- Restore visibility after everything loads -->
-    <script>
-        // This runs after all scripts load
-        window.addEventListener('load', function() {
-            document.documentElement.style.visibility = 'visible';
-        });
-    </script>
+    <!-- FX boot: atmosphere, cursor, reveals, wipe, preloader, ticker, nav glass -->
+    <script src="js/fx.js"></script>
 </body>
 </html>

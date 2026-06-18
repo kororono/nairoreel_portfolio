@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>Inquire — Start Your 3D Animation or VFX Project | Nairoreel Productions</title>
     <meta name="description" content="Start your 3D animation, VFX, or film production project with Nairoreel Productions in Nairobi, Kenya.">
     <link rel="canonical" href="https://nairoreelproductions.com/inquiry.html">
@@ -19,7 +20,13 @@
     <meta name="twitter:title" content="Inquire — Start Your 3D Animation or VFX Project | Nairoreel Productions">
     <meta name="twitter:description" content="Start your 3D animation, VFX, or film production project with Nairoreel Productions in Nairobi, Kenya.">
     <meta name="twitter:image" content="https://nairoreelproductions.com/assets/footer/sf-logo-w.webp">
+    <!-- Critical: dark bg + curtain covered before any external CSS parses -->
+    <style>html,body{background:#000000}#page-curtain{position:fixed;inset:0;z-index:8000;display:flex}#page-curtain .curtain-panel{flex:1;transform:scaleX(1)}.curtain-panel-red{background:#EA1821}.curtain-panel-black{background:#000;position:absolute;inset:0;z-index:1;transform:scaleX(1)}</style>
+    <noscript><style>#page-curtain .curtain-panel{transform:scaleX(0)}</style></noscript>
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/atmosphere.css">
+    <link rel="stylesheet" href="css/fx.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Favicon Setup -->
     <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
@@ -63,6 +70,12 @@
     </style>
 </head>
 <body>
+    <!-- Page curtain — rests covered (scaleX 1) so arrival wipes out to reveal -->
+    <div id="page-curtain">
+        <div class="curtain-panel curtain-panel-red"></div>
+        <div class="curtain-panel curtain-panel-black"></div>
+    </div>
+
     <!-- Page Overlay for darkening effect -->
     <div class="page-overlay"></div>
     
@@ -146,5 +159,6 @@
     <!-- This script is essential for the Tally form to work -->
     <script async src="https://tally.so/widgets/embed.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/fx.js"></script>
 </body>
 </html>

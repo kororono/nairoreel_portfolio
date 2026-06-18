@@ -126,7 +126,7 @@
     loop();
   }
 
-  /* ── 3. Section reveals ───────────────────────────────────────── */
+  /* ── 3b. Section reveals ──────────────────────────────────────── */
   function initReveals() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

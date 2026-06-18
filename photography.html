@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>Photography — Product & Fashion Photography Nairobi | Nairoreel Productions</title>
     <meta name="description" content="Professional product and lifestyle photography by Nairoreel Productions in Nairobi, Kenya. Fashion, brand, and event photography with meticulous attention to storytelling.">
     <link rel="canonical" href="https://nairoreelproductions.com/photography.html">
@@ -20,7 +21,13 @@
     <meta name="twitter:title" content="Photography — Product & Fashion Photography Nairobi | Nairoreel Productions">
     <meta name="twitter:description" content="Professional product and lifestyle photography by Nairoreel Productions in Nairobi, Kenya. Fashion, brand, and event photography with meticulous attention to storytelling.">
     <meta name="twitter:image" content="https://nairoreelproductions.com/assets/projects/nfw/nfw-thumb.webp">
+    <!-- Critical: dark bg + curtain covered before any external CSS parses -->
+    <style>html,body{background:#000000}#page-curtain{position:fixed;inset:0;z-index:8000;display:flex}#page-curtain .curtain-panel{flex:1;transform:scaleX(1)}.curtain-panel-red{background:#EA1821}.curtain-panel-black{background:#000;position:absolute;inset:0;z-index:1;transform:scaleX(1)}</style>
+    <noscript><style>#page-curtain .curtain-panel{transform:scaleX(0)}</style></noscript>
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/atmosphere.css">
+    <link rel="stylesheet" href="css/fx.css">
     <!-- Favicon Setup -->
     <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
@@ -112,6 +119,12 @@
 </head>
 
 <body>
+    <!-- Page curtain — rests covered (scaleX 1) so arrival wipes out to reveal -->
+    <div id="page-curtain">
+        <div class="curtain-panel curtain-panel-red"></div>
+        <div class="curtain-panel curtain-panel-black"></div>
+    </div>
+
     <!-- Page Overlay for darkening effect -->
     <div class="page-overlay"></div>
 
@@ -290,6 +303,7 @@
     </script>
 
     <script src="js/main.js"></script>
+    <script src="js/fx.js"></script>
 </body>
 
 </html>

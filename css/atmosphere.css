@@ -7,7 +7,7 @@
 #atmosphere {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;   /* true backdrop: sits behind ALL page content (incl. non-positioned production sections + the z-index:-1 hero video, which paints above via DOM order). Lab content (z-index:10) is unaffected. */
   pointer-events: none;
   overflow: hidden;
   background-color: #05030a;   /* indigo base lives here (was on body) — so body can stay #000 to match the wipe panel */
