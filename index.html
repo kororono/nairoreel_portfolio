@@ -29,8 +29,10 @@
     <meta name="apple-mobile-web-app-title" content="Nairoreel" />
     <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
+    <!-- Stamp class before first paint so preloader is never rendered on return visits -->
+    <script>if(sessionStorage.getItem('nairoreelPreloaderSeen')==='true')document.documentElement.classList.add('nrr-pl-seen');</script>
     <!-- CRITICAL: dark bg + curtain covered before any external CSS parses -->
-    <style>html,body{background:#000000}#page-curtain{position:fixed;inset:0;z-index:8000;display:flex}#page-curtain .curtain-panel{flex:1;transform:scaleX(1)}.curtain-panel-red{background:#EA1821}.curtain-panel-black{background:#000;position:absolute;inset:0;z-index:1;transform:scaleX(1)}
+    <style>html,body{background:#000000}#page-curtain{position:fixed;inset:0;z-index:8000;display:flex}#page-curtain .curtain-panel{flex:1;transform:scaleX(1)}.curtain-panel-red{background:#EA1821}.curtain-panel-black{background:#000;position:absolute;inset:0;z-index:1;transform:scaleX(1)}.nrr-pl-seen #preloader-new,.nrr-pl-seen #preloader-curtain{display:none}
         /* Mobile video fix - ensure video container has proper sizing */
         @media (max-width: 768px) {
             .hero-video-bg {
