@@ -21,29 +21,55 @@
 
   let modal, imgEl, captionEl, titleEl, descEl, counterEl, prevBtn, nextBtn;
 
-  let orderedEls = [];   /* .gal-item elements in display sequence (by data-index) */
+  let orderedEls = [];   /* ALL .gal-item elements in sequence (by data-index) */
+  let visibleEls = [];   /* subset shown for the active category filter */
+  let currentCat = 'all';
+  let gridRef    = null;
 
-  /* ── Build item index ─────────────────────────────────────── */
+  /* ── Build item index (all items; handlers attached once) ─── */
   function buildIndex(grid) {
     orderedEls = Array.from(grid.querySelectorAll('.gal-item'))
       .sort((a, b) => (+a.dataset.index || 0) - (+b.dataset.index || 0));
 
-    items = orderedEls.map((el, i) => {
+    orderedEls.forEach(el => {
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
-      el.addEventListener('click', () => open(i));
+      el.addEventListener('click', () => openEl(el));
       el.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEl(el); }
       });
+    });
+  }
+
+  /* ── Rebuild the lightbox list from the visible subset ────── */
+  function rebuildItems() {
+    items = visibleEls.map(el => {
       const thumb = el.querySelector('img');
       const thumbSrc = thumb ? (thumb.currentSrc || thumb.src) : '';
       return {
+        el,
         thumb: thumbSrc,
         src:   el.dataset.src   || thumbSrc,
         title: el.dataset.title || '',
         desc:  el.dataset.desc  || '',
       };
     });
+  }
+
+  /* Open by element → map to its position in the visible list */
+  function openEl(el) {
+    const i = items.findIndex(it => it.el === el);
+    if (i >= 0) open(i);
+  }
+
+  /* ── Filter to a category (re-lays out grid + re-scopes lightbox) ── */
+  function applyCategory(cat) {
+    currentCat = cat || 'all';
+    visibleEls = (currentCat === 'all')
+      ? orderedEls.slice()
+      : orderedEls.filter(el => el.dataset.category === currentCat);
+    rebuildItems();
+    if (gridRef) { gridRef._cols = -1; layoutColumns(gridRef); }
   }
 
   /* ── Create modal DOM (once, lazily) ──────────────────────── */
@@ -278,7 +304,7 @@
       cols.push(col);
       colH.push(0);
     }
-    orderedEls.forEach(el => {
+    visibleEls.forEach(el => {
       let t = 0;
       for (let c = 1; c < n; c++) if (colH[c] < colH[t]) t = c;
       cols[t].appendChild(el);
@@ -290,8 +316,13 @@
   function initGallery(selector) {
     const grid = document.querySelector(selector || '.gal-grid');
     if (!grid) return;
+    gridRef = grid;
     buildIndex(grid);
-    layoutColumns(grid);
+
+    /* Apply the initial filter from the active button (set by our-work.js
+       before this runs), so first paint already matches the URL hash. */
+    const activeBtn = document.querySelector('.filter-btn.active');
+    applyCategory(activeBtn ? activeBtn.dataset.filter : 'all');
 
     let resizeTimer;
     window.addEventListener('resize', () => {
@@ -301,7 +332,7 @@
   }
 
   window.NRR          = window.NRR || {};
-  window.NRR.gallery  = { init: initGallery };
+  window.NRR.gallery  = { init: initGallery, filter: applyCategory };
 
   document.addEventListener('DOMContentLoaded', () => initGallery());
 })();

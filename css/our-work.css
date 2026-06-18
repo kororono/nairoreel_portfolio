@@ -12,140 +12,21 @@
    8. Responsive - Mobile adjustments
    ========================================== */
 
-/* ========================================
-   1. FIXED ANIMATED GRADIENT BACKGROUND
-   Animated blob gradients, fixed behind content
-   ======================================== */
-.gradient-background-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    background: linear-gradient(40deg, var(--blob-bg1), var(--blob-bg2));
-}
-
-.gradient-background-fixed svg {
-    position: absolute;
-    width: 0;
-    height: 0;
-}
-
-.gradients-container {
-    filter: url(#goo) blur(var(--blob-blur));
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.gradients-container [class^="g"] {
-    position: absolute;
-    mix-blend-mode: var(--blob-blend);
-    width: var(--blob-size);
-    height: var(--blob-size);
-    top: calc(50% - var(--blob-size) / 2);
-    left: calc(50% - var(--blob-size) / 2);
-    opacity: var(--blob-opacity);
-}
-
-.g1 {
-    background: radial-gradient(circle at center, rgba(var(--blob-color1), 0.8) 0, rgba(var(--blob-color1), 0) 50%) no-repeat;
-    transform-origin: center center;
-    animation: blobMoveVertical 30s ease infinite;
-}
-
-.g2 {
-    background: radial-gradient(circle at center, rgba(var(--blob-color2), 0.8) 0, rgba(var(--blob-color2), 0) 50%) no-repeat;
-    transform-origin: calc(50% - 400px);
-    animation: blobMoveCircle 20s reverse infinite;
-}
-
-.g3 {
-    background: radial-gradient(circle at center, rgba(var(--blob-color3), 0.8) 0, rgba(var(--blob-color3), 0) 50%) no-repeat;
-    top: calc(50% - var(--blob-size) / 2 + 200px);
-    left: calc(50% - var(--blob-size) / 2 - 500px);
-    transform-origin: calc(50% + 400px);
-    animation: blobMoveCircle 40s linear infinite;
-}
-
-.g4 {
-    background: radial-gradient(circle at center, rgba(var(--blob-color4), 0.8) 0, rgba(var(--blob-color4), 0) 50%) no-repeat;
-    transform-origin: calc(50% - 200px);
-    animation: blobMoveHorizontal 40s ease infinite;
-    opacity: calc(var(--blob-opacity) * 0.7);
-}
-
-.g5 {
-    background: radial-gradient(circle at center, rgba(var(--blob-color5), 0.8) 0, rgba(var(--blob-color5), 0) 50%) no-repeat;
-    width: calc(var(--blob-size) * 2);
-    height: calc(var(--blob-size) * 2);
-    top: calc(50% - var(--blob-size));
-    left: calc(50% - var(--blob-size));
-    transform-origin: calc(50% - 800px) calc(50% + 200px);
-    animation: blobMoveCircle 20s ease infinite;
-}
-
-/* Dark overlay for readability */
-.gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    pointer-events: none;
-}
-
-/* Blob keyframes */
-@keyframes blobMoveCircle {
-    0%   { transform: rotate(0deg); }
-    50%  { transform: rotate(180deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes blobMoveVertical {
-    0%   { transform: translateY(-50%); }
-    50%  { transform: translateY(50%); }
-    100% { transform: translateY(-50%); }
-}
-
-@keyframes blobMoveHorizontal {
-    0%   { transform: translateX(-50%) translateY(-10%); }
-    50%  { transform: translateX(50%) translateY(10%); }
-    100% { transform: translateX(-50%) translateY(-10%); }
-}
-
-/* Reduce blur cost on mobile */
-@media (max-width: 767px) {
-    .gradients-container {
-        filter: url(#goo) blur(20px);
-    }
-    .g2 { transform-origin: calc(50% - 150px); }
-    .g3 {
-        top: calc(50% - var(--blob-size) / 2 + 80px);
-        left: calc(50% - var(--blob-size) / 2 - 150px);
-        transform-origin: calc(50% + 150px);
-    }
-    .g4 { transform-origin: calc(50% - 80px); }
-    .g5 { transform-origin: calc(50% - 300px) calc(50% + 80px); }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .gradients-container [class^="g"] {
-        animation: none;
-    }
-}
-
 /* Main content container - scrolls over video */
 .work-main {
     position: relative;
     z-index: 1;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Natural DOM order: hero → filters → film cards → 3D cards → photography featured →
+   shared gallery. The gallery lives in its own always-visible .work-gallery section
+   (outside the card sections) so every filter shows its own category's gallery images;
+   gallery.js re-lays-out the visible subset and re-scopes the lightbox on filter. */
+.work-gallery {
+    padding: 0 0 80px;
 }
 
 /* ========================================
@@ -160,7 +41,7 @@
 }
 
 .work-hero h1 {
-    font-size: 3rem;
+    font-size: 6rem;
     margin-bottom: 1rem;
     color: var(--foreground);
 }
@@ -257,6 +138,13 @@
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
     padding: 0 3vw;
+}
+
+/* Film section has a single card — constrain its grid to one normal-width track
+   so the lone card stays a standard tile instead of stretching to a full-width
+   banner like the multi-card 3D grid does. */
+[data-category="film"] .projects-grid {
+    grid-template-columns: minmax(350px, 460px);
 }
 
 /* Work card styling - reuse home page card style */
@@ -569,7 +457,7 @@
     }
     
     .work-hero h1 {
-        font-size: 2.2rem;
+        font-size: 4.4rem;
     }
     
     .work-hero p {
@@ -616,7 +504,7 @@
 
 @media (max-width: 480px) {
     .work-hero h1 {
-        font-size: 1.8rem;
+        font-size: 3.6rem;
     }
     
     .section-label {

@@ -45,6 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const category = section.dataset.category;
             section.classList.toggle('active', filter === 'all' || category === filter);
         });
+
+        // Filter the shared gallery to the active category (re-scopes lightbox).
+        // Guarded: on first load gallery.js may not have initialised yet — it
+        // reads the active button itself, so the initial state stays correct.
+        if (window.NRR && window.NRR.gallery && window.NRR.gallery.filter) {
+            window.NRR.gallery.filter(filter);
+        }
     }
 
     // ========================================

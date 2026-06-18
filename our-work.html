@@ -86,31 +86,7 @@
 </nav>
 
     <!-- ========================================
-         FIXED ANIMATED GRADIENT BACKGROUND
-         CSS blobs replace video for instant load
-         ======================================== -->
-    <div class="gradient-background-fixed">
-        <svg xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                </filter>
-            </defs>
-        </svg>
-        <div class="gradients-container">
-            <div class="g1"></div>
-            <div class="g2"></div>
-            <div class="g3"></div>
-            <div class="g4"></div>
-            <div class="g5"></div>
-        </div>
-        <div class="gradient-overlay"></div>
-    </div>
-
-    <!-- ========================================
-         MAIN CONTENT (Scrolls over video)
+         MAIN CONTENT (atmosphere backdrop via atmosphere.css)
          ======================================== -->
     <main class="work-main">
         
@@ -137,10 +113,14 @@
              ======================================== -->
         <section class="projects-section" data-category="film">
             <div class="projects-grid">
-                <!-- Add film projects here when available -->
-                <div class="project-card-placeholder">
-                    <p>Film projects coming soon</p>
-                </div>
+                <a href="projects/tranzit.html" class="work-card">
+                    <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645585/nrr/projects/tranzit/tranzit-03-drift-railing-approach.webp" alt="Tranzit">
+                    <div class="work-card-overlay"></div>
+                    <div class="work-card-info">
+                        <h3>Tranzit</h3>
+                        <p>CGI Short Film</p>
+                    </div>
+                </a>
             </div>
         </section>
 
@@ -231,7 +211,12 @@
                     -->
                 </div>
             </div>
+        </section>
 
+        <!-- ========================================
+             GALLERY (shared — always visible, filtered by category in gallery.js)
+             ======================================== -->
+        <section class="work-gallery">
             <!-- Photography Gallery (reading-order masonry, built by build-gallery.py) -->
             <div class="photo-gallery">
                 <h2 class="section-label">GALLERY</h2>
@@ -241,6 +226,7 @@
       <!-- ── Nairobi Fashion Week ── -->
       <figure class="gal-item reveal"
               data-index="0"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641920/nrr/projects/nairobi-fashion-week/fashion%20bw-01.webp">
@@ -248,6 +234,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="1"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641928/nrr/projects/nairobi-fashion-week/fashion%20bw-02.webp">
@@ -255,6 +242,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="2"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641937/nrr/projects/nairobi-fashion-week/fashion%20bw-03.webp">
@@ -262,6 +250,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="3"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641960/nrr/projects/nairobi-fashion-week/fashion%20bw-04.webp">
@@ -269,6 +258,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="4"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641968/nrr/projects/nairobi-fashion-week/fashion%20guest-01.webp">
@@ -276,6 +266,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="5"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641972/nrr/projects/nairobi-fashion-week/fashion%20guest-02.webp">
@@ -283,6 +274,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="6"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641975/nrr/projects/nairobi-fashion-week/fashion%20guest-03.webp">
@@ -290,6 +282,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="7"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641978/nrr/projects/nairobi-fashion-week/fashion%20muted-01.webp">
@@ -297,6 +290,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="8"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641985/nrr/projects/nairobi-fashion-week/fashion%20muted-02.webp">
@@ -304,6 +298,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="9"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641987/nrr/projects/nairobi-fashion-week/fashion%20muted-03.webp">
@@ -311,6 +306,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="10"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641990/nrr/projects/nairobi-fashion-week/fashion%20others-01.webp">
@@ -318,6 +314,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="11"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641993/nrr/projects/nairobi-fashion-week/fashion%20others-02.webp">
@@ -325,6 +322,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="12"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641996/nrr/projects/nairobi-fashion-week/fashion%20others-03.webp">
@@ -332,6 +330,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="13"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641998/nrr/projects/nairobi-fashion-week/fashion%20others-04.webp">
@@ -339,6 +338,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="14"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642010/nrr/projects/nairobi-fashion-week/fashion%20others-05.webp">
@@ -346,6 +346,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="15"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642012/nrr/projects/nairobi-fashion-week/fashion%20others-06.webp">
@@ -353,6 +354,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="16"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642019/nrr/projects/nairobi-fashion-week/fashion%20others-07.webp">
@@ -360,6 +362,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="17"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642021/nrr/projects/nairobi-fashion-week/fashion%20others-08.webp">
@@ -367,6 +370,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="18"
+              data-category="photography"
               data-title="Nairobi Fashion Week"
               data-desc="Event coverage &amp; editorial · NFW, Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642023/nrr/projects/nairobi-fashion-week/fashion%20others-09.webp">
@@ -376,6 +380,7 @@
       <!-- ── Portrait ── -->
       <figure class="gal-item reveal" data-delay="1"
               data-index="19"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642040/nrr/projects/portraits/JudyandTaylen-01.webp">
@@ -383,6 +388,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="20"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642046/nrr/projects/portraits/LloydHandsClaspedpollar-02.webp">
@@ -390,6 +396,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="21"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642049/nrr/projects/portraits/LeylaAnother-03.webp">
@@ -397,6 +404,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="22"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642051/nrr/projects/portraits/Saturday19thJuly2025Beauty0463-04.webp">
@@ -404,6 +412,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="23"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642054/nrr/projects/portraits/GukuPhotosession0303-05.webp">
@@ -411,6 +420,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="24"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642060/nrr/projects/portraits/GukuPhotosession03121-06.webp">
@@ -418,6 +428,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="25"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642066/nrr/projects/portraits/GukuPhotosession0365Polarr-07.webp">
@@ -425,6 +436,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="26"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642132/nrr/projects/portraits/DSC_7604Maskeednmk-08.webp">
@@ -432,6 +444,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="27"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642140/nrr/projects/portraits/JudyCloserPollar-09.webp">
@@ -439,6 +452,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="28"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642153/nrr/projects/portraits/DSC_8358manhattanmamuh-10.webp">
@@ -446,6 +460,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="29"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642155/nrr/projects/portraits/Tracey06v2-11.webp">
@@ -453,6 +468,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="30"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642157/nrr/projects/portraits/MitchellePhotoshoot0847-12.webp">
@@ -460,6 +476,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="31"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642159/nrr/projects/portraits/MitchellePhotoshoot1044Lighter-modified-13.webp">
@@ -467,6 +484,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="32"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642160/nrr/projects/portraits/Saturday19thJuly2025Beauty07031-14.webp">
@@ -474,6 +492,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="33"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642161/nrr/projects/portraits/Saturday19thJuly2025Beauty07221-15.webp">
@@ -481,6 +500,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="34"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642166/nrr/projects/portraits/Saturday19thJuly2025Beauty0714-16.webp">
@@ -488,6 +508,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="35"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642180/nrr/projects/portraits/Nairoreel%20Productions2203-17.webp">
@@ -495,6 +516,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="36"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642188/nrr/projects/portraits/Nairoreel%20Productions2173-18.webp">
@@ -502,6 +524,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="37"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642191/nrr/projects/portraits/Nairoreel%20Productions2167-19.webp">
@@ -509,6 +532,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="38"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642193/nrr/projects/portraits/Saturday19thJuly2025Beauty0667-20.webp">
@@ -516,6 +540,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="39"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642195/nrr/projects/portraits/Saturday19thJuly2025Beauty0684-21.webp">
@@ -523,6 +548,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="40"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642197/nrr/projects/portraits/Saturday19thJuly2025Beauty0677-22.webp">
@@ -530,6 +556,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="41"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642199/nrr/projects/portraits/MitchellePhotoshoot1211-23.webp">
@@ -537,6 +564,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="42"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642202/nrr/projects/portraits/MitchellePhotoshoot1272Lighter-24.webp">
@@ -544,6 +572,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="43"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642203/nrr/projects/portraits/MitchellePhotoshoot1225-25.webp">
@@ -551,6 +580,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="44"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642205/nrr/projects/portraits/Nairoreel%20Productions2119-26.webp">
@@ -558,6 +588,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="45"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642207/nrr/projects/portraits/Nairoreel%20Productions2091-27.webp">
@@ -565,6 +596,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="46"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642209/nrr/projects/portraits/Nairoreel%20Productions2140-28.webp">
@@ -572,6 +604,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="47"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642210/nrr/projects/portraits/MitchellePhotoshoot1062-29.webp">
@@ -579,6 +612,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="48"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642212/nrr/projects/portraits/Tracey05-30.webp">
@@ -586,6 +620,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="49"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642214/nrr/projects/portraits/Tracey04-31.webp">
@@ -593,6 +628,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="50"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642215/nrr/projects/portraits/MitchellePhotoshoot0941-32.webp">
@@ -600,6 +636,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="51"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642217/nrr/projects/portraits/MitchellePhotoshoot1188Lighter-33.webp">
@@ -607,6 +644,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="52"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642218/nrr/projects/portraits/MitchellePhotoshoot09211-34.webp">
@@ -614,6 +652,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="53"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642219/nrr/projects/portraits/MitchellePhotoshoot0875-35.webp">
@@ -621,6 +660,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="54"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642222/nrr/projects/portraits/MitchellePhotoshoot0883-36.webp">
@@ -628,6 +668,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="55"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642224/nrr/projects/portraits/MitchellePhotoshoot0882-37.webp">
@@ -635,6 +676,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="56"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781647789/nrr/projects/portraits/Nairoreel%20Productions2009-38.webp">
@@ -642,6 +684,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="57"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781647797/nrr/projects/portraits/Nairoreel%20Productions2035-39.webp">
@@ -649,6 +692,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="58"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781647803/nrr/projects/portraits/Nairoreel%20Productions2028-40.webp">
@@ -656,6 +700,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="59"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781647810/nrr/projects/portraits/Nairoreel%20Productions2006-41.webp">
@@ -663,6 +708,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="60"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781646863/nrr/projects/portraits/Nairoreel%20Productions1986-42.webp">
@@ -670,6 +716,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="61"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781646871/nrr/projects/portraits/Nairoreel%20Productions1999-43.webp">
@@ -677,6 +724,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="62"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781646879/nrr/projects/portraits/Nairoreel%20Productions2062-44.webp">
@@ -684,6 +732,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="63"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781646889/nrr/projects/portraits/Nairoreel%20Productions2044-45.webp">
@@ -691,6 +740,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="64"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781646897/nrr/projects/portraits/Nairoreel%20Productions2064-46.webp">
@@ -698,6 +748,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="65"
+              data-category="photography"
               data-title="Portrait"
               data-desc="Portrait series · Nairoreel Productions"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642244/nrr/projects/portraits/Nairoreel%20Productions2201.webp">
@@ -707,57 +758,65 @@
       <!-- ── Tranzit ── -->
       <figure class="gal-item reveal"
               data-index="66"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645584/nrr/projects/tranzit/tranzit-01-drone-overhead.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645584/nrr/projects/tranzit/tranzit-01-drone-overhead.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="67"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="68"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645585/nrr/projects/tranzit/tranzit-03-drift-railing-approach.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645585/nrr/projects/tranzit/tranzit-03-drift-railing-approach.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal"
               data-index="69"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645587/nrr/projects/tranzit/tranzit-04-cctv-approaching.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645587/nrr/projects/tranzit/tranzit-04-cctv-approaching.webp" alt="Tranzit" width="1990" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="70"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645587/nrr/projects/tranzit/tranzit-05-cctv-clearing.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645587/nrr/projects/tranzit/tranzit-05-cctv-clearing.webp" alt="Tranzit" width="1990" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="71"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645588/nrr/projects/tranzit/tranzit-06-briefcase-timer.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645588/nrr/projects/tranzit/tranzit-06-briefcase-timer.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal"
               data-index="72"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645589/nrr/projects/tranzit/tranzit-07-drift-leftside-mount.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645589/nrr/projects/tranzit/tranzit-07-drift-leftside-mount.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="73"
+              data-category="film"
               data-title="Tranzit"
-              data-desc="Short film · brand kit · Nairobi"
+              data-desc="CGI short film · forest-road scene"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645590/nrr/projects/tranzit/tranzit-08-treeline-tracking.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645590/nrr/projects/tranzit/tranzit-08-treeline-tracking.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
       </figure>
@@ -765,6 +824,7 @@
       <!-- ── Hitpoa ── -->
       <figure class="gal-item reveal" data-delay="2"
               data-index="74"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641758/nrr/projects/hitpoa/hitpoa%20black-01.webp">
@@ -772,6 +832,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="75"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641760/nrr/projects/hitpoa/hitpoa%20black-02.webp">
@@ -779,6 +840,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="76"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641762/nrr/projects/hitpoa/hitpoa%20black-03.webp">
@@ -786,6 +848,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="77"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641768/nrr/projects/hitpoa/hitpoa%20black-04.webp">
@@ -793,6 +856,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="78"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641788/nrr/projects/hitpoa/hitpoa%20black-05.webp">
@@ -800,6 +864,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="79"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641820/nrr/projects/hitpoa/hitpoa%20green-01.webp">
@@ -807,6 +872,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="80"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641863/nrr/projects/hitpoa/hitpoa%20green-02.webp">
@@ -814,6 +880,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="81"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641866/nrr/projects/hitpoa/hitpoa%20green-03.webp">
@@ -821,6 +888,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="82"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641868/nrr/projects/hitpoa/hitpoa%20muted%20gray-01.webp">
@@ -828,6 +896,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="83"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641876/nrr/projects/hitpoa/hitpoa%20muted%20gray-02.webp">
@@ -835,6 +904,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="84"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641878/nrr/projects/hitpoa/hitpoa%20muted%20gray-03.webp">
@@ -842,6 +912,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="85"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641879/nrr/projects/hitpoa/hitpoa%20muted%20gray-04.webp">
@@ -849,6 +920,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="86"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641881/nrr/projects/hitpoa/hitpoa%20pink%20tint-01.webp">
@@ -856,6 +928,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="87"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641884/nrr/projects/hitpoa/hitpoa%20pink%20tint-02.webp">
@@ -863,6 +936,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="88"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641885/nrr/projects/hitpoa/hitpoa%20red-01.webp">
@@ -870,6 +944,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="89"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641887/nrr/projects/hitpoa/hitpoa%20red-02.webp">
@@ -877,6 +952,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="90"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641889/nrr/projects/hitpoa/hitpoa%20red-03.webp">
@@ -884,6 +960,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="91"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641893/nrr/projects/hitpoa/hitpoa%20red-04.webp">
@@ -891,6 +968,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="92"
+              data-category="photography"
               data-title="Hitpoa"
               data-desc="Brand campaign · Hitpoa"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641914/nrr/projects/hitpoa/hitpoa%20red-05.webp">
@@ -900,6 +978,7 @@
       <!-- ── 50th Birthday ── -->
       <figure class="gal-item reveal"
               data-index="93"
+              data-category="photography"
               data-title="50th Birthday"
               data-desc="Event coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781648209/nrr/projects/events/50thbd-01.webp">
@@ -907,6 +986,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="94"
+              data-category="photography"
               data-title="50th Birthday"
               data-desc="Event coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641721/nrr/projects/events/50thbd-02.webp">
@@ -914,6 +994,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="95"
+              data-category="photography"
               data-title="Baby Shower"
               data-desc="Event coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641723/nrr/projects/events/babyshower-01.webp">
@@ -921,6 +1002,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="96"
+              data-category="photography"
               data-title="Baby Shower"
               data-desc="Event coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641727/nrr/projects/events/babyshower-02.webp">
@@ -928,6 +1010,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="97"
+              data-category="photography"
               data-title="Baby Shower"
               data-desc="Event coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641731/nrr/projects/events/babyshower-03.webp">
@@ -935,6 +1018,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="98"
+              data-category="photography"
               data-title="Family Portrait"
               data-desc="Portrait session · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641734/nrr/projects/events/familypic-01.webp">
@@ -942,6 +1026,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="99"
+              data-category="photography"
               data-title="Family Portrait"
               data-desc="Portrait session · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641738/nrr/projects/events/familypic-02.webp">
@@ -949,6 +1034,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="100"
+              data-category="photography"
               data-title="Family Portrait"
               data-desc="Portrait session · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641742/nrr/projects/events/familypic-03.webp">
@@ -956,6 +1042,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="101"
+              data-category="photography"
               data-title="Wedding"
               data-desc="Wedding coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641745/nrr/projects/events/wedding-01.webp">
@@ -963,6 +1050,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="102"
+              data-category="photography"
               data-title="Wedding"
               data-desc="Wedding coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641749/nrr/projects/events/wedding-02.webp">
@@ -970,6 +1058,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="103"
+              data-category="photography"
               data-title="Wedding"
               data-desc="Wedding coverage · Nairobi"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641753/nrr/projects/events/wedding-03.webp">
@@ -979,6 +1068,7 @@
       <!-- ── Nile Basin ── -->
       <figure class="gal-item reveal" data-delay="2"
               data-index="104"
+              data-category="photography"
               data-title="Nile Basin"
               data-desc="Documentary · Nile Basin Initiative"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642025/nrr/projects/nile-basin/nile%20basin-01.webp">
@@ -986,6 +1076,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="105"
+              data-category="photography"
               data-title="Nile Basin"
               data-desc="Documentary · Nile Basin Initiative"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642027/nrr/projects/nile-basin/nile%20basin-02.webp">
@@ -993,6 +1084,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="106"
+              data-category="photography"
               data-title="Nile Basin"
               data-desc="Documentary · Nile Basin Initiative"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642029/nrr/projects/nile-basin/nile%20basin-03.webp">
@@ -1000,6 +1092,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="107"
+              data-category="photography"
               data-title="Nile Basin"
               data-desc="Documentary · Nile Basin Initiative"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642031/nrr/projects/nile-basin/nile%20basin-04.webp">
@@ -1007,6 +1100,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="108"
+              data-category="photography"
               data-title="Nile Basin"
               data-desc="Documentary · Nile Basin Initiative"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642032/nrr/projects/nile-basin/nile%20basin-05.webp">
@@ -1014,6 +1108,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="109"
+              data-category="photography"
               data-title="Nile Basin"
               data-desc="Documentary · Nile Basin Initiative"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642034/nrr/projects/nile-basin/nile%20basin-06.webp">
@@ -1023,6 +1118,7 @@
       <!-- ── Wohoro ── -->
       <figure class="gal-item reveal" data-delay="2"
               data-index="110"
+              data-category="photography"
               data-title="Wohoro"
               data-desc="Documentary portrait series"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781642035/nrr/projects/photography-misc/wohoro_01.webp">
@@ -1032,6 +1128,7 @@
       <!-- ── EKUC ── -->
       <figure class="gal-item reveal"
               data-index="111"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641709/nrr/projects/ekuc/ekuc-01.webp">
@@ -1039,6 +1136,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="112"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641710/nrr/projects/ekuc/ekuc-02.webp">
@@ -1046,6 +1144,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="113"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641711/nrr/projects/ekuc/ekuc-03.webp">
@@ -1053,6 +1152,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="114"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641712/nrr/projects/ekuc/ekuc-04.webp">
@@ -1060,6 +1160,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="1"
               data-index="115"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641713/nrr/projects/ekuc/ekuc-05.webp">
@@ -1067,6 +1168,7 @@
       </figure>
       <figure class="gal-item reveal" data-delay="2"
               data-index="116"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641714/nrr/projects/ekuc/ekuc-06.webp">
@@ -1074,6 +1176,7 @@
       </figure>
       <figure class="gal-item reveal"
               data-index="117"
+              data-category="3d"
               data-title="EKUC"
               data-desc="Motion &amp; brand identity"
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641715/nrr/projects/ekuc/ekuc-07.webp">
