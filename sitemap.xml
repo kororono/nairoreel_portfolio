@@ -2,93 +2,93 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nairoreelproductions.com/</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/our-work</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/us</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/process</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/contact</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/inquiry</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/photography</loc>
-    <lastmod>2025-10-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nairoreelproductions.com/projects/tranzit</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://nairoreelproductions.com/projects/kfc</loc>
-    <lastmod>2024-12-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/projects/reload</loc>
-    <lastmod>2025-04-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/projects/ekuc</loc>
-    <lastmod>2025-03-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/projects/raila-tribute</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nairoreelproductions.com/projects/car-pp</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nairoreelproductions.com/projects/nairobi-fashion-week</loc>
-    <lastmod>2024-12-01</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nairoreelproductions.com/projects/costa</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nairoreelproductions.com/projects/nairobi-fashion-week</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Production kit — private/targeted page, noindex set on the page itself -->
   <url>
     <loc>https://nairoreelproductions.com/tranzit</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>never</changefreq>
     <priority>0.3</priority>
   </url>

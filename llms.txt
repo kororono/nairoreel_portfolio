@@ -20,11 +20,12 @@ Nairobi, Kenya — serving clients in Kenya, East Africa, and internationally.
 - Photography — Product, fashion, and event photography in Nairobi, Kenya
 
 ## Featured Projects
+- Tranzit: CGI short film about the delivery of a mysterious case — a fully 3D rendered forest-road chase (2025)
 - KFC: 3D animated product visualization of the KFC drive-thru experience (2024)
 - Reload KE: 3D product animation for Reload isotonic drink (April 2025)
 - EKUC Pathfinder Camporee: 3D animated promotional video for a youth event (March 2025)
 - Raila Odinga Tribute: 3D motion graphics tribute to Former Prime Minister Raila Amollo Odinga (October 2025)
-- Car Passion Project: 3D animated short film with cinematic car visuals (Coming Soon)
+- Costa Archive: Cloth simulation and 3D animation for a digital fashion showcase (2025)
 - Nairobi Fashion Week: Photography series capturing East African fashion and designers (2024)
 
 ## Process
@@ -40,10 +41,10 @@ Nairobi, Kenya — serving clients in Kenya, East Africa, and internationally.
 
 ## Links
 - Homepage: https://nairoreelproductions.com
-- Portfolio: https://nairoreelproductions.com/our-work.html
-- About Us: https://nairoreelproductions.com/us.html
-- Our Process: https://nairoreelproductions.com/process.html
-- Photography: https://nairoreelproductions.com/photography.html
-- Contact: https://nairoreelproductions.com/contact.html
-- Inquiries: https://nairoreelproductions.com/inquiry.html
+- Portfolio: https://nairoreelproductions.com/our-work
+- About Us: https://nairoreelproductions.com/us
+- Our Process: https://nairoreelproductions.com/process
+- Photography: https://nairoreelproductions.com/photography
+- Contact: https://nairoreelproductions.com/contact
+- Inquiries: https://nairoreelproductions.com/inquiry
 - Detailed info: https://nairoreelproductions.com/llms-full.txt

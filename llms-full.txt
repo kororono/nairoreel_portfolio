@@ -40,41 +40,47 @@ Professional product and fashion photography in Nairobi, Kenya. We capture the e
 
 ## Projects
 
+### Tranzit — CGI Short Film (2025)
+Client: Nairoreel Productions
+Services: CGI, VFX, Sound Design, Colour, Post
+A short, fast-paced CGI film about the delivery of a mysterious case — and the clock counting down to get it there. Every frame is fully computer-generated: the vehicle, the forest road, the environment fog and the light cutting through it, modelled and rendered to hold up at cinema scale.
+URL: https://nairoreelproductions.com/projects/tranzit
+
 ### KFC — 3D Product Animation (2024)
 Client: Passion Project for KFC
 Services: 3D Animation, Post-Production
 This 3D animated commercial showcases the KFC drive-thru experience through immersive environments and dynamic product visualization.
-URL: https://nairoreelproductions.com/projects/kfc.html
+URL: https://nairoreelproductions.com/projects/kfc
 
 ### Reload KE — 3D Product Animation (April 2025)
 Client: Reload KE
 Services: 3D Animation, Product Visualization
 This 3D product animation was created as a showcase project to demonstrate capabilities to the RELOAD brand. Through dynamic visualization and realistic rendering techniques, the isotonic drink was brought to life in an immersive animated environment.
-URL: https://nairoreelproductions.com/projects/reload.html
+URL: https://nairoreelproductions.com/projects/reload
 
 ### EKUC Pathfinder Camporee — 3D Animation (March 2025)
 Client: East Kenya Union Conference
 Services: 3D Animation, Event Promotion
 This project implemented 3D animation to promote Pathfinder camporees. The goal was to promote the event and encourage the target audience of the EKUC youth department to register and participate.
-URL: https://nairoreelproductions.com/projects/ekuc.html
+URL: https://nairoreelproductions.com/projects/ekuc
 
 ### Raila Odinga Tribute — 3D Motion Graphics (October 2025)
 Client: Passion Project
 Services: 3D Animation, Motion Graphics
 A 3D animated tribute to Former Prime Minister, The Right Honourable Raila Amollo Odinga — beloved leader who fought for the rights of Kenyan citizens.
-URL: https://nairoreelproductions.com/projects/raila-tribute.html
+URL: https://nairoreelproductions.com/projects/raila-tribute
 
-### Car Passion Project — 3D Animated Short Film (Coming Soon)
-Client: Passion Project
-Services: 3D Animation, Short Film
-A short film featuring cool car shots created through 3D animation — a personal passion project pushing the boundaries of cinematic 3D visualization.
-URL: https://nairoreelproductions.com/projects/car-pp.html
+### Costa Archive — Digital Fashion Showcase (2025)
+Client: Costa Archive
+Services: Cloth Simulation, 3D Animation, Post Production
+A digital fashion showcase using cloth simulation and 3D animation to bring the Costa Archive brand to life.
+URL: https://nairoreelproductions.com/projects/costa
 
 ### Nairobi Fashion Week — Photography (2024)
 Client: Nairobi Fashion Week
 Services: Event Photography
 Capturing the vibrant energy and creativity of Nairobi Fashion Week, this photography series showcases the incredible talent of East African designers and models. Through dynamic compositions and careful attention to detail, the intersection of traditional African aesthetics with contemporary fashion was documented, celebrating the region's growing influence in the global fashion industry.
-URL: https://nairoreelproductions.com/projects/nairobi-fashion-week.html
+URL: https://nairoreelproductions.com/projects/nairobi-fashion-week
 
 ---
 
@@ -107,21 +113,22 @@ We fine-tune every element to perfection, ensuring the final deliverable exceeds
 - Email: nairoreelproductions@gmail.com
 - Instagram: https://instagram.com/nairoreel.productions
 - Website: https://nairoreelproductions.com
-- Inquiries: https://nairoreelproductions.com/inquiry.html
+- Inquiries: https://nairoreelproductions.com/inquiry
 
 ---
 
 ## All Pages
 - Homepage: https://nairoreelproductions.com
-- Portfolio: https://nairoreelproductions.com/our-work.html
-- About Us: https://nairoreelproductions.com/us.html
-- Our Process: https://nairoreelproductions.com/process.html
-- Photography: https://nairoreelproductions.com/photography.html
-- Contact: https://nairoreelproductions.com/contact.html
-- Inquiries: https://nairoreelproductions.com/inquiry.html
-- KFC Project: https://nairoreelproductions.com/projects/kfc.html
-- Reload Project: https://nairoreelproductions.com/projects/reload.html
-- EKUC Project: https://nairoreelproductions.com/projects/ekuc.html
-- Raila Tribute: https://nairoreelproductions.com/projects/raila-tribute.html
-- Car Project: https://nairoreelproductions.com/projects/car-pp.html
-- Nairobi Fashion Week: https://nairoreelproductions.com/projects/nairobi-fashion-week.html
+- Portfolio: https://nairoreelproductions.com/our-work
+- About Us: https://nairoreelproductions.com/us
+- Our Process: https://nairoreelproductions.com/process
+- Photography: https://nairoreelproductions.com/photography
+- Contact: https://nairoreelproductions.com/contact
+- Inquiries: https://nairoreelproductions.com/inquiry
+- Tranzit Project: https://nairoreelproductions.com/projects/tranzit
+- KFC Project: https://nairoreelproductions.com/projects/kfc
+- Reload Project: https://nairoreelproductions.com/projects/reload
+- EKUC Project: https://nairoreelproductions.com/projects/ekuc
+- Raila Tribute: https://nairoreelproductions.com/projects/raila-tribute
+- Costa Archive: https://nairoreelproductions.com/projects/costa
+- Nairobi Fashion Week: https://nairoreelproductions.com/projects/nairobi-fashion-week
