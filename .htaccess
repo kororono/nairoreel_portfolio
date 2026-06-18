@@ -1,10 +1,18 @@
 RewriteEngine On
+RewriteBase /
 
-# Redirect .html URLs to clean URLs (301 permanent)
+# 1. Redirect /index or /index.html to /home (must be first)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index(\.html)?[\s?] [NC]
+RewriteRule ^index(\.html)?$ /home [R=301,L]
+
+# 2. Redirect other .html URLs to clean URLs (301 permanent)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
-# Internally rewrite clean URLs to .html files
+# 3. Internally serve index.html when /home is requested
+RewriteRule ^home$ index.html [L]
+
+# 4. Internally rewrite other clean URLs to .html files
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
