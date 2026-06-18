@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/atmosphere.css">
     <link rel="stylesheet" href="css/fx.css">
-    <link rel="stylesheet" href="css/our-work.css"> <!-- For gallery styles -->
+    <link rel="stylesheet" href="css/gallery.css">
     <!-- Favicon Setup -->
     <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
@@ -66,51 +66,16 @@
     }
     </script>
     <style>
-        .us-header {
-            height: 60vh;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--card-bg);
-            background-image: url('../assets/about-page/hero/us-hero.webp'); 
-            background-position: center center; 
-            background-size: cover; 
-            background-repeat: no-repeat;
-        }
-
-        .us-header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .us-header h1 {
-            margin-bottom: 1rem;
-            animation: fadeUp 1s ease-out forwards;
-        }
-
-        .us-header p {
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeUp 1s ease-out 0.2s forwards;
-        }
-        /* Team Section - Simplified Cards */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin: 3rem 0;
+            gap: clamp(24px,3vw,48px);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1100px;
+            margin-inline: auto;
         }
-        
-        .team-card {
-            text-align: center;
-        }
-        
+        .team-card { text-align: center; }
         .team-card img {
             width: 100%;
             aspect-ratio: 1/1;
@@ -120,77 +85,24 @@
             border-bottom: 3px solid transparent;
             transition: border-color 0.3s ease;
         }
-
-        /* Per-member image hover border */
         .team-card:nth-child(1):hover img { border-bottom-color: var(--brand-purple); }
         .team-card:nth-child(2):hover img { border-bottom-color: var(--brand-pink); }
         .team-card:nth-child(3):hover img { border-bottom-color: var(--brand-orange); }
-        
-        .team-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .team-card p {
-            font-size: 1rem;
-            margin: 0;
-        }
-
-        /* Per-member brand role colors: Brandon=purple (3D), Bill=pink (Film/Photo), Maria=orange (Comms) */
+        .team-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .team-card p  { font-size: 1rem; margin: 0; }
         .team-card:nth-child(1) p { color: var(--brand-purple); }
         .team-card:nth-child(2) p { color: var(--brand-pink); }
         .team-card:nth-child(3) p { color: var(--brand-orange); }
-        
-        /* Story Section */
-        .story-section {
-            margin: 4rem 0;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .story-section h2 {
-            margin-bottom: 2rem;
-        }
-        
-        .story-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Gallery Section - Using Our Work styles */
-        .gallery-section {
-            padding: 60px 20px;
-        }
-        
-        .gallery-section h2 {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        /* Mobile Responsive */
+        .story-section { margin: 4rem auto; max-width: 900px; }
+        .story-section h2 { margin-bottom: 2rem; }
+        .story-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; }
         @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .team-card h3 {
-                font-size: 1.6rem;
-            }
-            
-            .story-section {
-                padding: 0 20px;
-            }
+            .team-grid { grid-template-columns: 1fr; gap: 40px; }
+            .team-card h3 { font-size: 1.6rem; }
+            .story-section { padding: 0 20px; }
         }
-        
         @media (max-width: 480px) {
-            .team-card img {
-                max-width: 300px;
-                margin: 0 auto 1rem;
-                display: block;
-            }
+            .team-card img { max-width: 300px; margin: 0 auto 1rem; display: block; }
         }
     </style>
 </head>
@@ -227,11 +139,13 @@
     </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="us-header parallax">
-        <div class="us-header-content">
-            <h1>Meet The Team</h1>
-            <p>The creative minds behind Nairoreel Productions</p>
+    <header class="proj-hero">
+        <img class="proj-hero-bg" src="assets/about-page/hero/us-hero.webp" alt="Nairoreel Productions team" decoding="async">
+        <div class="proj-hero-overlay"></div>
+        <div class="proj-hero-content">
+            <p class="proj-category reveal">Nairoreel Productions</p>
+            <h1 class="proj-title reveal" data-delay="1">Meet The Team</h1>
+            <p class="proj-tagline reveal" data-delay="2">The creative minds behind Nairoreel Productions</p>
         </div>
     </header>
 
@@ -274,32 +188,117 @@
 
     <div class="divider"></div>
 
-    <!-- Gallery Section with Our Work styling -->
-    <section class="gallery-section">
+    <section class="work-gallery">
+        <div class="photo-gallery">
+            <!-- GAL:START -->
+      <section class="gal-section-header">
+        <p class="gal-eyebrow">Gallery</p>
         <h2>Our Journey</h2>
-        
-        <div class="gallery-grid">
-            <!-- Gallery items will be populated by JavaScript -->
+      </section>
+      <div class="gal-grid" id="gal-grid">
+
+      <!-- ── Our Journey ── -->
+      <figure class="gal-item reveal"
+              data-index="0"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783978/nrr/projects/journey/image-1.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783978/nrr/projects/journey/image-1.webp" alt="Our Journey" width="3060" height="4080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="1"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783980/nrr/projects/journey/image-2.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783980/nrr/projects/journey/image-2.webp" alt="Our Journey" width="4080" height="3060" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="2"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783981/nrr/projects/journey/image-3.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783981/nrr/projects/journey/image-3.webp" alt="Our Journey" width="3060" height="4080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal"
+              data-index="3"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783982/nrr/projects/journey/image-4.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783982/nrr/projects/journey/image-4.webp" alt="Our Journey" width="4080" height="3060" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="4"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783983/nrr/projects/journey/image-5.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783983/nrr/projects/journey/image-5.webp" alt="Our Journey" width="3060" height="4080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="5"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783984/nrr/projects/journey/image-6.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783984/nrr/projects/journey/image-6.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal"
+              data-index="6"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783986/nrr/projects/journey/image-7.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783986/nrr/projects/journey/image-7.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="7"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783988/nrr/projects/journey/image-8.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783988/nrr/projects/journey/image-8.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="8"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783989/nrr/projects/journey/image-9.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783989/nrr/projects/journey/image-9.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal"
+              data-index="9"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783990/nrr/projects/journey/image-10.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783990/nrr/projects/journey/image-10.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="10"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783992/nrr/projects/journey/image-11.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783992/nrr/projects/journey/image-11.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="11"
+              data-category="photography"
+              data-title="Our Journey"
+              data-desc="Behind the scenes · Nairoreel Productions"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783993/nrr/projects/journey/image-12.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783993/nrr/projects/journey/image-12.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
+      </figure>
+
+      </div>
+      <!-- GAL:END -->
         </div>
     </section>
-
-    <!-- Gallery Modal -->
-    <div class="gallery-modal" id="galleryModal">
-        <div class="modal-backdrop"></div>
-        <button class="modal-close" id="modalClose">×</button>
-        <div class="modal-content">
-            <button class="modal-nav modal-prev" id="modalPrev">‹</button>
-            <div class="modal-image-container">
-                <img class="modal-image" id="modalImage" src="" alt="">
-                <div class="modal-info">
-                    <p class="modal-title" id="modalTitle"></p>
-                    <p class="modal-date" id="modalDate"></p>
-                </div>
-            </div>
-            <button class="modal-nav modal-next" id="modalNext">›</button>
-        </div>
-        <div class="modal-counter" id="modalCounter"></div>
-    </div>
 
     <footer>
         <div class="footer-grid">
@@ -340,16 +339,15 @@
     <!-- Scripts -->
     <script src="js/main.js" defer></script>
     <script src="js/fx.js"></script>
-    <script src="js/data/us-gallery.js" defer></script>
     <script src="js/gallery.js" defer></script>
-    <script defer>
-        // Initialize gallery when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Only initialize if gallery data exists
-            if (typeof usGallery !== 'undefined' && usGallery.length > 0) {
-                initGallery(usGallery);
-            }
-        });
+    <script>
+    (function(){
+        var heroBg = document.querySelector('.proj-hero-bg');
+        if (!heroBg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        window.addEventListener('scroll', function () {
+            heroBg.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+        }, { passive: true });
+    })();
     </script>
 </body>
 </html>
