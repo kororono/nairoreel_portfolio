@@ -341,8 +341,14 @@
     .work-hero h1 {
         font-size: 3.6rem;
     }
-    
+
     .section-label {
         font-size: 0.85rem;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card:hover { transform: none; }
+  .work-card:hover img { transform: none; }
+  .gallery-item:hover img { transform: none; }
 }

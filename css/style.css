@@ -1311,3 +1311,13 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-button { opacity: 1; animation: none; }
+  .cta-button:hover { transform: none; }
+  .gallery-item:hover img { transform: none; }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .nav-links a { opacity: 1; transform: none; transition: none; }
+}

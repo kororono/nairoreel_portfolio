@@ -37,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyFilter(filter) {
         // Update button states
         filterButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.filter === filter);
+            const isActive = btn.dataset.filter === filter;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
 
         // Show/hide sections

@@ -276,3 +276,7 @@
     transform: none;
   }
 }
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+  .gal-item:hover img { transform: none; }
+}

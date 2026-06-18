@@ -328,3 +328,9 @@
         transform: translateY(0);
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content { animation: none; }
+  .featured-item:hover img { transform: none; }
+  .hero-content .cta-button:hover { transform: none; }
+}

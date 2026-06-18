@@ -199,6 +199,7 @@
         if (url.origin !== location.origin) return;
       } catch (_) { return; }
       e.preventDefault();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { location.href = href; return; }
       wipeIn(() => { location.href = href; });
     });
 

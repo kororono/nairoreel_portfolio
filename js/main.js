@@ -59,15 +59,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     
     if (!hamburger || !navLinks) return;
-    
+
+    hamburger.setAttribute('role', 'button');
+    hamburger.setAttribute('tabindex', '0');
+    hamburger.setAttribute('aria-label', 'Open navigation menu');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hamburger.click(); }
+    });
+
     // Track menu state in history
     let menuOpen = false;
-    
+
     // Function to open menu
     function openMenu() {
         menuOpen = true;
         navLinks.classList.add('active');
         hamburger.classList.add('active');
+        hamburger.setAttribute('aria-label', 'Close navigation menu');
+        hamburger.setAttribute('aria-expanded', 'true');
         document.body.classList.add('menu-open');
         
         // Push state to history for back button support
@@ -83,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.offsetHeight; // eslint-disable-line no-unused-expressions
         navLinks.classList.remove('active');
         hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        hamburger.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('menu-open');
     }
     
