@@ -187,6 +187,12 @@
 
     pageWipeFns = { wipeIn, wipeOut, preloaderReveal };
 
+    // First-load arrival: trigger from DOMContentLoaded, not pageshow, so slow
+    // external images (Cloudinary) on cold-cache browsers don't stall the reveal.
+    if (!preloaderTakeover && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      whenArrivalReady(() => wipeOut(null, document.body.dataset.page === 'home'));
+    }
+
     // Click: departure wipeIn → navigate when covered.
     document.addEventListener('click', e => {
       const a = e.target.closest('a');
@@ -220,7 +226,8 @@
 
     // Arrival: panels rest covered (CSS), so every page just retreats to reveal.
     // Home retreats left; all other pages retreat right.
-    window.addEventListener('pageshow', () => {
+    window.addEventListener('pageshow', (e) => {
+      if (!e.persisted) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (preloaderTakeover) return;
       const fromRight = document.body.dataset.page === 'home';

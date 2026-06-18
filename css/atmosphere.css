@@ -14,10 +14,14 @@
 }
 
 /* ── Backdrop ─────────────────────────────────────────────────── */
-/* body = pure black to match the wipe panel + critical CSS (kills the arrival
-   flash); the #05030a indigo identity now lives on #atmosphere (above). */
-body {
+/* html = pure black canvas for the transition gap (matches curtain panel).
+   body must be transparent so #atmosphere (z-index:-1) shows through it.
+   Opaque body covers negative-z-index fixed elements on all standard browsers. */
+html {
   background-color: #000000;
+}
+body {
+  background-color: transparent;
 }
 
 /* ── Orbs ─────────────────────────────────────────────────────── */
