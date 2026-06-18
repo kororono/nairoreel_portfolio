@@ -102,23 +102,6 @@
     color: var(--foreground);
 }
 
-/* Per-category brand colors on filter buttons */
-.filter-btn[data-filter="film"]:hover { border-color: var(--brand-pink); }
-.filter-btn[data-filter="3d"]:hover { border-color: var(--brand-purple); }
-.filter-btn[data-filter="photography"]:hover { border-color: var(--brand-orange); }
-
-.filter-btn[data-filter="film"].active {
-    background: var(--brand-pink);
-    border-color: var(--brand-pink);
-}
-.filter-btn[data-filter="3d"].active {
-    background: var(--brand-purple);
-    border-color: var(--brand-purple);
-}
-.filter-btn[data-filter="photography"].active {
-    background: var(--brand-orange);
-    border-color: var(--brand-orange);
-}
 
 /* ========================================
    4. PROJECT CARDS (Film & 3D)
@@ -257,8 +240,8 @@
     text-align: center;
 }
 
-/* Brand tint on section labels within photography */
-[data-category="photography"] .section-label { color: var(--brand-orange); opacity: 0.7; }
+/* Section labels use accent red across all categories */
+.section-label { color: var(--accent); opacity: 0.7; }
 
 /* Photography Gallery Grid */
 .photo-gallery {
