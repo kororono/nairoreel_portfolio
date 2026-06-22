@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -28,6 +28,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Nairoreel" />
     <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+    <link rel="preload" as="image" href="assets/home/home-hero-poster.png" fetchpriority="high">
 
     <!-- Stamp class before first paint so preloader is never rendered on return visits -->
     <script>if(sessionStorage.getItem('nairoreelPreloaderSeen')==='true')document.documentElement.classList.add('nrr-pl-seen');</script>
@@ -332,8 +333,8 @@
     </footer>
     
     <!-- Main Scripts - hamburger menu and other functionality -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
     <!-- FX boot: atmosphere, cursor, reveals, wipe, preloader, ticker, nav glass -->
-    <script src="js/fx.js"></script>
+    <script src="js/fx.js" defer></script>
 </body>
 </html>
