@@ -1,16 +1,21 @@
 RewriteEngine On
 RewriteBase /
 
-# 1. Redirect /index or /index.html to /home (must be first)
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index(\.html)?[\s?] [NC]
-RewriteRule ^index(\.html)?$ /home [R=301,L]
+# 0. Redirect www → non-www
+RewriteCond %{HTTP_HOST} ^www\.nairoreelproductions\.com$ [NC]
+RewriteRule ^ https://nairoreelproductions.com%{REQUEST_URI} [R=301,L]
 
-# 2. Redirect other .html URLs to clean URLs (301 permanent)
+# 1. Redirect /index or /index.html to / (canonical root)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index(\.html)?[\s?] [NC]
+RewriteRule ^index(\.html)?$ / [R=301,L]
+
+# 2. Redirect /home to / (canonical root)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /home[\s?] [NC]
+RewriteRule ^home$ / [R=301,L]
+
+# 3. Redirect other .html URLs to clean URLs (301 permanent)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
-
-# 3. Internally serve index.html when /home is requested
-RewriteRule ^home$ index.html [L]
 
 # 4. Internally rewrite other clean URLs to .html files
 RewriteCond %{REQUEST_FILENAME} !-d

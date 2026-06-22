@@ -1,0 +1,386 @@
+{
+  "summary": {
+    "health_score": 57,
+    "business_type": "Creative Studio / Visual Production Agency — Nairobi, Kenya",
+    "audit_date": "2026-06-22",
+    "pages_crawled": 14,
+    "top_findings": [
+      "Canonical tags on 13 of 14 pages reference .html URLs while server serves clean URLs — PageRank consolidation broken site-wide",
+      "www variant serves 200 OK instead of redirecting to non-www — split canonical origin, crawl budget divided",
+      "Thin content on key pages: /us (174 words), /projects/nairobi-fashion-week (122 words), homepage (321 words)",
+      "No Google Business Profile — invisible in local map pack for 'video production Nairobi' queries",
+      "No YouTube presence — YouTube correlation with AI citation is 0.737, the highest known GEO signal; studio makes video but has no YouTube channel"
+    ],
+    "quick_wins": [
+      "Fix canonical tags + og:url + JSON-LD URLs in one template pass (30 min) — highest ROI technical fix",
+      "Add www → non-www redirect (3 lines .htaccess, 15 min) — stops crawl budget split",
+      "Upload YouTube showreel (30 min) — unlocks highest-correlation AI citation signal",
+      "Claim Google Business Profile (1 hour) — unlocks local map pack visibility",
+      "Submit Clutch.co listing (30 min) — free DA 70+ backlink, indexed within days"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 61,
+      "what_works": [
+        "LiteSpeed server with HTTP/3 (QUIC) and Brotli compression",
+        "Single-hop 301 for .html → clean URL redirects",
+        "HTTPS enforced, no mixed content",
+        "All 14 public pages return 200 OK",
+        "robots.txt valid — correctly disallows /_lab/ and template files",
+        "Sitemap declared in robots.txt",
+        "Complete favicon set",
+        "Mobile viewport meta on all pages"
+      ],
+      "findings": [
+        {
+          "title": "Canonical tags reference .html extension URLs site-wide",
+          "severity": "Critical",
+          "description": "13 of 14 pages have canonical tags pointing to .html extension URLs (e.g., /our-work.html) while the live server resolves clean URLs (/our-work). The .html URL 301-redirects to clean URL, meaning the page Google is told is canonical returns a redirect — breaking PageRank consolidation.",
+          "recommendation": "Update all canonical <link> tags to clean URLs. E.g.: <link rel=\"canonical\" href=\"https://nairoreelproductions.com/our-work\">"
+        },
+        {
+          "title": "JSON-LD and og:url fields reference .html extension URLs",
+          "severity": "Critical",
+          "description": "All non-home JSON-LD 'url' fields and og:url meta tags reference .html extension paths. Schema entities are associated with redirect URLs rather than canonical URLs.",
+          "recommendation": "Update all JSON-LD 'url' fields and og:url values to clean URLs in the same pass as canonical tag fixes."
+        },
+        {
+          "title": "www variant serves 200 OK instead of redirecting to non-www",
+          "severity": "High",
+          "description": "https://www.nairoreelproductions.com/ returns 200 OK with the same content as the non-www version. Two canonical origins exist — crawl budget and backlinks are split.",
+          "recommendation": "Add as first rule in .htaccess: RewriteCond %{HTTP_HOST} ^www\\.nairoreelproductions\\.com [NC] / RewriteRule ^ https://nairoreelproductions.com%{REQUEST_URI} [R=301,L]"
+        },
+        {
+          "title": "/index.html redirects to /home instead of /",
+          "severity": "High",
+          "description": "/home is an indexable duplicate of / with no canonical pointing to /. Any link to /home does not consolidate with /.",
+          "recommendation": "Change .htaccess Rule 1 to redirect /index.html → / directly. Remove /home rewrite rule."
+        },
+        {
+          "title": "No security headers",
+          "severity": "High",
+          "description": "No Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, or Referrer-Policy response headers. HSTS absence means HTTP connections are possible before redirect; no X-Frame-Options means clickjacking risk.",
+          "recommendation": "Add 4 Header always set directives to .htaccess."
+        },
+        {
+          "title": "No IndexNow implementation",
+          "severity": "High",
+          "description": "/indexnow.txt returns 404. Bing and Yandex discover updates only on crawl schedule.",
+          "recommendation": "Generate GUID key, place key file in webroot, submit to Bing Webmaster Tools."
+        },
+        {
+          "title": "Hero video poster has no preload hint",
+          "severity": "High",
+          "description": "Homepage <video poster> is the LCP candidate on initial load. No <link rel='preload'> in <head> — browser discovers it late.",
+          "recommendation": "Add <link rel='preload' as='image' href='assets/home/home-hero-poster.png' fetchpriority='high'> to <head>."
+        },
+        {
+          "title": "Noindex page included in sitemap",
+          "severity": "Medium",
+          "description": "/tranzit (private production kit) has noindex,nofollow but is listed in sitemap.xml. Conflicting signals.",
+          "recommendation": "Remove /tranzit entry from sitemap.xml."
+        },
+        {
+          "title": "All sitemap lastmod dates are identical",
+          "severity": "Medium",
+          "description": "All 15 URLs share <lastmod>2026-06-18</lastmod>. Google deprioritises sites where lastmod values are consistently equal.",
+          "recommendation": "Set per-page lastmod to actual file modification date using git log dates or filesystem mtimes."
+        },
+        {
+          "title": "No preconnect hints for Cloudinary and Wistia",
+          "severity": "Medium",
+          "description": "No <link rel='preconnect'> for res.cloudinary.com or fast.wistia.com. First connection adds 100–300ms on mobile.",
+          "recommendation": "Add preconnect links to <head> of all project pages and our-work."
+        },
+        {
+          "title": "main.js and fx.js lack defer attribute",
+          "severity": "Medium",
+          "description": "Scripts block HTML parsing even at end of body without defer.",
+          "recommendation": "Add defer to both script tags on all pages. Verify execution order preserved."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality (E-E-A-T)",
+      "score": 48,
+      "what_works": [
+        "Named team members with job titles",
+        "Organization schema with address and areaServed",
+        "Client portfolio demonstrates real-world work (KFC, NFW, EKUC)",
+        "EKUC testimonial on /process page",
+        "All images have alt text",
+        "Tranzit project page has genuine craft-specific copy"
+      ],
+      "findings": [
+        {
+          "title": "/us page is 174 words — critically thin",
+          "severity": "Critical",
+          "description": "The About page is the site's biggest E-E-A-T liability. Three team members named with titles but no prose bios. 'Our Story' is 68 words of generic language. 'Our Journey' timeline produces no readable text for crawlers.",
+          "recommendation": "Expand to 600–800 words. 100–150 word bio per team member (tools, skills, brands, philosophy). Rewrite 'Our Story' with specifics: founding year, first client, milestones."
+        },
+        {
+          "title": "/projects/nairobi-fashion-week is 122 words — critically thin",
+          "severity": "Critical",
+          "description": "Two sentences for a prestige event photography project. Zero context about the event, designers, images delivered, technique, or client brief.",
+          "recommendation": "Expand to 400+ words: client brief, creative approach, technical execution, results/outcome."
+        },
+        {
+          "title": "Homepage body copy is 321 words",
+          "severity": "High",
+          "description": "'Featured Work' section is 6 H3 labels with zero descriptive copy. 'What We Do' is three one-sentence bullets. Google cannot assess expertise from this content.",
+          "recommendation": "Add 2–3 sentences per service bullet. Add a studio-intro paragraph after the hero. Target 500+ words."
+        },
+        {
+          "title": "No third-party authority signals",
+          "severity": "High",
+          "description": "No press mentions, no awards, no client logo wall, no external links referencing the studio's work. Authoritativeness is almost entirely undemonstrated.",
+          "recommendation": "Claim Clutch.co listing, pursue KFC/NFW/EKUC backlinks, build Google Business Profile."
+        },
+        {
+          "title": "Schema email uses Gmail instead of domain email",
+          "severity": "High",
+          "description": "Schema has nairoreelproductions@gmail.com; footer and contact page show hello@nairoreelproductions.com. Inconsistency undermines trust signals.",
+          "recommendation": "Update schema 'email' field to hello@nairoreelproductions.com."
+        },
+        {
+          "title": "No phone number or physical address on site",
+          "severity": "Medium",
+          "description": "Local service business for 'video production Nairobi' queries needs NAP (Name, Address, Phone) consistency. No phone number appears anywhere on the site.",
+          "recommendation": "Add phone number to footer, contact page, schema, and Google Business Profile."
+        },
+        {
+          "title": "/us meta description is 163 chars — over 160-char ceiling",
+          "severity": "Medium",
+          "description": "Google will truncate the meta description in SERPs.",
+          "recommendation": "Trim to under 160 characters."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 62,
+      "what_works": [
+        "Schema present on all pages (contrary to initial assessment)",
+        "@id anchor system correctly used for graph linking",
+        "Homepage has ProfessionalService + Organization + WebSite @graph",
+        "Project pages have CreativeWork schema",
+        "areaServed, hasOfferCatalog, knowsAbout on Organization — solid local SEO foundation"
+      ],
+      "findings": [
+        {
+          "title": "No VideoObject schema on video project pages",
+          "severity": "High",
+          "description": "Wistia-embedded videos on Tranzit and KFC pages have no VideoObject schema. This is the highest-ROI missing schema type for a video production studio.",
+          "recommendation": "Add VideoObject JSON-LD to Tranzit and KFC pages. Ready-to-paste code in findings/schema.md."
+        },
+        {
+          "title": "No BreadcrumbList on project pages",
+          "severity": "High",
+          "description": "No breadcrumb schema on any of 7 project pages. Immediate SERP appearance improvement available.",
+          "recommendation": "Add BreadcrumbList to all project pages. Ready-to-paste code in findings/schema.md."
+        },
+        {
+          "title": "No FAQPage schema site-wide",
+          "severity": "High",
+          "description": "FAQPage is the most direct trigger for Google AI Overview placement for service queries. Zero FAQ schema exists anywhere on the site.",
+          "recommendation": "Add FAQPage with 3–5 Q&As to homepage and /process. Ready-to-paste code in findings/schema.md."
+        },
+        {
+          "title": "logo and Person.image are bare URL strings, not ImageObject",
+          "severity": "High",
+          "description": "Google's Rich Results validator requires ImageObject type for logo and person images. Bare URL strings will fail validation.",
+          "recommendation": "Wrap in {\"@type\":\"ImageObject\",\"url\":\"...\"}."
+        },
+        {
+          "title": "dateCreated uses year-only string instead of ISO 8601",
+          "severity": "Medium",
+          "description": "Project schemas have dateCreated: '2024' — not valid ISO 8601.",
+          "recommendation": "Update to '2024-01-01' minimum (or specific date if known)."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 65,
+      "what_works": [
+        "LiteSpeed HTTP/3 + Brotli — strong server baseline",
+        "All images are WebP via Cloudinary f_auto,q_auto",
+        "Static HTML — no SSR latency or hydration delay",
+        "Lightbox loads w_1600 (not w_2400) — good bandwidth decision"
+      ],
+      "findings": [
+        {
+          "title": "Hero video poster has no preload hint (LCP impact)",
+          "severity": "High",
+          "description": "Homepage LCP candidate (video poster PNG) is discovered late — no preload in <head>. On mobile this moves LCP from Good to Needs Improvement range.",
+          "recommendation": "Add <link rel='preload' as='image' href='assets/home/home-hero-poster.png' fetchpriority='high'> to <head>."
+        },
+        {
+          "title": "No preconnect for Cloudinary or Wistia",
+          "severity": "Medium",
+          "description": "100–300ms cold connection penalty on project pages with many Cloudinary images.",
+          "recommendation": "Add <link rel='preconnect' href='https://res.cloudinary.com'> to project page heads."
+        },
+        {
+          "title": "main.js and fx.js not deferred",
+          "severity": "Medium",
+          "description": "Scripts block main thread during parse even at end of body without defer.",
+          "recommendation": "Add defer attribute to both."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO)",
+      "score": 62,
+      "what_works": [
+        "llms.txt present and well-formed with citable brand identity sentences",
+        "llms-full.txt present with paragraph-level project descriptions",
+        "All AI crawlers allowed by robots.txt",
+        "Content is static HTML — fully readable without JS execution",
+        "Sitemap current and complete"
+      ],
+      "findings": [
+        {
+          "title": "No YouTube presence — highest-correlation GEO signal unused",
+          "severity": "Critical",
+          "description": "YouTube mention correlation with AI citation is 0.737 — the strongest known GEO signal. A video production studio has no YouTube channel. ChatGPT, Perplexity, and Google AI Overviews all weight YouTube entity signals heavily.",
+          "recommendation": "Upload existing production showreel. Title: 'Nairoreel Productions — 3D Animation & VFX Studio Nairobi Kenya Showreel 2025'. Add YouTube URL to schema sameAs and llms.txt."
+        },
+        {
+          "title": "No FAQPage schema — primary AI Overview trigger missing",
+          "severity": "High",
+          "description": "FAQPage schema is the most direct trigger for Google AI Overview placement for service queries. None exists on the site.",
+          "recommendation": "Add FAQPage with 3–5 Q&As targeting 'what services', 'where based', 'how long', 'cost'. Ready-to-paste code in findings/schema.md."
+        },
+        {
+          "title": "No LinkedIn Company Page — Bing Copilot entity gap",
+          "severity": "High",
+          "description": "LinkedIn is Bing Copilot's primary entity confidence signal. The studio is not linked anywhere from LinkedIn.",
+          "recommendation": "Create LinkedIn Company Page. Add URL to schema sameAs."
+        },
+        {
+          "title": "Email inconsistency in llms.txt and schema",
+          "severity": "Medium",
+          "description": "nairoreelproductions@gmail.com in llms.txt and schema; hello@nairoreelproductions.com in footer. AI models surface whichever appears most frequently.",
+          "recommendation": "Update llms.txt, llms-full.txt, and schema to use hello@nairoreelproductions.com."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 72,
+      "what_works": [
+        "All images use WebP format",
+        "All sampled images have populated alt text",
+        "Cloudinary f_auto,q_auto for format and quality optimization",
+        "Lightbox hi-res at w_1600 (not w_2400) — good bandwidth decision",
+        "fetchpriority='high' on project hero images (added in Lighthouse pass)"
+      ],
+      "findings": [
+        {
+          "title": "No og:image:alt on any page",
+          "severity": "Low",
+          "description": "og:image is specified on pages but no og:image:alt meta tag. Accessibility requirement for social cards.",
+          "recommendation": "Add <meta property='og:image:alt' content='[descriptive alt]'> alongside each og:image."
+        },
+        {
+          "title": "No preconnect for res.cloudinary.com",
+          "severity": "Medium",
+          "description": "Cold connection penalty on pages with Cloudinary images.",
+          "recommendation": "Add <link rel='preconnect' href='https://res.cloudinary.com'> to project page heads."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Technical Fixes",
+        "timeframe": "Week 1 — ~70 minutes total",
+        "items": [
+          "Redirect www → non-www (3 lines .htaccess)",
+          "Fix /index.html redirect to / not /home",
+          "Fix ALL canonical tags to clean URLs (13 pages)",
+          "Fix ALL og:url and JSON-LD url fields to clean URLs (same pass)",
+          "Remove /tranzit from sitemap.xml",
+          "Fix schema email Gmail → domain email",
+          "Fix /us meta description to under 160 chars"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Technical Wins",
+        "timeframe": "Weeks 1–2",
+        "items": [
+          "Add security headers to .htaccess",
+          "Add hero poster preload hint to homepage <head>",
+          "Add defer to main.js and fx.js on all pages",
+          "Add preconnect hints for Cloudinary + Wistia on project pages",
+          "Implement IndexNow",
+          "Fix sitemap lastmod to real per-page dates"
+        ]
+      },
+      {
+        "name": "Phase 3: Schema Enrichment",
+        "timeframe": "Week 2",
+        "items": [
+          "Add VideoObject schema to Tranzit + KFC pages",
+          "Add BreadcrumbList to all 7 project pages",
+          "Fix logo and Person.image to ImageObject",
+          "Add FAQPage schema to homepage + /process",
+          "Add HowTo schema to /process",
+          "Fix dateCreated to ISO 8601 on all project schemas",
+          "Add SearchAction to WebSite schema"
+        ]
+      },
+      {
+        "name": "Phase 4: Content Expansion",
+        "timeframe": "Month 1–2",
+        "items": [
+          "Rewrite /us page to 600–800 words with real team bios and founding story",
+          "Expand all 7 project pages to 400+ words (brief + approach + execution + outcome)",
+          "Fix email inconsistency in llms.txt and llms-full.txt",
+          "Rewrite /us body to open with brand name (AI citability fix)",
+          "Add 'video production company Nairobi' keyword to homepage body copy"
+        ]
+      },
+      {
+        "name": "Phase 5: Visibility & Authority Building",
+        "timeframe": "Month 2–3",
+        "items": [
+          "Claim and verify Google Business Profile",
+          "Upload production showreel to YouTube + add to schema sameAs",
+          "Create LinkedIn Company Page + add to schema sameAs",
+          "Submit Clutch.co agency listing (free, DA 70+)",
+          "Add bio links on Vimeo + Behance",
+          "Email EKUC for production credit link",
+          "Contact KFC Kenya for vendor mention/credit",
+          "Register with Kenya Film Commission",
+          "Add dedicated service landing pages (/services/3d-animation etc.)"
+        ]
+      },
+      {
+        "name": "Phase 6: Monitoring & Ongoing",
+        "timeframe": "Month 3+",
+        "items": [
+          "Connect Google Search Console",
+          "Set up GA4 organic traffic tracking",
+          "Capture SEO drift baseline after Phase 1+2 fixes",
+          "Publish blog post: 'How much does 3D animation cost in Kenya'",
+          "Publish blog post: 'Behind the scenes: Tranzit CGI short film'",
+          "Run quarterly re-audit and update action plan"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  },
+  "score_projection": {
+    "after_phase_1_2": "68–72/100",
+    "after_phase_3_4": "78–82/100",
+    "after_phase_5": "85+/100"
+  }
+}

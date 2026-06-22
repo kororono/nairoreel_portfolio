@@ -85,11 +85,4 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Production kit — private/targeted page, noindex set on the page itself -->
-  <url>
-    <loc>https://nairoreelproductions.com/tranzit</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.3</priority>
-  </url>
 </urlset>
