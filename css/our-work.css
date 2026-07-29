@@ -127,7 +127,10 @@
    so the lone card stays a standard tile instead of stretching to a full-width
    banner like the multi-card 3D grid does. */
 [data-category="film"] .projects-grid {
-    grid-template-columns: minmax(350px, 460px);
+    /* min(350px, 100%) — a bare 350px minimum outgrows the container on narrow
+       phones (this rule out-specifies the 1fr mobile override), pushing the card
+       past the right edge. */
+    grid-template-columns: minmax(min(350px, 100%), 460px);
 }
 
 /* Work card styling - reuse home page card style */

@@ -167,3 +167,85 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+/* ── Contact page: WhatsApp link ──────────────────────────────────
+   The number is never in the served HTML. It ships base64-encoded and
+   reversed on data-x and is assembled into a real wa.me link here, so
+   address harvesters scraping raw markup find nothing to take.        */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.wa-link[data-x]').forEach(btn => {
+        let num;
+        try {
+            num = atob(btn.dataset.x).split('').reverse().join('');
+        } catch (err) {
+            return;   // malformed payload — leave the inert button, noscript covers it
+        }
+        if (!/^\d{7,15}$/.test(num)) return;
+
+        const a = document.createElement('a');
+        a.className = btn.className;
+        a.href = 'https://wa.me/' + num +
+                 '?text=' + encodeURIComponent("Hi Nairoreel, I'd like to talk about a project.");
+        a.target = '_blank';
+        a.rel = 'nofollow noopener';
+        a.textContent = btn.textContent;
+        btn.replaceWith(a);
+    });
+});
+
+/* ── Contact page: inquiry form ───────────────────────────────────
+   Posts to a Google Apps Script web app (see scripts/README-inquiry-form.md).
+   FormData rather than JSON: it sends as multipart/form-data, which is a
+   CORS-simple request, so Apps Script never sees a preflight it can't answer. */
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('inquiry-form');
+    if (!form) return;
+
+    const status   = document.getElementById('inq-status');
+    const submit   = form.querySelector('button[type="submit"]');
+    const stamp    = document.getElementById('inq-t');
+    const endpoint = form.dataset.endpoint;
+
+    // Render time — the backend rejects anything submitted within 3s of this.
+    if (stamp) stamp.value = String(Date.now());
+
+    const fail = msg => {
+        status.textContent = msg;
+        status.classList.add('is-error');
+        submit.disabled = false;
+        submit.textContent = 'Send Inquiry';
+    };
+
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+
+        if (!endpoint) {
+            fail('The form is not connected yet. Please email hello@nairoreelproductions.com.');
+            return;
+        }
+
+        status.textContent = '';
+        status.classList.remove('is-error');
+        submit.disabled = true;
+        submit.textContent = 'Sending…';
+
+        try {
+            const res  = await fetch(endpoint, { method: 'POST', body: new FormData(form) });
+            const data = await res.json();
+            if (!data.ok) throw new Error(data.error || 'Submission failed.');
+
+            const done = document.createElement('div');
+            done.className = 'inq-done';
+            done.innerHTML =
+                '<h3>Thanks — that\'s with us.</h3>' +
+                '<p>We read every inquiry ourselves and reply within two working days. ' +
+                'If it\'s urgent, WhatsApp us and we\'ll pick it up faster.</p>';
+            form.replaceWith(done);
+            done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        } catch (err) {
+            fail('Something went wrong sending that. Please email hello@nairoreelproductions.com instead.');
+        }
+    });
+});

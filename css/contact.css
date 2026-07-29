@@ -5,43 +5,78 @@ body {
     font-family: "Boska", serif;
 	}
 
-/* Main container with full viewport height */
+/* One shared gutter so every band on the page starts at the same left edge —
+   intro, links column, form and FAQ. Inner elements keep their own reading
+   widths. .faq-section is overridden here (it's 900px on the homepage). */
+.contact-intro,
+.inq-section,
+body .faq-section {
+    max-width: 1320px;
+    margin-inline: auto;
+}
+
+/* ── Intro ──────────────────────────────────────────────────────── */
+.contact-intro {
+    padding: 160px 5vw 0;
+}
+
+.contact-intro h1,
+.inq-section > h2,
+body .faq-section > h2 { max-width: 15ch; }
+
+.contact-intro h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    margin-bottom: 2rem;
+}
+
+.contact-intro p {
+    font-family: var(--body-font);
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 0 1.25rem;
+    max-width: 680px;
+}
+
+/* ── Two-column body: scrolling links + details rail ────────────── */
 .contact-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 40px 40px; /* Extra padding on top for the nav */
+    display: grid;
+    grid-template-columns: 1fr minmax(280px, 380px);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding: 80px 5vw;
 }
 
 /* Container for the large text links */
 .contact-links {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 70vh; /* Take up most of the viewport height but leave space */
+    min-width: 0;
 }
 
 /* Individual contact link styling */
 .contact-link {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
     color: var(--foreground);
     text-decoration: none;
     cursor: pointer;
-    height: 20vh; /* Fixed height for each link */
+    height: clamp(96px, 14vh, 150px);
     transition: color 0.3s ease;
     border-bottom: 1px solid var(--border);
 }
 
-.contact-link:nth-child(3) { border-bottom: none; }
+.contact-link:first-child { border-top: 1px solid var(--border); }
 .contact-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* The main visible text */
 .link-text {
-    font-size: 8vw; /* Responsive font size based on viewport width */
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
     font-weight: 500;
 	  font-family: "Recia", serif;
     font-style: italic;
@@ -69,7 +104,7 @@ body {
 
 /* The scrolling text inside the hover container */
 .scrolling-text {
-    font-size: 8vw;
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
     font-weight: 500;
 	  font-family: "Recia", serif;
     font-style: italic;
@@ -103,25 +138,265 @@ body {
     }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .link-text, .scrolling-text {
-        font-size: 14vw; /* Larger relative size on smaller screens */
-    }
-    
-    .contact-container {
-        padding: 100px 20px 20px;
-    }
+/* ── Details rail ───────────────────────────────────────────────── */
+.contact-rail { font-family: var(--body-font); }
+
+.contact-rail dl {
+    margin: 0;
+    border-top: 1px solid var(--border);
 }
 
-@media (max-width: 480px) {
-    .link-text, .scrolling-text {
-        font-size: 16vw;
+.contact-rail .rail-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.contact-rail dt {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin: 0;
+}
+
+.contact-rail dd {
+    margin: 0;
+    font-size: clamp(14px, 1.3vw, 16px);
+    color: var(--text-color);
+    word-break: break-word;
+}
+
+.contact-rail dd a,
+.contact-rail .wa-link {
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-rail dd a:hover,
+.contact-rail .wa-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* WhatsApp renders as a <button> until js/main.js swaps in the real link —
+   the number is never in the served HTML. Match the surrounding text exactly. */
+.contact-rail .wa-link {
+    font: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.rail-follow {
+    margin-top: 40px;
+}
+
+.rail-follow p {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+}
+
+.rail-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.rail-social a {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.rail-social a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── Inquiry form ───────────────────────────────────────────────── */
+.inq-section {
+    padding: 80px 5vw;
+    scroll-margin-top: 100px;   /* nav clearance for the #inquiry anchor */
+}
+
+/* Form fields don't need the full gutter width to stay readable */
+.inq-form { max-width: 780px; }
+
+.inq-eyebrow {
+    font-family: var(--body-font);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 18px;
+}
+
+.inq-section > h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 16px;
+}
+
+.inq-lede {
+    font-family: var(--body-font);
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 0 40px;
+    max-width: 640px;
+}
+
+.inq-form {
+    display: grid;
+    gap: 28px;
+    font-family: var(--body-font);
+}
+
+.inq-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.inq-field { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+.inq-field label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-secondary);
+}
+
+.inq-field label .req { color: var(--accent); }
+
+.inq-field input,
+.inq-field select,
+.inq-field textarea {
+    font-family: var(--body-font);
+    font-size: 15px;
+    color: var(--foreground);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+    appearance: none;
+}
+
+.inq-field textarea { min-height: 160px; resize: vertical; }
+
+.inq-field select {
+    /* native arrow is invisible on a dark control in several browsers */
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%),
+                      linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%);
+    background-position: calc(100% - 20px) center, calc(100% - 14px) center;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 44px;
+}
+
+.inq-field input:focus,
+.inq-field select:focus,
+.inq-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.inq-field input::placeholder,
+.inq-field textarea::placeholder { color: rgba(255, 255, 255, 0.28); }
+
+/* Honeypot — off-screen rather than display:none, which some bots detect */
+.inq-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.inq-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.inq-form button[type="submit"] {
+    font-family: var(--body-font);
+    background-color: var(--accent);
+    color: var(--foreground);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.inq-form button[type="submit"]:hover:not(:disabled) {
+    background-color: var(--foreground);
+    color: var(--background);
+    transform: translateY(-3px);
+}
+
+.inq-form button[type="submit"]:disabled { opacity: 0.5; cursor: wait; }
+
+.inq-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.inq-status {
+    font-family: var(--body-font);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.inq-status.is-error { color: var(--accent); }
+
+.inq-done {
+    font-family: var(--body-font);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px;
+    padding: 32px;
+}
+
+.inq-done h3 { font-size: 1.4rem; margin: 0 0 12px; }
+.inq-done p  { color: rgba(255, 255, 255, 0.72); line-height: 1.8; margin: 0; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 56px;
+        padding: 56px 5vw;
     }
-    
-    .contact-links {
-        height: 60vh;
-    }
+    .contact-intro { padding-top: 120px; }
+}
+
+@media (max-width: 600px) {
+    .inq-row { grid-template-columns: 1fr; gap: 28px; }
+    .contact-rail .rail-row { grid-template-columns: 90px 1fr; gap: 12px; }
+    .inq-section { padding: 60px 20px; }
 }
 
 /* Will add a subtle fade in/out effect at the edges of the text */

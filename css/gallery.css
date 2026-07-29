@@ -30,6 +30,27 @@
   margin: 0;
 }
 
+/* Optional blurb under the heading — used by the us.html "What We Make" rows */
+.gal-section-header .gal-section-desc {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+
+/* .gal-band — a grid that sits inside a flow of text (us.html) rather than
+   standing alone at the end of a page, so it drops the tall bottom padding. */
+.gal-grid.gal-band { padding-bottom: 48px; }
+
+/* .gal-even — natural-height masonry reads badly at 3 items (one per column,
+   ragged bottom); an even strip is what a band between paragraphs wants. */
+.gal-grid.gal-even .gal-item img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+}
+
 @media (max-width: 768px) {
   .gal-section-header { padding: 56px 3vw 28px; }
 }

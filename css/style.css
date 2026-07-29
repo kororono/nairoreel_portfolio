@@ -565,11 +565,6 @@ header, section {
     transform: translateY(-2px);
 }
 
-.bento-item:hover .bento-title {
-    color: var(--foreground);
-    transition: color 0.3s ease;
-}
-
 /* Services(What we Do) - Bento Box Layout - TRANSPARENT BACKGROUNDS */
 #services {
     background: transparent;
@@ -603,22 +598,11 @@ header, section {
     border-left: 2px solid transparent;
 }
 
-/* Per-card brand tints: Film=pink, 3D=purple, Photography=orange */
-.bento-item:nth-child(1) {
-    background: linear-gradient(135deg, var(--tint-pink), rgba(28, 28, 28, 0.7));
-    border-left-color: var(--border-pink);
-}
-.bento-item:nth-child(2) {
-    background: linear-gradient(135deg, var(--tint-purple), rgba(28, 28, 28, 0.7));
-    border-left-color: var(--border-purple);
-}
-.bento-item:nth-child(3) {
-    background: linear-gradient(135deg, var(--tint-orange), rgba(28, 28, 28, 0.7));
-    border-left-color: var(--border-orange);
-}
-
+/* Unified black + accent red — the per-card pink/purple/orange tints were
+   dropped so red is the only colour event on the homepage. */
 .bento-item:hover {
     transform: translateY(-5px);
+    border-color: var(--accent);
 }
 
 .bento-title {
@@ -628,15 +612,11 @@ header, section {
     color: var(--foreground);
     position: relative;
     z-index: 2;
+    transition: color 0.3s ease;
 }
 
-/* Per-card title accent colors */
-.bento-item:nth-child(1) .bento-title { color: var(--brand-pink); }
-.bento-item:nth-child(2) .bento-title { color: var(--brand-purple); }
-.bento-item:nth-child(3) .bento-title { color: var(--brand-orange); }
-
-/* Reset to white on hover */
-.bento-item:hover .bento-title { color: var(--foreground); }
+/* Titles stay white at rest; red is the hover accent */
+.bento-item:hover .bento-title { color: var(--accent); }
 
 .bento-arrow {
     position: absolute;
@@ -854,6 +834,99 @@ header, section {
 .proc-step-body h3 { font-size: clamp(22px,3vw,34px); margin-bottom: 14px; }
 .proc-step-body p { color: rgba(255,255,255,.6); max-width: 560px; line-height: 1.7; margin: 0; }
 @media (max-width: 600px) { .proc-step { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ── FAQ (shared: index.html + contact.html) ──────────────────────────
+   Native <details>/<summary> — no JS. Each visible Q/A must match the
+   page's FAQPage JSON-LD verbatim. */
+.faq-section {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: 80px 5vw;
+}
+
+.faq-eyebrow {
+    font-family: 'Recia-Regular', serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 18px;
+}
+
+.faq-section > h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 48px;
+}
+
+.faq-list { border-top: 1px solid var(--border); }
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 26px 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--heading-font);
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    font-weight: 700;
+    color: var(--foreground);
+    transition: color 0.3s ease;
+}
+
+/* Kill the native disclosure triangle in both engines */
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ''; }
+
+.faq-item summary:hover { color: var(--accent); }
+.faq-item summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+/* Custom +/− marker */
+.faq-item summary::after {
+    content: '+';
+    flex: 0 0 auto;
+    font-family: var(--body-font);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after { transform: rotate(45deg); }
+
+.faq-item .faq-answer {
+    padding: 0 0 26px;
+    max-width: 720px;
+}
+
+.faq-item .faq-answer p {
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 0 1rem;
+}
+
+.faq-item .faq-answer p:last-child { margin-bottom: 0; }
+
+.faq-footer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+}
+
+.faq-footer p { color: var(--text-secondary); margin: 0; }
+
+@media (max-width: 600px) {
+    .faq-section { padding: 60px 20px; }
+    .faq-item summary { gap: 16px; padding: 22px 0; }
+}
 
 /* Process Detail Section */
 .process-detail-section {

@@ -105,6 +105,9 @@
   gap: 28px;
 }
 
+/* Held invisible until Boska has actually loaded — otherwise the wordmark paints
+   in fallback serif and visibly resizes when the real face swaps in. fx.js adds
+   .fonts-ready (with a timeout fallback so it can never stay hidden). */
 #preloader-new .pl-wordmark {
   font-family: 'Boska', serif;
   font-size: clamp(36px, 8vw, 80px);
@@ -112,7 +115,11 @@
   color: #ffffff;
   letter-spacing: 0.04em;
   line-height: 1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
+
+#preloader-new.fonts-ready .pl-wordmark { opacity: 1; }
 
 #preloader-new .pl-bar-track {
   width: min(320px, 70vw);

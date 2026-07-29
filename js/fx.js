@@ -250,6 +250,16 @@
     const fill = document.getElementById('pl-bar-fill');
     if (!pl || !fill) return;
 
+    // Reveal the wordmark only once Boska is loaded, so it never paints in
+    // fallback serif and resize-jumps. Timeout guard: never stays hidden.
+    const showWordmark = () => pl.classList.add('fonts-ready');
+    if (document.fonts && document.fonts.load) {
+      document.fonts.load('800 1em Boska').then(showWordmark).catch(showWordmark);
+      setTimeout(showWordmark, 600);
+    } else {
+      showWordmark();
+    }
+
     const start = performance.now();
     const FILL_DURATION = 1400;
 

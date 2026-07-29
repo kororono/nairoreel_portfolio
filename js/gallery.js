@@ -24,12 +24,17 @@
   let orderedEls = [];   /* ALL .gal-item elements in sequence (by data-index) */
   let visibleEls = [];   /* subset shown for the active category filter */
   let currentCat = 'all';
-  let gridRef    = null;
+  let gridRefs   = [];   /* every .gal-grid on the page, in DOM order */
 
-  /* ── Build item index (all items; handlers attached once) ─── */
-  function buildIndex(grid) {
-    orderedEls = Array.from(grid.querySelectorAll('.gal-item'))
-      .sort((a, b) => (+a.dataset.index || 0) - (+b.dataset.index || 0));
+  /* ── Build item index (all items; handlers attached once) ───
+     Items are collected across ALL grids so one lightbox spans the whole
+     page — us.html interleaves several grids between story paragraphs. */
+  function buildIndex(grids) {
+    orderedEls = grids.reduce((acc, g) => {
+      const own = Array.from(g.querySelectorAll('.gal-item'));
+      own.forEach(el => { el._grid = g; });   /* remember the owning grid for relayout */
+      return acc.concat(own);
+    }, []).sort((a, b) => (+a.dataset.index || 0) - (+b.dataset.index || 0));
 
     orderedEls.forEach(el => {
       el.setAttribute('role', 'button');
@@ -69,7 +74,7 @@
       ? orderedEls.slice()
       : orderedEls.filter(el => el.dataset.category === currentCat);
     rebuildItems();
-    if (gridRef) { gridRef._cols = -1; layoutColumns(gridRef); }
+    gridRefs.forEach(g => { g._cols = -1; layoutColumns(g); });
   }
 
   /* ── Create modal DOM (once, lazily) ──────────────────────── */
@@ -291,7 +296,11 @@
      so the first visual row still reads 1·2·3·4). Balances by HEIGHT, not
      count, so columns end at similar depths — natural jagged bottom, no gap. */
   function layoutColumns(grid) {
-    const n = colCountFor();
+    /* Only this grid's own items — a page can hold several grids. */
+    const mine = visibleEls.filter(el => el._grid === grid);
+    /* Never open more columns than there are items, or a small band (the
+       3-image journey strips on us.html) leaves empty columns on wide screens. */
+    const n = Math.max(1, Math.min(colCountFor(), mine.length));
     if (grid._cols === n) return;       // no breakpoint change → keep layout
     grid._cols = n;
 
@@ -304,7 +313,7 @@
       cols.push(col);
       colH.push(0);
     }
-    visibleEls.forEach(el => {
+    mine.forEach(el => {
       let t = 0;
       for (let c = 1; c < n; c++) if (colH[c] < colH[t]) t = c;
       cols[t].appendChild(el);
@@ -314,10 +323,9 @@
 
   /* ── Public API ───────────────────────────────────────────── */
   function initGallery(selector) {
-    const grid = document.querySelector(selector || '.gal-grid');
-    if (!grid) return;
-    gridRef = grid;
-    buildIndex(grid);
+    gridRefs = Array.from(document.querySelectorAll(selector || '.gal-grid'));
+    if (!gridRefs.length) return;
+    buildIndex(gridRefs);
 
     /* Apply the initial filter from the active button (set by our-work.js
        before this runs), so first paint already matches the URL hash. */
@@ -327,7 +335,7 @@
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => layoutColumns(grid), 150);
+      resizeTimer = setTimeout(() => gridRefs.forEach(layoutColumns), 150);
     });
   }
 

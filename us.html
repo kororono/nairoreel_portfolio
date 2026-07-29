@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark">
     <title>About Us — 3D Animation & VFX Team in Nairobi | Nairoreel Productions</title>
-    <meta name="description" content="Meet the team behind Nairoreel Productions — a 3D animation and VFX studio in Nairobi, Kenya specialising in product animation and visual effects.">
+    <meta name="description" content="Meet the team behind Nairoreel Productions — a 3D animation and VFX studio in Nairobi, Kenya working across CGI, visual effects, film and photography.">
     <link rel="canonical" href="https://nairoreelproductions.com/us">
     <meta name="theme-color" content="#0a0a0a">
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nairoreel Productions">
     <meta property="og:title" content="About Us — 3D Animation & VFX Team in Nairobi | Nairoreel Productions">
-    <meta property="og:description" content="Meet the team behind Nairoreel Productions — a 3D animation and VFX studio in Nairobi, Kenya specialising in product animation, visual effects, and cinematography.">
+    <meta property="og:description" content="Meet the team behind Nairoreel Productions — a 3D animation and VFX studio in Nairobi, Kenya working across CGI, visual effects, film and photography.">
     <meta property="og:url" content="https://nairoreelproductions.com/us">
-    <meta property="og:image" content="https://nairoreelproductions.com/assets/about-page/hero/us-hero.webp">
+    <meta property="og:image" content="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,c_fill,g_auto,w_1200,h_630,e_brightness:26,e_contrast:8/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Us — 3D Animation & VFX Team in Nairobi | Nairoreel Productions">
-    <meta name="twitter:description" content="Meet the team behind Nairoreel Productions — a 3D animation and VFX studio in Nairobi, Kenya specialising in product animation, visual effects, and cinematography.">
-    <meta name="twitter:image" content="https://nairoreelproductions.com/assets/about-page/hero/us-hero.webp">
+    <meta name="twitter:description" content="Meet the team behind Nairoreel Productions — a 3D animation and VFX studio in Nairobi, Kenya working across CGI, visual effects, film and photography.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,c_fill,g_auto,w_1200,h_630,e_brightness:26,e_contrast:8/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp">
     <!-- Critical: dark bg + curtain covered before any external CSS parses -->
     <style>html,body{background:#000000}#page-curtain{position:fixed;inset:0;z-index:8000;display:flex}#page-curtain .curtain-panel{flex:1;transform:scaleX(1)}.curtain-panel-red{background:#EA1821}.curtain-panel-black{background:#000;position:absolute;inset:0;z-index:1;transform:scaleX(1)}</style>
     <noscript><style>#page-curtain .curtain-panel{transform:scaleX(0)}</style></noscript>
@@ -43,22 +43,26 @@
         "@id": "https://nairoreelproductions.com/#organization",
         "name": "Nairoreel Productions",
         "url": "https://nairoreelproductions.com",
+        "image": "https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,c_fill,g_auto,w_1200,h_630,e_brightness:26,e_contrast:8/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp",
         "member": [
             {
                 "@type": "Person",
                 "name": "Brandon Kiprono",
+                "sameAs": "https://www.linkedin.com/in/brandonmaiywa",
                 "jobTitle": "3D Animation & VFX Director",
                 "image": { "@type": "ImageObject", "url": "https://nairoreelproductions.com/assets/about-page/person/brandon-thumb.webp" }
             },
             {
                 "@type": "Person",
                 "name": "Bill Hwaga",
+                "sameAs": "https://www.linkedin.com/in/billgates-hwaga-06254b203/",
                 "jobTitle": "Photography & Videography Director",
                 "image": { "@type": "ImageObject", "url": "https://nairoreelproductions.com/assets/about-page/person/bill-thumb.webp" }
             },
             {
                 "@type": "Person",
                 "name": "Maria Yusufali",
+                "sameAs": "https://www.linkedin.com/in/maria-taher-yusufali-b99506330/",
                 "jobTitle": "Communications Director",
                 "image": { "@type": "ImageObject", "url": "https://nairoreelproductions.com/assets/about-page/person/maria-thumb.webp" }
             }
@@ -93,6 +97,18 @@
         .team-card:nth-child(1) p { color: var(--brand-purple); }
         .team-card:nth-child(2) p { color: var(--brand-pink); }
         .team-card:nth-child(3) p { color: var(--brand-orange); }
+        .team-linkedin {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .team-linkedin:hover { color: var(--accent); border-bottom-color: var(--accent); }
         .story-section { margin: 4rem auto; max-width: 900px; }
         .story-section h2 { margin-bottom: 2rem; }
         .story-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; }
@@ -121,7 +137,7 @@
     <nav>
         <div class="nav-container">
         <div class="nav-logo">
-            <a href="index.html">
+            <a href="/">
                 <span>Nairoreel Productions</span>
                 <span>Nairoreel Productions</span>
             </a>
@@ -132,10 +148,10 @@
             <span></span>
         </div>
         <div class="nav-links">
-            <a href="our-work.html"><span>Our Work</span><span>Our Work</span></a>
-            <a href="us.html"><span>Us</span><span>Us</span></a>
-            <a href="process.html"><span>Process</span><span>Process</span></a>
-            <a href="contact.html"><span>Contact</span><span>Contact</span></a>
+            <a href="our-work"><span>Our Work</span><span>Our Work</span></a>
+            <a href="us"><span>Us</span><span>Us</span></a>
+            <a href="process"><span>Process</span><span>Process</span></a>
+            <a href="contact"><span>Contact</span><span>Contact</span></a>
         </div>
     </div>
     </nav>
@@ -157,58 +173,39 @@
                 <img src="assets/about-page/person/brandon-thumb.webp" alt="Brandon Kiprono, 3D Animation & VFX Director at Nairoreel Productions" width="600" height="600" loading="lazy">
                 <h3>Brandon Kiprono</h3>
                 <p>3D Animation & VFX Director</p>
+                <a class="team-linkedin" href="https://www.linkedin.com/in/brandonmaiywa" target="_blank" rel="noopener" aria-label="Brandon Kiprono on LinkedIn">LinkedIn</a>
             </div>
             <div class="team-card">
                 <img src="assets/about-page/person/bill-thumb.webp" alt="Bill Hwaga, Photography & Videography Director at Nairoreel Productions" width="600" height="600" loading="lazy">
                 <h3>Bill Hwaga</h3>
                 <p>Photography & Videography Director</p>
+                <a class="team-linkedin" href="https://www.linkedin.com/in/billgates-hwaga-06254b203/" target="_blank" rel="noopener" aria-label="Bill Hwaga on LinkedIn">LinkedIn</a>
             </div>
             <div class="team-card">
                 <img src="assets/about-page/person/maria-thumb.webp" alt="Maria Yusufali, Communications Director at Nairoreel Productions" width="600" height="600" loading="lazy">
                 <h3>Maria Yusufali</h3>
                 <p>Communications Director</p>
+                <a class="team-linkedin" href="https://www.linkedin.com/in/maria-taher-yusufali-b99506330/" target="_blank" rel="noopener" aria-label="Maria Yusufali on LinkedIn">LinkedIn</a>
             </div>
         </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- Story Section -->
+    <!-- Story Section — first person; journey images interleaved between paragraph
+         bands via build-gallery.py (blocks journey-1 … journey-4) -->
     <section class="story-section">
         <h2>Our Story</h2>
         <p>
-            Nairoreel Productions is a video production company founded in Nairobi, Kenya in 2024. Brandon and Bill both finished high school in 2023 and hit a gap before university. Rather than waiting it out, they started teaching themselves: Adobe After Effects, Illustrator, Photoshop, Blender. They launched a podcast called The Genzennial partly to stay accountable to the learning.
+            Nairoreel Productions is a video production company we founded in Nairobi, Kenya in 2024. We both finished high school in 2023 and hit a gap before university. Rather than waiting it out, we started teaching ourselves: Adobe After Effects, Illustrator, Photoshop, Blender. We launched a podcast called The Genzennial partly to stay accountable to the learning.
         </p>
         <p>
-            Most of the education came from YouTube. Chris Do, an Emmy Award-winning designer and founder of The Futur channel, was one of the bigger influences. His focus was less on technique and more on how to run a creative business: charge based on value not hours, and know how to hold a client conversation without folding. Other channels went deep on cinematography, lighting, and production breakdowns. Between all of it, they were building real working knowledge.
-        </p>
-        <p>
-            Over time they went in different directions. Bill got more interested in photography. Brandon kept going deeper into Blender.
-        </p>
-        <p>
-            By the end of 2024, they had a finished piece to show for it. The KFC spec ad was the first full 3D production, built as a self-set challenge. Blender for the whole 3D pipeline, DaVinci Resolve for editing and sound. Their laptops couldn't handle the heavier renders, so they used Google Colab to run those jobs in the cloud and pulled the outputs back locally. It worked.
-        </p>
-        <p>
-            Bill shot weddings and local events in the meantime, and joined his father on documentary work for government projects in rural Kenya, including fieldwork around the Nile Basin in northern Kenya. Then he got access to shoot Nairobi Fashion Week. The black and white image of the model you see across this site came from that day.
-        </p>
-        <p>
-            Maria Yusufali joined as Communications Director after that.
-        </p>
-        <p>
-            Brandon is now working with EmberGen for fire and smoke simulations. Bill shoots more video alongside the photography. The core tools are Blender, DaVinci Resolve, Photoshop, and Final Cut, with Marvelous Designer in the pipeline for cloth work. Tranzit, a two-part CGI short, is the biggest production so far. There's more coming.
+            Most of the education came from YouTube. Chris Do, an Emmy Award-winning designer and founder of The Futur channel, was one of the bigger influences. His focus was less on technique and more on how to run a creative business: charge based on value not hours, and know how to hold a client conversation without folding. Other channels went deep on cinematography, lighting, and production breakdowns. Between all of it, we were building real working knowledge.
         </p>
     </section>
 
-    <div class="divider"></div>
-
-    <section class="work-gallery">
-        <div class="photo-gallery">
-            <!-- GAL:START -->
-      <section class="gal-section-header">
-        <p class="gal-eyebrow">Gallery</p>
-        <h2>Our Journey</h2>
-      </section>
-      <div class="gal-grid" id="gal-grid">
+    <!-- GAL:START:journey-1 -->
+      <div class="gal-grid gal-band gal-even" id="gal-journey-1">
 
       <!-- ── Our Journey ── -->
       <figure class="gal-item reveal"
@@ -235,6 +232,23 @@
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783981/nrr/projects/journey/image-3.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783981/nrr/projects/journey/image-3.webp" alt="Our Journey" width="3060" height="4080" loading="lazy">
       </figure>
+
+      </div>
+      <!-- GAL:END:journey-1 -->
+
+    <section class="story-section">
+        <p>
+            Over time we went in different directions. Bill got more interested in photography. Brandon kept going deeper into Blender.
+        </p>
+        <p>
+            By the end of 2024, we had a finished piece to show for it. The KFC spec ad was our first full 3D production, built as a self-set challenge. Blender for the whole 3D pipeline, DaVinci Resolve for editing and sound. Our laptops couldn't handle the heavier renders, so we used Google Colab to run those jobs in the cloud and pulled the outputs back locally. It worked.
+        </p>
+    </section>
+
+    <!-- GAL:START:journey-2 -->
+      <div class="gal-grid gal-band gal-even" id="gal-journey-2">
+
+      <!-- ── Our Journey ── -->
       <figure class="gal-item reveal"
               data-index="3"
               data-category="photography"
@@ -259,6 +273,23 @@
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783984/nrr/projects/journey/image-6.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783984/nrr/projects/journey/image-6.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
       </figure>
+
+      </div>
+      <!-- GAL:END:journey-2 -->
+
+    <section class="story-section">
+        <p>
+            Bill shot weddings and local events in the meantime, and joined his father on documentary work for government projects in rural Kenya, including fieldwork around the Nile Basin in northern Kenya. Then he got access to shoot Nairobi Fashion Week. The black and white image of the model you see across this site came from that day.
+        </p>
+        <p>
+            Maria Yusufali joined us as Communications Director after that.
+        </p>
+    </section>
+
+    <!-- GAL:START:journey-3 -->
+      <div class="gal-grid gal-band gal-even" id="gal-journey-3">
+
+      <!-- ── Our Journey ── -->
       <figure class="gal-item reveal"
               data-index="6"
               data-category="photography"
@@ -283,6 +314,20 @@
               data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781783989/nrr/projects/journey/image-9.webp">
         <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781783989/nrr/projects/journey/image-9.webp" alt="Our Journey" width="5568" height="3712" loading="lazy">
       </figure>
+
+      </div>
+      <!-- GAL:END:journey-3 -->
+
+    <section class="story-section">
+        <p>
+            Brandon is now working with EmberGen for fire and smoke simulations. Bill shoots more video alongside the photography. Our core tools are Blender, DaVinci Resolve, Photoshop, and Final Cut, with Marvelous Designer in the pipeline for cloth work. Rendering runs on cloud GPUs rather than the machines on our desks, which is what lets us take on shot counts our own hardware could never finish. Tranzit, a two-part CGI short, is the biggest production so far. There's more coming.
+        </p>
+    </section>
+
+    <!-- GAL:START:journey-4 -->
+      <div class="gal-grid gal-band gal-even" id="gal-journey-4">
+
+      <!-- ── Our Journey ── -->
       <figure class="gal-item reveal"
               data-index="9"
               data-category="photography"
@@ -309,7 +354,131 @@
       </figure>
 
       </div>
-      <!-- GAL:END -->
+      <!-- GAL:END:journey-4 -->
+
+    <div class="divider"></div>
+
+    <!-- What We Make — category sample rows, extended as new work lands -->
+    <section class="story-section">
+        <h2>What We Make</h2>
+        <p>
+            The studio splits across three kinds of work, and most projects pull from more than one. A brand film might be shot on location and then extended with 3D. A product launch might be entirely computer-generated, with no camera involved at all. Because the shooting and the 3D happen under one roof, we scope a project by what it actually needs rather than by what one specialist happens to offer.
+        </p>
+        <p>
+            The rows below are a sample from each category. We add to them as new work ships.
+        </p>
+    </section>
+
+    <section class="work-gallery">
+        <div class="photo-gallery">
+            <!-- GAL:START:make-3d -->
+      <section class="gal-section-header">
+        <p class="gal-eyebrow">Selected Work</p>
+        <h2>3D Animation &amp; VFX</h2>
+        <p class="gal-section-desc">Fully computer-generated sequences built in Blender, plus simulation and compositing work layered onto live footage. Stills below are from Tranzit, our CGI short film.</p>
+      </section>
+      <div class="gal-grid gal-band" id="gal-make-3d">
+
+      <!-- ── Tranzit ── -->
+      <figure class="gal-item reveal"
+              data-index="12"
+              data-category="film"
+              data-title="Tranzit"
+              data-desc="CGI short film · forest-road scene"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645584/nrr/projects/tranzit/tranzit-01-drone-overhead.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645584/nrr/projects/tranzit/tranzit-01-drone-overhead.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="13"
+              data-category="film"
+              data-title="Tranzit"
+              data-desc="CGI short film · forest-road scene"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645585/nrr/projects/tranzit/tranzit-02-drift-fisheye-rear.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="14"
+              data-category="film"
+              data-title="Tranzit"
+              data-desc="CGI short film · forest-road scene"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781645585/nrr/projects/tranzit/tranzit-03-drift-railing-approach.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781645585/nrr/projects/tranzit/tranzit-03-drift-railing-approach.webp" alt="Tranzit" width="1989" height="1080" loading="lazy">
+      </figure>
+
+      </div>
+      <!-- GAL:END:make-3d -->
+            <!-- GAL:START:make-photo -->
+      <section class="gal-section-header">
+        <p class="gal-eyebrow">Selected Work</p>
+        <h2>Photography</h2>
+        <p class="gal-section-desc">Fashion, product, portrait and event photography shot in and around Nairobi. These frames are from Nairobi Fashion Week.</p>
+      </section>
+      <div class="gal-grid gal-band" id="gal-make-photo">
+
+      <!-- ── Nairobi Fashion Week ── -->
+      <figure class="gal-item reveal"
+              data-index="15"
+              data-category="photography"
+              data-title="Nairobi Fashion Week"
+              data-desc="Event coverage &amp; editorial · NFW, Nairobi"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641920/nrr/projects/nairobi-fashion-week/fashion%20bw-01.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781641920/nrr/projects/nairobi-fashion-week/fashion%20bw-01.webp" alt="Nairobi Fashion Week" width="4454" height="2970" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="16"
+              data-category="photography"
+              data-title="Nairobi Fashion Week"
+              data-desc="Event coverage &amp; editorial · NFW, Nairobi"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641928/nrr/projects/nairobi-fashion-week/fashion%20bw-02.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781641928/nrr/projects/nairobi-fashion-week/fashion%20bw-02.webp" alt="Nairobi Fashion Week" width="4160" height="2773" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="17"
+              data-category="photography"
+              data-title="Nairobi Fashion Week"
+              data-desc="Event coverage &amp; editorial · NFW, Nairobi"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641937/nrr/projects/nairobi-fashion-week/fashion%20bw-03.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781641937/nrr/projects/nairobi-fashion-week/fashion%20bw-03.webp" alt="Nairobi Fashion Week" width="3712" height="5568" loading="lazy">
+      </figure>
+
+      </div>
+      <!-- GAL:END:make-photo -->
+            <!-- GAL:START:make-film -->
+      <section class="gal-section-header">
+        <p class="gal-eyebrow">Selected Work</p>
+        <h2>Film &amp; Motion</h2>
+        <p class="gal-section-desc">Brand films, commercials and motion graphics, from the shoot through editing, sound design and colour grading.</p>
+      </section>
+      <div class="gal-grid gal-band" id="gal-make-film">
+
+      <!-- ── EKUC ── -->
+      <figure class="gal-item reveal"
+              data-index="18"
+              data-category="3d"
+              data-title="EKUC"
+              data-desc="Motion &amp; brand identity"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641709/nrr/projects/ekuc/ekuc-01.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781641709/nrr/projects/ekuc/ekuc-01.webp" alt="EKUC" width="1920" height="1080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="1"
+              data-index="19"
+              data-category="3d"
+              data-title="EKUC"
+              data-desc="Motion &amp; brand identity"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641710/nrr/projects/ekuc/ekuc-02.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781641710/nrr/projects/ekuc/ekuc-02.webp" alt="EKUC" width="1920" height="1080" loading="lazy">
+      </figure>
+      <figure class="gal-item reveal" data-delay="2"
+              data-index="20"
+              data-category="3d"
+              data-title="EKUC"
+              data-desc="Motion &amp; brand identity"
+              data-src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_1600/v1781641711/nrr/projects/ekuc/ekuc-03.webp">
+        <img src="https://res.cloudinary.com/dkmfbn7rw/image/upload/f_auto,q_auto,w_700/v1781641711/nrr/projects/ekuc/ekuc-03.webp" alt="EKUC" width="1920" height="1080" loading="lazy">
+      </figure>
+
+      </div>
+      <!-- GAL:END:make-film -->
         </div>
     </section>
 
@@ -321,24 +490,24 @@
             <div class="footer-col">
                 <h3>Services</h3>
                 <ul>
-                    <li><a href="our-work.html#film">Film Making</a></li>
-                    <li><a href="our-work.html#3d">3D Animation</a></li>
-                    <li><a href="our-work.html#photography">Photography</a></li>
+                    <li><a href="our-work#film">Film Making</a></li>
+                    <li><a href="our-work#3d">3D Animation</a></li>
+                    <li><a href="our-work#photography">Photography</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>Pages</h3>
                 <ul>
-                    <li><a href="our-work.html">Our Work</a></li>
-                    <li><a href="us.html">Us</a></li>
-                    <li><a href="process.html">Process</a></li>
+                    <li><a href="our-work">Our Work</a></li>
+                    <li><a href="us">Us</a></li>
+                    <li><a href="process">Process</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>Connect</h3>
                 <ul class="social-icons">
                     <li><a href="mailto:hello@nairoreelproductions.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></a></li>
-                    <li><a href="https://instagram.com/nairoreel.productions" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a></li>
+                    <li><a href="https://instagram.com/nairoreel_productions" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a></li>
                     <!--<li><a href="#" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="20" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></a></li>
                     <li><a href="#" target="_blank" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg></a></li> -->
                 </ul>
