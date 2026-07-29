@@ -34,6 +34,30 @@ Nairobi, Kenya — serving clients in Kenya, East Africa, and internationally.
 3. Production — Shooting, 3D asset creation, VFX, motion graphics
 4. Refinement — Color grading, sound design, revision rounds
 
+## Frequently Asked Questions
+
+### What does Nairoreel Productions do?
+Nairoreel Productions is a 3D animation and VFX studio in Nairobi, Kenya. We make product animation, visual effects, cinematic brand films and photography for brands across Kenya and East Africa. Most of our work takes one of two shapes: fully computer-generated pieces built in Blender, or live footage we shoot and then extend with 3D and compositing.
+
+### Where is Nairoreel Productions based, and do you work with clients outside Kenya?
+We are based in Nairobi, Kenya, and we work with clients anywhere. Everything we deliver is digital, so distance stops mattering once the brief is agreed. Shoots happen in and around Nairobi. For 3D and VFX work, where the client sits makes no difference at all.
+
+### How long does a 3D animation or VFX project take?
+A full production usually runs 4 to 8 weeks. That covers the whole pipeline: shooting where the piece needs live footage, then animation, simulations, editing, sound design, colour grading and delivery. It is not a fixed number. A short single-shot render can land well inside that window, while heavy simulation work, a large shot count or several review rounds will push past it. You get a timeline with the quote, before anything starts.
+
+### How much does a 3D animation or VFX project cost?
+We quote every project individually, so there is no rate card. What moves the number is scope: how many shots there are, how complex the assets and simulations get, how much render time the piece needs, whether it involves a shoot or is 3D only, and how many delivery formats you want at the end. Send us the brief and we will come back with a scoped quote rather than a guess.
+
+### What software and pipeline do you use?
+Blender for 3D, DaVinci Resolve for editing and colour, EmberGen for fire and smoke simulation, Marvelous Designer for cloth, plus Photoshop and Final Cut. Rendering runs on cloud GPUs rather than local machines, so shot complexity is not limited by the hardware sitting in the studio.
+
+### Can you handle the filming and the 3D work on the same project?
+Yes. Bill Hwaga runs photography and video, Brandon Kiprono runs 3D and VFX, so a project needing a camera on set and CGI in post stays with the same team throughout. You are not handing footage to a separate post house and hoping the two halves match.
+
+### What do you need from me to get started?
+A description of what you are making and roughly when you need it. That is enough to begin. From there we work in four steps: Discovery, where we dig into the brand and the problem; Concept, where we come back with the idea and storyboards; Production, covering the shoot and the 3D build; and Refinement, which is colour, sound and revision rounds. References of work you like help more than a detailed spec.
+
+
 ## Contact
 - Email: hello@nairoreelproductions.com
 - Website: https://nairoreelproductions.com
@@ -54,5 +78,14 @@ Nairobi, Kenya — serving clients in Kenya, East Africa, and internationally.
 - Our Process: https://nairoreelproductions.com/process
 - Photography: https://nairoreelproductions.com/photography
 - Contact: https://nairoreelproductions.com/contact
-- Inquiries: https://nairoreelproductions.com/inquiry
+- Start a project: https://nairoreelproductions.com/contact#inquiry
 - Detailed info: https://nairoreelproductions.com/llms-full.txt
+
+## Project Pages
+- Tranzit: https://nairoreelproductions.com/projects/tranzit
+- KFC: https://nairoreelproductions.com/projects/kfc
+- Reload KE: https://nairoreelproductions.com/projects/reload
+- EKUC Pathfinder Camporee: https://nairoreelproductions.com/projects/ekuc
+- Raila Odinga Tribute: https://nairoreelproductions.com/projects/raila-tribute
+- Costa Archive: https://nairoreelproductions.com/projects/costa
+- Nairobi Fashion Week: https://nairoreelproductions.com/projects/nairobi-fashion-week

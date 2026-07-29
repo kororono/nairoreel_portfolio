@@ -22,3 +22,4 @@ _lab/
 Thumbs.db
 desktop.ini
 *.swp
+dist/
