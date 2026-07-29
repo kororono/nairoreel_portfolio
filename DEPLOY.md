@@ -51,6 +51,21 @@ Inquiries Sheet and an email arrives at `hello@`.
 - Re-check `[vfx studio in nairobi]` in about two weeks. Expect the **homepage** to
   replace `/us` as the ranked URL before you see position movement.
 
+## What this zip does NOT contain
+
+`/brandon` (Brandon's hosted CV and cover letter) is maintained separately in
+`NRR/brandon-cv/` and is **deliberately not part of this build** — that folder holds
+ID documents and job-search material that must never enter this repo, which is public
+on GitHub.
+
+Extracting this zip over `public_html` **adds and overwrites; it does not delete**, so
+an existing `/brandon` survives a normal deploy untouched. The one thing that would
+destroy it is wiping `public_html` before uploading. **Don't do a clean-slate deploy
+without backing up `/brandon` first.**
+
+Deploying `/brandon` is a separate manual step — see `NRR/brandon-cv/README.md`, and
+upload only `index-v2.html`, `cover-letter.html` and its own `.htaccess`.
+
 ## Retired URLs
 
 These 301 rather than 404, so inbound links and accumulated equity survive:
