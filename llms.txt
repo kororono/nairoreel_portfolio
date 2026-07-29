@@ -76,7 +76,7 @@ A description of what you are making and roughly when you need it. That is enoug
 - Portfolio: https://nairoreelproductions.com/our-work
 - About Us: https://nairoreelproductions.com/us
 - Our Process: https://nairoreelproductions.com/process
-- Photography: https://nairoreelproductions.com/photography
+- Photography work: https://nairoreelproductions.com/our-work#photography
 - Contact: https://nairoreelproductions.com/contact
 - Start a project: https://nairoreelproductions.com/contact#inquiry
 - Detailed info: https://nairoreelproductions.com/llms-full.txt

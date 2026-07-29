@@ -58,7 +58,7 @@ EXCLUDE_SUFFIXES = {".py", ".sh", ".gs", ".bak"}
 # Files that MUST be present or the deploy is broken
 REQUIRED = [
     ".htaccess", "index.html", "contact.html", "us.html", "our-work.html",
-    "process.html", "photography.html", "robots.txt", "sitemap.xml",
+    "process.html", "robots.txt", "sitemap.xml",
     "llms.txt", "llms-full.txt",
     "css/style.css", "js/main.js", "js/fx.js", "js/gallery.js",
 ]

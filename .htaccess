@@ -13,8 +13,12 @@ RewriteRule ^index(\.html)?$ / [R=301,L]
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /home[\s?] [NC]
 RewriteRule ^home$ / [R=301,L]
 
-# 2b. /inquiry retired — the form now lives on the contact page (2026-07-29)
+# 2b. Retired pages — 301 to the equivalent destination rather than 404, so any
+#     accumulated link equity and existing inbound links survive (2026-07-29).
+#     /inquiry    → the form now lives on the contact page
+#     /photography→ superseded by the Our Work photography filter (v1 leftover)
 RewriteRule ^inquiry(\.html)?$ /contact#inquiry [R=301,L,NE]
+RewriteRule ^photography(\.html)?$ /our-work#photography [R=301,L,NE]
 
 # 3. Redirect other .html URLs to clean URLs (301 permanent)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]

@@ -11,7 +11,7 @@ server — zipping the folder as-is publishes all of that at
 python make-deploy-zip.py
 ```
 
-Writes `dist/nairoreel-deploy.zip` (~55 MB) containing only what should be served.
+Writes `dist/nairoreel-deploy.zip` (~55 MB, 204 files) containing only what should be served.
 It walks git's tracked files, so untracked scratch can never sneak in, and aborts if
 any required file is missing.
 
@@ -51,9 +51,14 @@ Inquiries Sheet and an email arrives at `hello@`.
 - Re-check `[vfx studio in nairobi]` in about two weeks. Expect the **homepage** to
   replace `/us` as the ranked URL before you see position movement.
 
-## Known issue shipping with this build
+## Retired URLs
 
-`photography.html` references three images under `assets/images/`, a directory that
-does not exist — they 404. Pre-existing, unrelated to the Phase 4.5 work, and the page
-is in `sitemap.xml`. The fix is migrating that page to the Cloudinary masonry gallery
-like the other eight pages.
+These 301 rather than 404, so inbound links and accumulated equity survive:
+
+| Old URL | Redirects to | Why |
+|---|---|---|
+| `/inquiry` | `/contact#inquiry` | the form moved onto the contact page |
+| `/photography` | `/our-work#photography` | v1 leftover; superseded by the Our Work photography filter |
+
+`our-work.js` reads the URL hash on load, so `#photography` lands on the filtered view
+rather than the unfiltered grid.
