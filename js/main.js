@@ -193,6 +193,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+/* ── Email links ──────────────────────────────────────────────────
+   Same trick as the WhatsApp link above: the address ships base64-encoded
+   and reversed on data-x, never as a literal string in the markup, so raw
+   HTML harvesters find nothing to take. Assembled into a real mailto: here.
+
+   Markup contract:
+     <a class="mail-link" data-x="..." href="/contact#inquiry">Email us</a>
+   The static href is a working fallback, so a no-JS visitor still lands
+   somewhere useful instead of a dead link — that is why there is no
+   "loading" placeholder and nothing shifts on load. Add data-show to also
+   render the assembled address as the link text (contact page + pricing
+   line, where people expect to read and copy it).                       */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.mail-link[data-x]').forEach(el => {
+        let addr;
+        try {
+            addr = atob(el.dataset.x).split('').reverse().join('');
+        } catch (err) {
+            return;   // malformed payload — leave the fallback href intact
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) return;
+
+        el.href = 'mailto:' + addr;
+        if (el.hasAttribute('data-show')) el.textContent = addr;
+    });
+});
+
 /* ── Contact page: inquiry form ───────────────────────────────────
    Posts to a Google Apps Script web app (see scripts/README-inquiry-form.md).
    FormData rather than JSON: it sends as multipart/form-data, which is a
@@ -221,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!form.reportValidity()) return;
 
         if (!endpoint) {
-            fail('The form is not connected yet. Please email hello@nairoreelproductions.com.');
+            fail('The form is not connected yet. Please use the email link on this page.');
             return;
         }
 
@@ -245,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             done.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         } catch (err) {
-            fail('Something went wrong sending that. Please email hello@nairoreelproductions.com instead.');
+            fail('Something went wrong sending that. Please use the email link on this page instead.');
         }
     });
 });

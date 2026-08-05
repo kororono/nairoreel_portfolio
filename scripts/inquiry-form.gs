@@ -12,7 +12,10 @@
  * the page. Rejected submissions return ok:true so bots get no signal.
  */
 
-var NOTIFY_TO   = 'hello@nairoreelproductions.com';
+// Changed 2026-08-05 (was hello@, retired after phishing). Editing this file
+// alone changes nothing — the deployed Web App keeps running the old code until
+// you paste this in at script.google.com and redeploy. See README-inquiry-form.md.
+var NOTIFY_TO   = 'create@nairoreelproductions.com';
 var SHEET_NAME  = 'Inquiries';
 var MIN_SECONDS = 3;
 var MAX_LEN     = 5000;   // per field, guards against payload stuffing

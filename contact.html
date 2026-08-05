@@ -56,7 +56,6 @@
         "@id": "https://nairoreelproductions.com/#organization",
         "name": "Nairoreel Productions",
         "url": "https://nairoreelproductions.com",
-        "email": "hello@nairoreelproductions.com",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Nairobi",
@@ -69,10 +68,9 @@
         ],
         "contactPoint": {
             "@type": "ContactPoint",
-            "email": "hello@nairoreelproductions.com",
             "contactType": "customer service",
             "availableLanguage": ["en", "sw"],
-            "url": "https://nairoreelproductions.com/contact"
+            "url": "https://nairoreelproductions.com/contact#inquiry"
         }
     }
     </script>
@@ -129,7 +127,7 @@
                 </div>
             </a>
 
-            <a href="mailto:hello@nairoreelproductions.com" class="contact-link">
+            <a href="#inquiry" class="contact-link mail-link" data-x="bW9jLnNub2l0Y3Vkb3JwbGVlcm9yaWFuQGV0YWVyYw==">
                 <div class="link-text">E-Mail</div>
                 <div class="link-hover-text">
                     <div class="scrolling-text">Write to Us Write to Us Write to Us Write to Us Write to Us Write to Us Write to Us Write to Us Write to Us</div>
@@ -148,7 +146,10 @@
             <dl>
                 <div class="rail-row">
                     <dt>Email</dt>
-                    <dd><a href="mailto:hello@nairoreelproductions.com">hello@nairoreelproductions.com</a></dd>
+                    <!-- Address is never in the served HTML — js/main.js decodes data-x
+                         into a real mailto: and writes the visible text on load. The
+                         static href is a working fallback for no-JS visitors. -->
+                    <dd><a class="mail-link" data-x="bW9jLnNub2l0Y3Vkb3JwbGVlcm9yaWFuQGV0YWVyYw==" data-show href="#inquiry">Email us</a></dd>
                 </div>
                 <div class="rail-row">
                     <dt>WhatsApp</dt>
@@ -158,7 +159,7 @@
                              Nothing here may contain a phone-shaped digit run, including examples.
                              How to regenerate data-x: scripts/README-inquiry-form.md -->
                         <button type="button" class="wa-link" data-x="OTE5NDgyODY3NDUy">Chat with us</button>
-                        <noscript>Email us at hello@nairoreelproductions.com</noscript>
+                        <noscript>Use the inquiry form below to reach us.</noscript>
                     </dd>
                 </div>
                 <div class="rail-row">
@@ -187,7 +188,7 @@
     <div class="divider"></div>
 
     <!-- Inquiry form — posts to a Google Apps Script web app that writes to a
-         Sheet and emails hello@. Setup + endpoint: scripts/README-inquiry-form.md -->
+         Sheet and emails the studio inbox. Setup + endpoint: scripts/README-inquiry-form.md -->
     <section class="inq-section" id="inquiry">
         <p class="inq-eyebrow">Start a Project</p>
         <h2>Tell Us What You're Making</h2>
@@ -249,7 +250,7 @@
 
             <div class="inq-actions">
                 <button type="submit">Send Inquiry</button>
-                <p class="inq-note">Or email <a href="mailto:hello@nairoreelproductions.com">hello@nairoreelproductions.com</a></p>
+                <p class="inq-note">Or email <a class="mail-link" data-x="bW9jLnNub2l0Y3Vkb3JwbGVlcm9yaWFuQGV0YWVyYw==" data-show href="#inquiry">us directly</a></p>
             </div>
 
             <p class="inq-status" id="inq-status" role="status" aria-live="polite"></p>
@@ -347,7 +348,7 @@
             <h3>Connect</h3>
             <ul class="social-icons">
                 <li>
-                    <a href="mailto:hello@nairoreelproductions.com" aria-label="Email">
+                    <a class="mail-link" data-x="bW9jLnNub2l0Y3Vkb3JwbGVlcm9yaWFuQGV0YWVyYw==" href="/contact#inquiry" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor">
                             <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
                         </svg>

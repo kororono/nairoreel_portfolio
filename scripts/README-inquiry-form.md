@@ -1,7 +1,14 @@
 # Inquiry form backend — setup
 
 The contact form at `/contact#inquiry` posts to a Google Apps Script web app that
-writes a row to a Google Sheet and emails `hello@nairoreelproductions.com`.
+writes a row to a Google Sheet and emails `create@nairoreelproductions.com`.
+
+> **Notification address changed 2026-08-05.** `hello@` was retired after sustained
+> phishing; `NOTIFY_TO` in `inquiry-form.gs` is now `create@`. **This repo is not the
+> running code** — the deployed Web App executes the copy pasted into
+> script.google.com. Until you redeploy (see "Changing the notification address"
+> below), notifications still go to the old address. Rows keep landing in the Sheet
+> either way, so this fails silently.
 
 Replaced the Tally embed (2026-07-29): own the markup, own the CSS, own the data,
 no submission cap, nothing to maintain.
@@ -15,8 +22,8 @@ with an error. **Two test rows** ("TEST — Claude Code wiring check" and
 
 ## One-time setup
 
-1. Create a Google Sheet named **Nairoreel Inquiries** on the account that owns
-   `hello@nairoreelproductions.com`.
+1. Create a Google Sheet named **Nairoreel Inquiries** on the studio's Google
+   account (the one that will send the notification emails).
 2. In that Sheet: **Extensions → Apps Script**.
 3. Delete the placeholder `Code.gs` contents and paste all of
    [`inquiry-form.gs`](inquiry-form.gs). Save.
@@ -31,6 +38,24 @@ with an error. **Two test rows** ("TEST — Claude Code wiring check" and
 
 The `Inquiries` tab and its header row are created automatically on the first
 submission.
+
+## Changing the notification address
+
+`NOTIFY_TO` lives in the deployed script, not in this repo. Editing `inquiry-form.gs`
+here has no effect on the live form until you push it to Google:
+
+1. Open the **Nairoreel Inquiries** Sheet → **Extensions → Apps Script**.
+2. Update `NOTIFY_TO` at the top of the script (or re-paste the whole file). Save.
+3. **Deploy → Manage deployments** → pencil/edit the existing deployment →
+   Version: **New version** → **Deploy**.
+   Use *Manage deployments*, **not** *New deployment* — a new deployment mints a
+   fresh `/exec` URL and `contact.html`'s `data-endpoint` would still point at the
+   old one, so the form would keep hitting the previous version.
+4. Verify: submit the real form and confirm the email lands at the new address.
+
+Note the Sheet and the script are owned by whichever Google account you set this up
+on. Retiring a domain mailbox does not change that ownership — but if notifications
+stop arriving, check that the destination address still exists and is not filtered.
 
 ## Verifying
 

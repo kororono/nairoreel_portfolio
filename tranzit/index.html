@@ -620,14 +620,21 @@ h1,h2,h3{font-family:var(--heading); font-weight:900; line-height:1.02; letter-s
     </div>
 
     <div class="f-contact">
-      <!-- Update addresses here if they change -->
+      <!-- Addresses are never in the served HTML: each ships base64-encoded and
+           reversed on data-x and is assembled into a real mailto: by the inline
+           script near the end of this file. This microsite is self-contained and
+           does not load js/main.js, so it carries its own copy of the assembler.
+           To change an address, regenerate data-x — do not paste a literal one.
+           Encode with: btoa([...'user@domain'].reverse().join('')) -->
       <div class="contact-item">
         <span class="lbl">General</span>
-        <a href="mailto:hello@nairoreelproductions.com">hello@nairoreelproductions.com</a>
+        <a class="mail-link" data-x="bW9jLnNub2l0Y3Vkb3JwbGVlcm9yaWFuQGV0YWVyYw==" data-show
+           href="https://nairoreelproductions.com/contact#inquiry">Email us</a>
       </div>
       <div class="contact-item">
         <span class="lbl">Maria Yusufali — Communications</span>
-        <a href="mailto:maria@nairoreelproductions.com">maria@nairoreelproductions.com</a>
+        <a class="mail-link" data-x="bW9jLnNub2l0Y3Vkb3JwbGVlcm9yaWFuQGFpcmFt" data-show
+           href="https://nairoreelproductions.com/contact#inquiry">Email Maria</a>
       </div>
       <div class="contact-item">
         <span class="lbl">Instagram</span>
@@ -665,6 +672,18 @@ h1,h2,h3{font-family:var(--heading); font-weight:900; line-height:1.02; letter-s
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
 document.body.classList.remove('no-js');
+
+/* Email links — assembles mailto: from the reversed base64 on data-x so the
+   addresses never appear as literal strings in the served HTML. Mirrors the
+   .mail-link handler in js/main.js; this page is standalone and can't share it. */
+document.querySelectorAll('.mail-link[data-x]').forEach(el => {
+  let addr;
+  try { addr = atob(el.dataset.x).split('').reverse().join(''); }
+  catch (err) { return; }           // malformed — leave the fallback href intact
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) return;
+  el.href = 'mailto:' + addr;
+  if (el.hasAttribute('data-show')) el.textContent = addr;
+});
 
 /* ============================================================
    IMAGE CONFIG — single place to swap all image sources.
