@@ -538,9 +538,19 @@
     <script>
     (function(){
         var heroBg = document.querySelector('.proj-hero-bg');
-        if (!heroBg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var heroSection = document.querySelector('.proj-hero');
+        if (!heroBg || !heroSection || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        // Buffer shrinks at narrower breakpoints (see style.css) so the max safe
+        // shift is measured live from the rendered overhang rather than assumed.
+        var maxShift = 0;
+        function measure() {
+            maxShift = (heroBg.offsetHeight - heroSection.offsetHeight) / 2;
+        }
+        measure();
+        window.addEventListener('resize', measure, { passive: true });
         window.addEventListener('scroll', function () {
-            heroBg.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+            var shift = Math.min(window.scrollY * 0.3, maxShift);
+            heroBg.style.transform = 'translateY(' + shift + 'px)';
         }, { passive: true });
     })();
     </script>

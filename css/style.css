@@ -539,9 +539,32 @@ header, section {
 }
 
 @media (max-width: 768px) {
-    .proj-hero { height: 70vh; }
     .proj-hero-content { padding: 0 5vw 48px; }
     .proj-title { font-size: clamp(36px, 10vw, 64px); }
+}
+
+/* Responsive hero height + parallax buffer: shorter box reveals more of the
+   image's width (same reasoning as the homepage hero); a smaller oversize
+   buffer on .proj-hero-bg recovers top/bottom framing that the parallax
+   effect — not the crop — was hiding. Both converge to the current desktop
+   values (88vh / 130% / -15%) by 1200px. The parallax script clamps its own
+   shift to whatever buffer exists at the current size, so this never opens
+   a gap at any breakpoint. */
+@media (max-width: 1200px) {
+    .proj-hero { height: 82vh; }
+    .proj-hero-bg { height: 126%; top: -13%; }
+}
+@media (max-width: 900px) {
+    .proj-hero { height: 74vh; }
+    .proj-hero-bg { height: 122%; top: -11%; }
+}
+@media (max-width: 600px) {
+    .proj-hero { height: 66vh; }
+    .proj-hero-bg { height: 116%; top: -8%; }
+}
+@media (max-width: 400px) {
+    .proj-hero { height: 62vh; }
+    .proj-hero-bg { height: 112%; top: -6%; }
 }
 
 /* Call to Action */

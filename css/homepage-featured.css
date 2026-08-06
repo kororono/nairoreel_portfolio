@@ -38,6 +38,23 @@
     }
 }
 
+/* Responsive hero height: shorter box on narrow/tall viewports reveals more of the
+   video's width under object-fit:cover (no crop introduced, just less vertical
+   screen real estate) — converges back to the full 100vh at laptop widths and up,
+   where the video's own aspect ratio already gives near-full coverage. */
+@media (max-width: 1200px) {
+    .hero-section { height: 94vh; }
+}
+@media (max-width: 900px) {
+    .hero-section { height: 88vh; }
+}
+@media (max-width: 600px) {
+    .hero-section { height: 82vh; }
+}
+@media (max-width: 400px) {
+    .hero-section { height: 76vh; }
+}
+
 /* Hero Overlay */
 .hero-overlay {
     position: absolute;
