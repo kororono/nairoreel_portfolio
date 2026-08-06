@@ -1,12 +1,27 @@
-// Smooth scrolling for anchor links
+// Smooth scrolling for anchor links.
+//
+// The href is re-read at click time and re-validated rather than trusted from
+// bind time. Elements matched here can stop being in-page anchors after load:
+// .mail-link ships with a "#inquiry" fallback href and is rewritten to a
+// mailto: once js assembles the address. Bailing out *before* preventDefault is
+// what lets that click reach the mail client — the earlier version prevented the
+// default unconditionally and then threw on querySelector('mailto:...'), which
+// silently killed every email link on this page.
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        e.preventDefault();
         const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
+        if (!targetId || targetId.charAt(0) !== '#' || targetId === '#') return;
+
+        var targetElement;
+        try {
+            targetElement = document.querySelector(targetId);
+        } catch (err) {
+            return;            // not a valid selector — let the browser handle it
         }
+        if (!targetElement) return;   // no target — don't swallow the click
+
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth' });
     });
 });
 
