@@ -11,9 +11,11 @@ server — zipping the folder as-is publishes all of that at
 python make-deploy-zip.py
 ```
 
-Writes `dist/nairoreel-deploy.zip` (~55 MB, 204 files) containing only what should be served.
-It walks git's tracked files, so untracked scratch can never sneak in, and aborts if
-any required file is missing.
+Writes `dist/nairoreel-deploy-{YYYYMMDD-HHMMSS}.zip` (~55 MB, 204 files) containing only
+what should be served. It walks git's tracked files, so untracked scratch can never sneak
+in, and aborts if any required file is missing. Every run gets its own timestamped file —
+nothing in `dist/` is overwritten or deleted, so it's a running log of past builds. Always
+upload the newest one; prune old ones by hand whenever `dist/` gets too big.
 
 **Excluded:** `nairoreelproductions.com-audit/`, `scripts/`, `claude-seo/`, `_lab/`,
 `**/source/` (raw camera originals, ~59 MB — the galleries serve from Cloudinary),
@@ -22,7 +24,7 @@ all `.py`/`.sh`/`.gs`/`.md`, and `.gitignore`.
 ## Upload
 
 1. cPanel → File Manager → `public_html`.
-2. Upload `nairoreel-deploy.zip`, then **Extract**.
+2. Upload the newest `nairoreel-deploy-*.zip` from `dist/`, then **Extract**.
 3. **Verify `.htaccess` landed.** cPanel hides dotfiles by default — turn on
    "Show Hidden Files" in Settings. Without it every clean URL 404s, because
    `.htaccess` rule 4 is what maps `/our-work` → `our-work.html`.

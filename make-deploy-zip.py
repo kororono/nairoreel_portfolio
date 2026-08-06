@@ -8,21 +8,23 @@ Zipping the folder as-is publishes all of it at
 nairoreelproductions.com/nairoreelproductions.com-audit/ and friends.
 
 This walks git's tracked files (so untracked scratch never sneaks in), drops
-everything on the exclude list, and writes dist/nairoreel-deploy.zip whose contents
-unzip straight into public_html/.
+everything on the exclude list, and writes a timestamped zip into dist/ whose
+contents unzip straight into public_html/. Each run gets its own file — nothing
+in dist/ is ever overwritten or deleted, so it doubles as a log of past builds.
 
     python make-deploy-zip.py
 
-Then: upload the zip via cPanel File Manager → public_html → Extract.
+Then: upload the newest zip in dist/ via cPanel File Manager → public_html → Extract.
 IMPORTANT: .htaccess is a dotfile — confirm it actually landed after extracting.
 """
 import subprocess
 import sys
 import zipfile
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / "dist" / "nairoreel-deploy.zip"
+OUT = ROOT / "dist" / f"nairoreel-deploy-{datetime.now():%Y%m%d-%H%M%S}.zip"
 
 # Directories that must never reach the live host
 EXCLUDE_DIRS = {
@@ -107,7 +109,14 @@ def main():
     print(f"  {len(files)} files, {total / 1024 / 1024:.1f} MB uncompressed"
           f" -> {OUT.stat().st_size / 1024 / 1024:.1f} MB zipped")
     print(f"  {skipped} tracked files excluded (audit, scripts, generators, docs)")
-    print("\nUpload to public_html and extract. Then verify .htaccess exists —")
+
+    older = sorted(OUT.parent.glob("nairoreel-deploy-*.zip"))
+    if len(older) > 1:
+        print(f"\n{len(older)} builds now in dist/ (oldest to newest):")
+        for z in older:
+            print(f"  {z.name}")
+
+    print("\nUpload this zip to public_html and extract. Then verify .htaccess exists —")
     print("cPanel hides dotfiles by default and a missing .htaccess breaks every URL.")
     return 0
 
